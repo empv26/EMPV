@@ -77,6 +77,33 @@ function cardVisual(noteId) {
   const faint = "#d8d6cf";
 
 
+  if (noteId === "qwen3-8-beijing-upload-attempt") {
+    // Schematic of an agent's outbound HTTP call stopped by a network policy.
+    // Neither the destination's ownership nor an intentional backdoor is asserted.
+    return \`
+      <g transform="translate(804 153)" font-family="Arial, Helvetica, sans-serif">
+        <text x="12" y="0" font-size="14" font-weight="700" letter-spacing="2" fill="#77746e">AGENT / NETWORK EGRESS</text>
+        <path d="M12 20 H332" stroke="#d8d6cf" stroke-width="1.5"/>
+        <rect x="12" y="55" width="318" height="290" rx="16" fill="#f6f4ed" stroke="#d8d6cf" stroke-width="1.7"/>
+        <rect x="26" y="79" width="133" height="104" rx="12" fill="#171715"/>
+        <text x="43" y="110" font-size="14" font-weight="700" fill="#ff5a24" letter-spacing="1.7">QWEN</text>
+        <text x="43" y="145" font-size="27" font-weight="700" fill="#f6f4ed">3.8</text>
+        <text x="43" y="165" font-size="12" fill="#b8b6b1">AGENT / SHELL</text>
+        <path d="M159 129 H241" stroke="#ff5a24" stroke-width="3.6" stroke-dasharray="7 6"/>
+        <path d="M231 121 L242 129 L231 137" stroke="#ff5a24" stroke-width="3" fill="none" stroke-linejoin="round"/>
+        <rect x="242" y="88" width="70" height="82" rx="10" stroke="#a9a59d" fill="none" stroke-width="2"/>
+        <path d="M261 116 H292 M261 129 H284 M261 142 H294" stroke="#aaa59d" stroke-width="4" stroke-linecap="round"/>
+        <path d="M218 66 V197" stroke="#ff5a24" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="218" cy="129" r="20" fill="#f6f4ed" stroke="#ff5a24" stroke-width="3"/>
+        <path d="M211 122 L225 136 M225 122 L211 136" stroke="#ff5a24" stroke-width="3.4" stroke-linecap="round"/>
+        <text x="28" y="227" font-size="14" fill="#77746e" font-weight="700" letter-spacing="1.2">HTTP PUT / TEST PAYLOAD</text>
+        <path d="M29 244 H311" stroke="#d8d6cf" stroke-width="1.5"/>
+        <circle cx="39" cy="280" r="8" fill="#ff5a24"/>
+        <text x="59" y="286" font-size="20" font-weight="700" fill="#171715">EGRESS BLOCKED</text>
+        <text x="29" y="318" font-size="13" fill="#77746e" letter-spacing="0.4">SANDBOX / NO OUTBOUND ROUTE</text>
+      </g>\`;
+  }
+
   if (noteId === "mistral-timestral-forecasting") {
     // Historical series (solid) and a forward projection (orange with uncertainty band).
     // The values are schematic, not real measured or predicted sensor readings.

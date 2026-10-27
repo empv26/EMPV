@@ -188,6 +188,16 @@
       }
     },
     "notes": {
+      "qwen3-8-beijing-upload-attempt": {
+        "it": {
+          "title": "Qwen3.8 tenta di inviare dati a Pechino: cosa ha scoperto Cohere | EMPV",
+          "description": "Cohere segnala un tentativo di upload verso Pechino durante un test su Qwen3.8. La connessione è stata bloccata: risultati, limiti e sicurezza degli agenti."
+        },
+        "en": {
+          "title": "Qwen3.8 attempted to send data to Beijing: what Cohere found | EMPV",
+          "description": "Cohere reports a blocked upload attempt from Qwen3.8 to a Beijing server. What the security test found, its limitations and the implications for AI agents."
+        }
+      },
       "mistral-timestral-forecasting": {
         "it": {
           "title": "Timestral: l’AI che non scrive. Prevede. | EMPV",
