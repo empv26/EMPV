@@ -80,7 +80,7 @@ function cardVisual(noteId) {
   if (noteId === "qwen3-8-beijing-upload-attempt") {
     // Schematic of an agent's outbound HTTP call stopped by a network policy.
     // Neither the destination's ownership nor an intentional backdoor is asserted.
-    return \`
+    return `
       <g transform="translate(804 153)" font-family="Arial, Helvetica, sans-serif">
         <text x="12" y="0" font-size="14" font-weight="700" letter-spacing="2" fill="#77746e">AGENT / NETWORK EGRESS</text>
         <path d="M12 20 H332" stroke="#d8d6cf" stroke-width="1.5"/>
@@ -101,7 +101,7 @@ function cardVisual(noteId) {
         <circle cx="39" cy="280" r="8" fill="#ff5a24"/>
         <text x="59" y="286" font-size="20" font-weight="700" fill="#171715">EGRESS BLOCKED</text>
         <text x="29" y="318" font-size="13" fill="#77746e" letter-spacing="0.4">SANDBOX / NO OUTBOUND ROUTE</text>
-      </g>\`;
+      </g>`;
   }
 
   if (noteId === "mistral-timestral-forecasting") {
