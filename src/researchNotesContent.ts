@@ -66,6 +66,10 @@ export const researchNotes: ResearchNote[] = [
       "en": "4 min"
     },
     "socialVersion": "20261029a",
+    "socialImage": {
+      "it": "/social/research-notes/gemini-4-carbon-cybersecurity-it-20261029a.png",
+      "en": "/social/research-notes/gemini-4-carbon-cybersecurity-en-20261029a.png"
+    },
     "sections": {
       "it": [
         {
