@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const validBackgrounds = new Set([
+          "none", "particles", "aero", "beams", "threads", "waves", "galaxy",
+          "orb", "silk", "sliced-waves", "side-rays", "light-tunnel",
+          "scanner", "prism", "dither"
+        ]);
+        const validPalettes = new Set([
+          "mist", "zinc", "mauve", "olive", "taupe", "amber", "blue", "indigo"
+        ]);
+        const aliases = { steel: "mist", sage: "olive" };
+
+        let stored = {};
+        try {
+          stored = JSON.parse(localStorage.getItem("empv-visual-preferences") || "{}") || {};
+        } catch {}
+
+        const params = new URLSearchParams(location.search);
+        const requestedBackground = params.get("bg");
+        const requestedPalette = params.get("palette");
+        const aliasedPalette = requestedPalette && aliases[requestedPalette]
+          ? aliases[requestedPalette]
+          : requestedPalette;
+
+        const background = validBackgrounds.has(requestedBackground)
+          ? requestedBackground
+          : validBackgrounds.has(stored.background)
+            ? stored.background
+            : "scanner";
+
+        const palette = validPalettes.has(aliasedPalette)
+          ? aliasedPalette
+          : validPalettes.has(stored.palette)
+            ? stored.palette
+            : "blue";
+
+        root.dataset.visualTheme = background === "none" ? "default" : "galaxy";
+        root.dataset.galaxyPalette = palette;
+
+        try {
+          const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+          const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (finePointer && !reducedMotion) {
+            root.classList.add("empv-custom-cursor-enabled");
+          }
+        } catch {}
+      })();
+    </script>
+    <meta name="theme-color" content="#ecebe5" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <meta name="google-site-verification" content="UnScA5DO68Suf6LYORZ-bKoSW_KV0KH6diJ9HCuVAqg" />
+    <meta name="description" content="Google launches Gemini 4 Carbon. Cybersecurity and coding benchmarks, independent results, pricing, availability and limitations." />
+    <title>Gemini 4 Carbon: Google focuses on secure code and long-running AI agents | EMPV</title>
+    <script type="module" crossorigin src="/assets/index-CgqPl74C.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cqsd0oq4.css">
+      <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://empv.it/en/research-notes/gemini-4-carbon-cybersecurity-ai-agents/" />
+    <link rel="alternate" hreflang="it" href="https://empv.it/it/research-notes/gemini-4-carbon-cybersecurity-agenti-ai/" />
+    <link rel="alternate" hreflang="en" href="https://empv.it/en/research-notes/gemini-4-carbon-cybersecurity-ai-agents/" />
+    <link rel="alternate" hreflang="x-default" href="https://empv.it/it/research-notes/gemini-4-carbon-cybersecurity-agenti-ai/" />
+    <link rel="describedby" href="https://empv.it/llms.txt" type="text/markdown" />
+    <meta property="og:title" content="Gemini 4 Carbon: Google focuses on secure code and long-running AI agents | EMPV" />
+    <meta property="og:description" content="Google launches Gemini 4 Carbon. Cybersecurity and coding benchmarks, independent results, pricing, availability and limitations." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://empv.it/en/research-notes/gemini-4-carbon-cybersecurity-ai-agents/" />
+    <meta property="og:site_name" content="EMPV" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://empv.it/social/research-notes/gemini-4-carbon-cybersecurity-en-20261029a.png" />
+    <meta property="og:image:url" content="https://empv.it/social/research-notes/gemini-4-carbon-cybersecurity-en-20261029a.png" />
+    <meta property="og:image:secure_url" content="https://empv.it/social/research-notes/gemini-4-carbon-cybersecurity-en-20261029a.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Gemini 4 Carbon: Google focuses on secure code and long-running AI agents" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@EMPV26" />
+    <meta name="twitter:title" content="Gemini 4 Carbon: Google focuses on secure code and long-running AI agents | EMPV" />
+    <meta name="twitter:description" content="Google launches Gemini 4 Carbon. Cybersecurity and coding benchmarks, independent results, pricing, availability and limitations." />
+    <meta name="twitter:image" content="https://empv.it/social/research-notes/gemini-4-carbon-cybersecurity-en-20261029a.png" />
+    <meta name="twitter:image:alt" content="Gemini 4 Carbon: Google focuses on secure code and long-running AI agents" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://empv.it/#organization","name":"EMPV","url":"https://empv.it","email":"hello@empv.it","telephone":"+39 379 243 8705","logo":{"@type":"ImageObject","@id":"https://empv.it/#logo","url":"https://empv.it/favicon-96x96.png","contentUrl":"https://empv.it/favicon-96x96.png","width":96,"height":96},"image":{"@id":"https://empv.it/#logo"},"sameAs":["https://www.linkedin.com/company/emp26/","https://x.com/EMPV26"],"address":{"@type":"PostalAddress","addressLocality":"Bergamo","addressCountry":"IT"},"member":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}]},{"@type":"Person","@id":"https://empv.it/#enrico-peruffo","name":"Enrico Peruffo","jobTitle":"AI Systems & Architecture","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"Person","@id":"https://empv.it/#michele-valleri","name":"Michele Valleri","jobTitle":"AI Product & Process Design","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"WebSite","@id":"https://empv.it/#website","name":"EMPV","url":"https://empv.it","inLanguage":["it","en"],"publisher":{"@id":"https://empv.it/#organization"}},{"@type":"WebPage","@id":"https://empv.it/en/research-notes/gemini-4-carbon-cybersecurity-ai-agents/#webpage","url":"https://empv.it/en/research-notes/gemini-4-carbon-cybersecurity-ai-agents/","name":"Gemini 4 Carbon: Google focuses on secure code and long-running AI agents | EMPV","description":"Google launches Gemini 4 Carbon. Cybersecurity and coding benchmarks, independent results, pricing, availability and limitations.","inLanguage":"en","isPartOf":{"@id":"https://empv.it/#website"},"about":{"@id":"https://empv.it/#organization"}},{"@type":"Article","@id":"https://empv.it/en/research-notes/gemini-4-carbon-cybersecurity-ai-agents/#article","headline":"Gemini 4 Carbon: Google focuses on secure code and long-running AI agents","description":"Google introduces the successor to Gemini 4 Argon, reporting stronger results in cybersecurity, coding and reasoning. Access remains restricted to selected cybersecurity defenders.","datePublished":"2026-10-29","dateModified":"2026-10-29","inLanguage":"en","keywords":["Gemini 4 Carbon","Google DeepMind","Cybersecurity","AI Agents","Coding"],"image":{"@type":"ImageObject","url":"https://empv.it/social/research-notes/gemini-4-carbon-cybersecurity-en-20261029a.png","width":1200,"height":630},"mainEntityOfPage":{"@id":"https://empv.it/en/research-notes/gemini-4-carbon-cybersecurity-ai-agents/#webpage"},"author":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}],"publisher":{"@id":"https://empv.it/#organization"}}]}</script>
+  </head>
+  <body>
+    <div id="root"><div class="detail-shell notes-shell" data-prerendered="true"><header class="topbar detail-topbar"><a class="wordmark" href="/en/" aria-label="EMPV home">EMPV</a><a class="detail-nav-back" href="/en/research-notes/">Research Notes</a><a class="lang-switch" href="/it/research-notes/gemini-4-carbon-cybersecurity-agenti-ai/" hreflang="it">IT</a></header><main><section class="detail-hero research-note-hero"><div class="detail-hero-inner"><div class="detail-kicker-row"><span class="eyebrow">EMPV / RESEARCH NOTES</span><span class="detail-index">NOTE / 017</span></div><div class="detail-title-wrap detail-title-project research-note-title"><p class="detail-kicker">NEWS NOTE / MODELS</p><h1>Gemini 4 Carbon: Google focuses on secure code and long-running AI agents</h1></div><div class="detail-hero-bottom"><p class="detail-lead">Google introduces the successor to Gemini 4 Argon, reporting stronger results in cybersecurity, coding and reasoning. Access remains restricted to selected cybersecurity defenders.</p><div class="detail-status"><span>Published</span><strong>2026-10-29 · 4 min</strong></div></div><div class="tags detail-tags"><span>Gemini 4 Carbon</span><span>Google DeepMind</span><span>Cybersecurity</span><span>AI Agents</span><span>Coding</span></div></div></section><section class="detail-blocks section-pad research-note-blocks"><article class="detail-block research-note-block"><div class="eyebrow">01 / The model</div><div class="detail-block-main"><h2>Carbon arrives two weeks after Argon</h2><div class="research-note-copy"><p>On October 28, 2026, <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/" target="_blank" rel="noreferrer noopener">Google DeepMind</a> announced Gemini 4 Carbon, the second flagship model in the Gemini 4 family following Argon.</p><p>Carbon is designed for software engineering tasks involving many steps, tool use and extended analysis. Google reports that its internal teams have observed the model working for days on complex problems, identifying underlying software defects and developing patches across large codebases.</p><p>Cybersecurity is a major focus: discovering software vulnerabilities, determining whether they can be exploited and generating code changes to address them.</p><p>These capabilities are currently documented through evaluations and internal deployments. Carbon is not yet generally available for independent hands-on testing.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">02 / Performance</div><div class="detail-block-main"><h2>Leading the Intelligence Index, improving cybersecurity scores</h2><div class="research-note-copy"><p>Independent evaluator <a href="https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1" target="_blank" rel="noreferrer noopener">Artificial Analysis</a> gives Gemini 4 Carbon a score of 59 on Intelligence Index v5.0, compared with 50 for Argon. Carbon ranks first overall at the time of its announcement.</p><p>It ranks second on the evaluator's Coding Agent Index, behind Claude Opus 5.5. Its overall lead therefore does not extend to every individual category.</p><p>For cybersecurity, Google reports three benchmark results:</p><p>Google says these evaluations were conducted without the model's normal guardrails. Although the benchmarks are externally developed, the reported cybersecurity scores come from Google rather than an independent end-to-end assessment of the deployed service.</p><p>On internal evaluations, Google also reports that Carbon achieves more than twice Argon's success rate when generating secure code.</p></div><ul><li>SEC-bench Pro — 88.2%: identifying software vulnerabilities.</li><li>ExploitGym — 54.8%: assessing whether vulnerabilities can be exploited.</li><li>CWE-bench — 71.0%: producing fixes for security weaknesses.</li></ul></div></article><article class="detail-block research-note-block"><div class="eyebrow">03 / Reliability</div><div class="detail-block-main"><h2>Google reports fewer unwanted agent behaviors</h2><div class="research-note-copy"><p>Carbon also includes changes intended to improve the behavior of AI agents during complex tasks.</p><p>Google reports approximately half as many unsupported claims compared with Argon, alongside a nearly 80% reduction in high-severity misalignment alerts within its internal development environments.</p><p>On the Gray Swan indirect prompt-injection benchmark, Carbon recorded a 0% attack success rate in the evaluated cases, compared with 0.7% for Argon.</p><p>That result applies to the tested scenarios and configuration. It does not establish immunity against malicious instructions embedded in documents, web pages or other content processed by an AI agent.</p><p>Accuracy measurements also require context. On the independent AA-Omniscience evaluation, <a href="https://artificialanalysis.ai/evaluations/omniscience" target="_blank" rel="noreferrer noopener">Artificial Analysis</a> reports improved accuracy over Argon, while the hallucination rate increases from 4% to 11%. These measurements use different methods from Google's internal assessments and are not directly comparable.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">04 / Availability and pricing</div><div class="detail-block-main"><h2>Access remains restricted</h2><div class="research-note-copy"><p>Google will initially provide Carbon to a small group of cybersecurity defenders, followed by selected partners through its <a href="https://deepmind.google/fairwind-program/" target="_blank" rel="noreferrer noopener">Fairwind Program</a>.</p><p>The company is also participating in the US government's voluntary pre-release model testing process.</p><p>Google has announced introductory pricing of $2 per million input tokens and $10 per million output tokens, with a 95% discount for cached input tokens.</p><p>After the introductory period, pricing will increase to $4 and $20 respectively. No expiration date has been announced.</p><p>Artificial Analysis lists a one-million-token context window and multimodal input capabilities. Complete public API specifications, general-access arrangements and operating limits have yet to be announced.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">05 / Technical implications</div><div class="detail-block-main"><h2>Enterprise deployments will require their own evaluations</h2><div class="research-note-copy"><p>The capabilities described by Google address workflows that currently involve developers, static analysis tools, testing infrastructure and code review.</p><p>An agent that can identify a defect, modify the underlying code and validate the fix could reduce several manual steps. Its effectiveness will also depend on tool access, execution permissions and the safeguards applied before changes reach production.</p><p>Enterprise evaluations should measure patch quality, introduced regressions, execution time and total operating cost on representative repositories.</p><p>The currently available evidence does not establish that Carbon can independently manage the security of production software.</p></div></div></article></section><section class="detail-boundary section-pad research-note-takeaway"><div class="section-code">EMPV / TAKEAWAY</div><p>Gemini 4 Carbon improves substantially on Argon's published evaluation results. For enterprise users, the next question is how those gains translate into everyday software engineering workflows once access becomes available.</p></section><section class="research-note-share section-pad" aria-label="Share this Research Note"><div class="section-code">EMPV / SHARE</div><div class="research-note-share-inner"><p>Share this Research Note.</p><div class="research-note-share-actions"><a class="research-note-share-primary" href="https://empv.it/en/research-notes/gemini-4-carbon-cybersecurity-ai-agents/?share=20261029a">Share</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fgemini-4-carbon-cybersecurity-ai-agents%2F%3Fshare%3D20261029a" target="_blank" rel="noreferrer noopener">LinkedIn</a><a href="https://twitter.com/intent/tweet?text=Gemini%204%20Carbon%3A%20Google%20focuses%20on%20secure%20code%20and%20long-running%20AI%20agents%20%E2%80%94%20EMPV%20Research%20Notes&amp;url=https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fgemini-4-carbon-cybersecurity-ai-agents%2F%3Fshare%3D20261029a" target="_blank" rel="noreferrer noopener">X</a><a href="https://wa.me/?text=Gemini%204%20Carbon%3A%20Google%20focuses%20on%20secure%20code%20and%20long-running%20AI%20agents%20%E2%80%94%20EMPV%20Research%20Notes%20https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fgemini-4-carbon-cybersecurity-ai-agents%2F%3Fshare%3D20261029a" target="_blank" rel="noreferrer noopener">WhatsApp</a><a href="https://empv.it/en/research-notes/gemini-4-carbon-cybersecurity-ai-agents/?share=20261029a">Copy link</a></div></div></section><section class="detail-end section-pad"><a href="/en/research-notes/"><span>Research Notes</span></a></section></main></div></div>
+  </body>
+</html>

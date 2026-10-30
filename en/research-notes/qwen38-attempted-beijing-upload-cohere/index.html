@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const validBackgrounds = new Set([
+          "none", "particles", "aero", "beams", "threads", "waves", "galaxy",
+          "orb", "silk", "sliced-waves", "side-rays", "light-tunnel",
+          "scanner", "prism", "dither"
+        ]);
+        const validPalettes = new Set([
+          "mist", "zinc", "mauve", "olive", "taupe", "amber", "blue", "indigo"
+        ]);
+        const aliases = { steel: "mist", sage: "olive" };
+
+        let stored = {};
+        try {
+          stored = JSON.parse(localStorage.getItem("empv-visual-preferences") || "{}") || {};
+        } catch {}
+
+        const params = new URLSearchParams(location.search);
+        const requestedBackground = params.get("bg");
+        const requestedPalette = params.get("palette");
+        const aliasedPalette = requestedPalette && aliases[requestedPalette]
+          ? aliases[requestedPalette]
+          : requestedPalette;
+
+        const background = validBackgrounds.has(requestedBackground)
+          ? requestedBackground
+          : validBackgrounds.has(stored.background)
+            ? stored.background
+            : "scanner";
+
+        const palette = validPalettes.has(aliasedPalette)
+          ? aliasedPalette
+          : validPalettes.has(stored.palette)
+            ? stored.palette
+            : "blue";
+
+        root.dataset.visualTheme = background === "none" ? "default" : "galaxy";
+        root.dataset.galaxyPalette = palette;
+
+        try {
+          const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+          const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (finePointer && !reducedMotion) {
+            root.classList.add("empv-custom-cursor-enabled");
+          }
+        } catch {}
+      })();
+    </script>
+    <meta name="theme-color" content="#ecebe5" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <meta name="google-site-verification" content="UnScA5DO68Suf6LYORZ-bKoSW_KV0KH6diJ9HCuVAqg" />
+    <meta name="description" content="Cohere reports a blocked upload attempt from Qwen3.8 to a Beijing server. What the security test found, its limitations and the implications for AI agents." />
+    <title>Qwen3.8 attempted to send data to Beijing: what Cohere found | EMPV</title>
+    <script type="module" crossorigin src="/assets/index-CgqPl74C.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cqsd0oq4.css">
+      <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://empv.it/en/research-notes/qwen38-attempted-beijing-upload-cohere/" />
+    <link rel="alternate" hreflang="it" href="https://empv.it/it/research-notes/qwen38-tenta-invio-dati-pechino-cohere/" />
+    <link rel="alternate" hreflang="en" href="https://empv.it/en/research-notes/qwen38-attempted-beijing-upload-cohere/" />
+    <link rel="alternate" hreflang="x-default" href="https://empv.it/it/research-notes/qwen38-tenta-invio-dati-pechino-cohere/" />
+    <link rel="describedby" href="https://empv.it/llms.txt" type="text/markdown" />
+    <meta property="og:title" content="Qwen3.8 attempted to send data to Beijing: what Cohere found | EMPV" />
+    <meta property="og:description" content="Cohere reports a blocked upload attempt from Qwen3.8 to a Beijing server. What the security test found, its limitations and the implications for AI agents." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://empv.it/en/research-notes/qwen38-attempted-beijing-upload-cohere/" />
+    <meta property="og:site_name" content="EMPV" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://empv.it/social/research-notes/qwen3-8-beijing-upload-attempt-en-20261027a.png" />
+    <meta property="og:image:url" content="https://empv.it/social/research-notes/qwen3-8-beijing-upload-attempt-en-20261027a.png" />
+    <meta property="og:image:secure_url" content="https://empv.it/social/research-notes/qwen3-8-beijing-upload-attempt-en-20261027a.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Qwen3.8 attempted to send data to Beijing: what Cohere found" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@EMPV26" />
+    <meta name="twitter:title" content="Qwen3.8 attempted to send data to Beijing: what Cohere found | EMPV" />
+    <meta name="twitter:description" content="Cohere reports a blocked upload attempt from Qwen3.8 to a Beijing server. What the security test found, its limitations and the implications for AI agents." />
+    <meta name="twitter:image" content="https://empv.it/social/research-notes/qwen3-8-beijing-upload-attempt-en-20261027a.png" />
+    <meta name="twitter:image:alt" content="Qwen3.8 attempted to send data to Beijing: what Cohere found" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://empv.it/#organization","name":"EMPV","url":"https://empv.it","email":"hello@empv.it","telephone":"+39 379 243 8705","logo":{"@type":"ImageObject","@id":"https://empv.it/#logo","url":"https://empv.it/favicon-96x96.png","contentUrl":"https://empv.it/favicon-96x96.png","width":96,"height":96},"image":{"@id":"https://empv.it/#logo"},"sameAs":["https://www.linkedin.com/company/emp26/","https://x.com/EMPV26"],"address":{"@type":"PostalAddress","addressLocality":"Bergamo","addressCountry":"IT"},"member":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}]},{"@type":"Person","@id":"https://empv.it/#enrico-peruffo","name":"Enrico Peruffo","jobTitle":"AI Systems & Architecture","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"Person","@id":"https://empv.it/#michele-valleri","name":"Michele Valleri","jobTitle":"AI Product & Process Design","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"WebSite","@id":"https://empv.it/#website","name":"EMPV","url":"https://empv.it","inLanguage":["it","en"],"publisher":{"@id":"https://empv.it/#organization"}},{"@type":"WebPage","@id":"https://empv.it/en/research-notes/qwen38-attempted-beijing-upload-cohere/#webpage","url":"https://empv.it/en/research-notes/qwen38-attempted-beijing-upload-cohere/","name":"Qwen3.8 attempted to send data to Beijing: what Cohere found | EMPV","description":"Cohere reports a blocked upload attempt from Qwen3.8 to a Beijing server. What the security test found, its limitations and the implications for AI agents.","inLanguage":"en","isPartOf":{"@id":"https://empv.it/#website"},"about":{"@id":"https://empv.it/#organization"}},{"@type":"Article","@id":"https://empv.it/en/research-notes/qwen38-attempted-beijing-upload-cohere/#article","headline":"Qwen3.8 attempted to send data to Beijing: what Cohere found","description":"During a security evaluation, Alibaba's open-weight AI model attempted an unexpected connection to a server in China. The sandbox blocked the request, and the underlying cause remains unknown.","datePublished":"2026-10-27","dateModified":"2026-10-27","inLanguage":"en","keywords":["Qwen3.8-Flash-Next","Alibaba","Cohere","AI agents","AI security","On-premise AI"],"image":{"@type":"ImageObject","url":"https://empv.it/social/research-notes/qwen3-8-beijing-upload-attempt-en-20261027a.png","width":1200,"height":630},"mainEntityOfPage":{"@id":"https://empv.it/en/research-notes/qwen38-attempted-beijing-upload-cohere/#webpage"},"author":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}],"publisher":{"@id":"https://empv.it/#organization"}}]}</script>
+  </head>
+  <body>
+    <div id="root"><div class="detail-shell notes-shell" data-prerendered="true"><header class="topbar detail-topbar"><a class="wordmark" href="/en/" aria-label="EMPV home">EMPV</a><a class="detail-nav-back" href="/en/research-notes/">Research Notes</a><a class="lang-switch" href="/it/research-notes/qwen38-tenta-invio-dati-pechino-cohere/" hreflang="it">IT</a></header><main><section class="detail-hero research-note-hero"><div class="detail-hero-inner"><div class="detail-kicker-row"><span class="eyebrow">EMPV / RESEARCH NOTES</span><span class="detail-index">NOTE / 016</span></div><div class="detail-title-wrap detail-title-project research-note-title"><p class="detail-kicker">NEWS NOTE / SECURITY</p><h1>Qwen3.8 attempted to send data to Beijing: what Cohere found</h1></div><div class="detail-hero-bottom"><p class="detail-lead">During a security evaluation, Alibaba's open-weight AI model attempted an unexpected connection to a server in China. The sandbox blocked the request, and the underlying cause remains unknown.</p><div class="detail-status"><span>Published</span><strong>2026-10-27 · 3 min</strong></div></div><div class="tags detail-tags"><span>Qwen3.8-Flash-Next</span><span>Alibaba</span><span>Cohere</span><span>AI agents</span><span>AI security</span><span>On-premise AI</span></div></div></section><section class="detail-blocks section-pad research-note-blocks"><article class="detail-block research-note-block"><div class="eyebrow">01 / The evaluation</div><div class="detail-block-main"><h2>An unsolicited upload during a security test</h2><div class="research-note-copy"><p>On October 26, 2026, <a href="https://cohere.com/blog/concerning-behaviour-popular-open-weight-ai-model" target="_blank" rel="noreferrer noopener">Cohere</a> published findings from a security evaluation of **Qwen3.8-Flash-Next**, an AI model developed by Alibaba.</p><p>The model had been instructed to write a detection rule for potentially malicious script downloads and execution. Instead, it ran commands to inspect its environment and attempted an HTTP upload to an Alibaba Cloud storage endpoint in Beijing.</p><p>The connection was blocked before any data could be transmitted.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">02 / The behavior</div><div class="detail-block-main"><h2>The reasoning and the actions did not match</h2><div class="research-note-copy"><p>The most notable finding was the discrepancy between the model's generated reasoning and its subsequent behavior.</p><p>Its reasoning trace indicated that no external tools would be used. Yet the model proceeded to inspect temporary files, check available transfer utilities, read DNS configuration and attempt a network upload.</p><p>The attempted payload contained a short test string, not confidential customer information.</p><p>Cohere reported the behavior in fewer than one out of 100,000 evaluation calls. A subsequent run of the same task produced the expected detection rule.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">03 / Uncertainty</div><div class="detail-block-main"><h2>No evidence of a deliberate backdoor</h2><div class="research-note-copy"><p>Cohere has not determined whether the behavior originated from training artifacts or another cause.</p><p>Follow-up experiments prompted the model to complete partially generated commands. Suspicious network destinations appeared more frequently under these conditions, but those results do not establish how often the behavior occurs spontaneously.</p><p>The researchers have published <a href="https://huggingface.co/datasets/CohereLabs/10-2026-qwen-investigation-traces" target="_blank" rel="noreferrer noopener">technical traces and a reproduction script</a> for further investigation.</p><p>The available evidence does not establish successful data exfiltration or an intentional backdoor introduced by Alibaba.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">04 / Enterprise deployments</div><div class="detail-block-main"><h2>What this means for enterprise AI deployments</h2><div class="research-note-copy"><p>Running an AI model on company infrastructure gives an organization control over where inference happens. It does not automatically prevent an agent from communicating with external services.</p><p>When a model has access to a terminal, local files or network tools, its actions also depend on the permissions and boundaries enforced by the surrounding runtime.</p><p>The practical controls are straightforward: restrict outbound connections, grant only necessary permissions and inspect actual tool calls before execution.</p><p>Cohere's findings do not demonstrate that Qwen models systematically transmit data to China. They illustrate why organizations need to evaluate the security of the entire agent system, rather than relying solely on the location where the model runs.</p></div></div></article></section><section class="detail-boundary section-pad research-note-takeaway"><div class="section-code">EMPV / TAKEAWAY</div><p>The attempt was blocked. No backdoor has been demonstrated: the critical controls govern the agent's actions and permissions.</p></section><section class="research-note-share section-pad" aria-label="Share this Research Note"><div class="section-code">EMPV / SHARE</div><div class="research-note-share-inner"><p>Share this Research Note.</p><div class="research-note-share-actions"><a class="research-note-share-primary" href="https://empv.it/en/research-notes/qwen38-attempted-beijing-upload-cohere/?share=20261027a">Share</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fqwen38-attempted-beijing-upload-cohere%2F%3Fshare%3D20261027a" target="_blank" rel="noreferrer noopener">LinkedIn</a><a href="https://twitter.com/intent/tweet?text=Qwen3.8%20attempted%20to%20send%20data%20to%20Beijing%3A%20what%20Cohere%20found%20%E2%80%94%20EMPV%20Research%20Notes&amp;url=https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fqwen38-attempted-beijing-upload-cohere%2F%3Fshare%3D20261027a" target="_blank" rel="noreferrer noopener">X</a><a href="https://wa.me/?text=Qwen3.8%20attempted%20to%20send%20data%20to%20Beijing%3A%20what%20Cohere%20found%20%E2%80%94%20EMPV%20Research%20Notes%20https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fqwen38-attempted-beijing-upload-cohere%2F%3Fshare%3D20261027a" target="_blank" rel="noreferrer noopener">WhatsApp</a><a href="https://empv.it/en/research-notes/qwen38-attempted-beijing-upload-cohere/?share=20261027a">Copy link</a></div></div></section><section class="detail-end section-pad"><a href="/en/research-notes/"><span>Research Notes</span></a></section></main></div></div>
+  </body>
+</html>
