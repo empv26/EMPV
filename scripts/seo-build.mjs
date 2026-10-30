@@ -545,6 +545,9 @@ async function generateResearchNoteCards() {
   await mkdir(socialCardDir, { recursive: true });
   for (const note of researchNotes) {
     for (const lang of ["it", "en"]) {
+      // Custom social cards are committed to public/ and copied by Vite.
+      // Do not overwrite an approved cover with the automatic SVG fallback.
+      if (note.socialImage?.[lang]) continue;
       const svg = socialCardSvg(note, lang);
       const socialPath = researchNoteSocialImage(note, lang);
       const filename = socialPath.split("/").pop();

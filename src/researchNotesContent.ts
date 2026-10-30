@@ -26,6 +26,178 @@ export type ResearchNote = {
 
 export const researchNotes: ResearchNote[] = [
   {
+    "id": "gemini-4-carbon-cybersecurity",
+    "index": "017",
+    "slugs": {
+      "it": "gemini-4-carbon-cybersecurity-agenti-ai",
+      "en": "gemini-4-carbon-cybersecurity-ai-agents"
+    },
+    "title": {
+      "it": "Gemini 4 Carbon: Google punta sulla sicurezza del codice e sugli agenti di lunga durata",
+      "en": "Gemini 4 Carbon: Google focuses on secure code and long-running AI agents"
+    },
+    "dek": {
+      "it": "Google presenta il successore di Gemini 4 Argon con risultati più alti nei test di cybersecurity, programmazione e ragionamento. L'accesso resta limitato ai professionisti della sicurezza informatica.",
+      "en": "Google introduces the successor to Gemini 4 Argon, reporting stronger results in cybersecurity, coding and reasoning. Access remains restricted to selected cybersecurity defenders."
+    },
+    "category": {
+      "it": "NEWS NOTE / MODELLI",
+      "en": "NEWS NOTE / MODELS"
+    },
+    "tags": {
+      "it": [
+        "Gemini 4 Carbon",
+        "Google DeepMind",
+        "Cybersecurity",
+        "AI Agents",
+        "Coding"
+      ],
+      "en": [
+        "Gemini 4 Carbon",
+        "Google DeepMind",
+        "Cybersecurity",
+        "AI Agents",
+        "Coding"
+      ]
+    },
+    "published": "2026-10-29",
+    "readingTime": {
+      "it": "4 min",
+      "en": "4 min"
+    },
+    "socialVersion": "20261029a",
+    "socialImage": {
+      "it": "/social/research-notes/gemini-4-carbon-cybersecurity-it-20261029a.png",
+      "en": "/social/research-notes/gemini-4-carbon-cybersecurity-en-20261029a.png"
+    },
+    "sections": {
+      "it": [
+        {
+          "label": "01 / Il nuovo modello",
+          "title": "Due settimane dopo Argon, arriva Carbon",
+          "paragraphs": [
+            "Il 28 ottobre 2026 [Google DeepMind](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/) ha annunciato Gemini 4 Carbon, il secondo modello di punta della famiglia Gemini 4 dopo Argon.",
+            "Carbon è progettato per attività di ingegneria software che richiedono numerosi passaggi, utilizzo di strumenti e analisi prolungate. Secondo Google, durante i test interni il modello ha lavorato per giorni su problemi complessi, individuando cause di malfunzionamenti e preparando correzioni all'interno di grandi codebase.",
+            "Una parte centrale dello sviluppo riguarda la cybersecurity: trovare vulnerabilità nel software, verificare se siano sfruttabili e proporre modifiche per correggerle.",
+            "Si tratta per ora di capacità descritte attraverso valutazioni e utilizzi interni. Google non ha ancora reso disponibile Carbon al pubblico per consentire prove dirette e riproducibili."
+          ]
+        },
+        {
+          "label": "02 / I risultati",
+          "title": "Primo nell'Intelligence Index, progressi nella cybersecurity",
+          "paragraphs": [
+            "La valutazione indipendente di [Artificial Analysis](https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1) assegna a Gemini 4 Carbon 59 punti nell'Intelligence Index v5.0, contro i 50 di Argon. Il risultato colloca Carbon al primo posto nella classifica complessiva al momento dell'annuncio.",
+            "Nel Coding Agent Index dello stesso laboratorio, Carbon si posiziona invece secondo, dietro Claude Opus 5.5. Il primato nelle capacità generali non si traduce quindi in un primo posto in ogni categoria.",
+            "Per la cybersecurity, Google comunica tre risultati principali su benchmark dedicati:",
+            "Google precisa che queste prove sono state eseguite senza i normali guardrail del modello. I benchmark sono esterni, ma i risultati citati nell'annuncio sono riportati dal produttore: non equivalgono a una valutazione indipendente dell'intero sistema distribuito ai clienti.",
+            "Nei test interni, Google dichiara inoltre che Carbon supera di oltre due volte Argon nel tasso di successo della generazione di codice sicuro."
+          ],
+          "bullets": [
+            "SEC-bench Pro — 88,2%: individuazione di vulnerabilità nel codice.",
+            "ExploitGym — 54,8%: verifica della possibilità di sfruttare una vulnerabilità.",
+            "CWE-bench — 71,0%: generazione di correzioni per problemi di sicurezza."
+          ]
+        },
+        {
+          "label": "03 / Affidabilità",
+          "title": "Meno comportamenti indesiderati, secondo Google",
+          "paragraphs": [
+            "Carbon introduce anche modifiche al comportamento degli agenti durante l'esecuzione di attività complesse.",
+            "Google dichiara una riduzione di circa il 50% delle affermazioni prive di supporto rispetto ad Argon e una diminuzione degli avvisi gravi di disallineamento di quasi l'80% nei propri ambienti di sviluppo.",
+            "Nel benchmark Gray Swan dedicato alle prompt injection indirette, il modello ha registrato uno 0% di attacchi riusciti nei casi valutati, rispetto allo 0,7% di Argon.",
+            "Il risultato riguarda quel benchmark e quella configurazione. Non dimostra che Carbon sia immune alle istruzioni malevole nascoste in documenti, pagine web o altri contenuti elaborati da un agente.",
+            "Anche le misure di accuratezza richiedono attenzione. Nel test indipendente AA-Omniscience, [Artificial Analysis](https://artificialanalysis.ai/evaluations/omniscience) registra un miglioramento delle risposte corrette rispetto ad Argon, ma anche un aumento del tasso di allucinazioni dal 4% all'11%. Sono misure diverse da quelle interne di Google e non possono essere confrontate direttamente."
+          ]
+        },
+        {
+          "label": "04 / Accesso e prezzi",
+          "title": "Il modello non è ancora disponibile per tutti",
+          "paragraphs": [
+            "Google distribuirà inizialmente Carbon a un gruppo ristretto di professionisti della difesa informatica, ampliando successivamente l'accesso a partner selezionati attraverso il [Fairwind Program](https://deepmind.google/fairwind-program/).",
+            "L'azienda ha inoltre dichiarato di partecipare al programma volontario statunitense di valutazione dei modelli prima del rilascio.",
+            "Il prezzo introduttivo annunciato è di 2 dollari per milione di token in input e 10 dollari per milione di token in output, con uno sconto del 95% sugli input recuperati dalla cache.",
+            "Al termine del periodo promozionale, le tariffe saliranno rispettivamente a 4 e 20 dollari. Google non ha comunicato una data di scadenza per questa offerta.",
+            "Artificial Analysis riporta una finestra di contesto di un milione di token e supporto a input multimodali. Mancano tuttavia dettagli pubblici completi sull'API, sulle modalità di accesso generale e sui limiti operativi del servizio."
+          ]
+        },
+        {
+          "label": "05 / Implicazioni tecniche",
+          "title": "La prova decisiva sarà il comportamento nei sistemi aziendali",
+          "paragraphs": [
+            "Le capacità descritte da Google riguardano attività che oggi richiedono la collaborazione tra sviluppatori, strumenti di analisi statica, sistemi di testing e revisione del codice.",
+            "Un agente in grado di individuare un problema, modificarne la causa e verificare la correzione potrebbe ridurre diversi passaggi manuali. L'efficacia dipenderà però anche dagli strumenti disponibili, dai permessi concessi e dalla capacità di controllare le modifiche prima che raggiungano la produzione.",
+            "Per valutare Carbon in un contesto aziendale serviranno prove su repository rappresentativi, misurando qualità delle patch, regressioni introdotte, tempi e costi complessivi.",
+            "I risultati attuali non dimostrano che il modello possa gestire autonomamente la sicurezza di un software in produzione."
+          ]
+        }
+      ],
+      "en": [
+        {
+          "label": "01 / The model",
+          "title": "Carbon arrives two weeks after Argon",
+          "paragraphs": [
+            "On October 28, 2026, [Google DeepMind](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/) announced Gemini 4 Carbon, the second flagship model in the Gemini 4 family following Argon.",
+            "Carbon is designed for software engineering tasks involving many steps, tool use and extended analysis. Google reports that its internal teams have observed the model working for days on complex problems, identifying underlying software defects and developing patches across large codebases.",
+            "Cybersecurity is a major focus: discovering software vulnerabilities, determining whether they can be exploited and generating code changes to address them.",
+            "These capabilities are currently documented through evaluations and internal deployments. Carbon is not yet generally available for independent hands-on testing."
+          ]
+        },
+        {
+          "label": "02 / Performance",
+          "title": "Leading the Intelligence Index, improving cybersecurity scores",
+          "paragraphs": [
+            "Independent evaluator [Artificial Analysis](https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1) gives Gemini 4 Carbon a score of 59 on Intelligence Index v5.0, compared with 50 for Argon. Carbon ranks first overall at the time of its announcement.",
+            "It ranks second on the evaluator's Coding Agent Index, behind Claude Opus 5.5. Its overall lead therefore does not extend to every individual category.",
+            "For cybersecurity, Google reports three benchmark results:",
+            "Google says these evaluations were conducted without the model's normal guardrails. Although the benchmarks are externally developed, the reported cybersecurity scores come from Google rather than an independent end-to-end assessment of the deployed service.",
+            "On internal evaluations, Google also reports that Carbon achieves more than twice Argon's success rate when generating secure code."
+          ],
+          "bullets": [
+            "SEC-bench Pro — 88.2%: identifying software vulnerabilities.",
+            "ExploitGym — 54.8%: assessing whether vulnerabilities can be exploited.",
+            "CWE-bench — 71.0%: producing fixes for security weaknesses."
+          ]
+        },
+        {
+          "label": "03 / Reliability",
+          "title": "Google reports fewer unwanted agent behaviors",
+          "paragraphs": [
+            "Carbon also includes changes intended to improve the behavior of AI agents during complex tasks.",
+            "Google reports approximately half as many unsupported claims compared with Argon, alongside a nearly 80% reduction in high-severity misalignment alerts within its internal development environments.",
+            "On the Gray Swan indirect prompt-injection benchmark, Carbon recorded a 0% attack success rate in the evaluated cases, compared with 0.7% for Argon.",
+            "That result applies to the tested scenarios and configuration. It does not establish immunity against malicious instructions embedded in documents, web pages or other content processed by an AI agent.",
+            "Accuracy measurements also require context. On the independent AA-Omniscience evaluation, [Artificial Analysis](https://artificialanalysis.ai/evaluations/omniscience) reports improved accuracy over Argon, while the hallucination rate increases from 4% to 11%. These measurements use different methods from Google's internal assessments and are not directly comparable."
+          ]
+        },
+        {
+          "label": "04 / Availability and pricing",
+          "title": "Access remains restricted",
+          "paragraphs": [
+            "Google will initially provide Carbon to a small group of cybersecurity defenders, followed by selected partners through its [Fairwind Program](https://deepmind.google/fairwind-program/).",
+            "The company is also participating in the US government's voluntary pre-release model testing process.",
+            "Google has announced introductory pricing of $2 per million input tokens and $10 per million output tokens, with a 95% discount for cached input tokens.",
+            "After the introductory period, pricing will increase to $4 and $20 respectively. No expiration date has been announced.",
+            "Artificial Analysis lists a one-million-token context window and multimodal input capabilities. Complete public API specifications, general-access arrangements and operating limits have yet to be announced."
+          ]
+        },
+        {
+          "label": "05 / Technical implications",
+          "title": "Enterprise deployments will require their own evaluations",
+          "paragraphs": [
+            "The capabilities described by Google address workflows that currently involve developers, static analysis tools, testing infrastructure and code review.",
+            "An agent that can identify a defect, modify the underlying code and validate the fix could reduce several manual steps. Its effectiveness will also depend on tool access, execution permissions and the safeguards applied before changes reach production.",
+            "Enterprise evaluations should measure patch quality, introduced regressions, execution time and total operating cost on representative repositories.",
+            "The currently available evidence does not establish that Carbon can independently manage the security of production software."
+          ]
+        }
+      ]
+    },
+    "takeaway": {
+      "it": "Gemini 4 Carbon migliora sensibilmente i risultati di Argon nelle valutazioni pubblicate. Il test più importante per le aziende sarà verificare quanto di queste prestazioni rimanga nei flussi di sviluppo quotidiani, quando il modello diventerà accessibile.",
+      "en": "Gemini 4 Carbon improves substantially on Argon's published evaluation results. For enterprise users, the next question is how those gains translate into everyday software engineering workflows once access becomes available."
+    }
+  },
+  {
     "id": "qwen3-8-beijing-upload-attempt",
     "index": "016",
     "slugs": {

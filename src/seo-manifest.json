@@ -188,6 +188,16 @@
       }
     },
     "notes": {
+      "gemini-4-carbon-cybersecurity": {
+        "it": {
+          "title": "Gemini 4 Carbon: Google punta sulla sicurezza del codice e sugli agenti di lunga durata | EMPV",
+          "description": "Google presenta Gemini 4 Carbon: risultati su cybersecurity e coding, benchmark indipendenti, prezzi e limiti dell'accesso."
+        },
+        "en": {
+          "title": "Gemini 4 Carbon: Google focuses on secure code and long-running AI agents | EMPV",
+          "description": "Google launches Gemini 4 Carbon. Cybersecurity and coding benchmarks, independent results, pricing, availability and limitations."
+        }
+      },
       "qwen3-8-beijing-upload-attempt": {
         "it": {
           "title": "Qwen3.8 tenta di inviare dati a Pechino: cosa ha scoperto Cohere | EMPV",
