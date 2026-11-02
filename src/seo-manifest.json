@@ -188,6 +188,16 @@
       }
     },
     "notes": {
+      "google-workspace-mcp-oauth-agents": {
+        "it": {
+          "title": "Google Workspace MCP: dall'11 novembre cambiano le regole OAuth per gli agenti AI | EMPV",
+          "description": "Dall'11 novembre 2026, gli agenti AI sui server MCP di Google Workspace richiedono client OAuth dedicati. Requisiti, esclusioni e verifiche."
+        },
+        "en": {
+          "title": "Google Workspace MCP: new OAuth requirements for AI agents from November 11 | EMPV",
+          "description": "From November 11, 2026, AI agents using Google Workspace MCP servers need designated OAuth clients. Requirements, exceptions and checks."
+        }
+      },
       "gemini-4-carbon-cybersecurity": {
         "it": {
           "title": "Gemini 4 Carbon: Google punta sulla sicurezza del codice e sugli agenti di lunga durata | EMPV",
