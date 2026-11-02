@@ -26,6 +26,141 @@ export type ResearchNote = {
 
 export const researchNotes: ResearchNote[] = [
   {
+    "id": "google-workspace-mcp-oauth-agents",
+    "index": "018",
+    "slugs": {
+      "it": "google-workspace-mcp-nuovi-requisiti-oauth-agenti-ai",
+      "en": "google-workspace-mcp-new-oauth-requirements-ai-agents"
+    },
+    "title": {
+      "it": "Google Workspace MCP: dall'11 novembre cambia l'accesso degli agenti AI",
+      "en": "Google Workspace MCP: AI agents face new OAuth requirements from November 11"
+    },
+    "dek": {
+      "it": "Google introduce un requisito per i client OAuth 2.0 che utilizzano i server MCP di Gmail, Drive, Calendar e altri servizi Workspace. Le integrazioni REST tradizionali non sono coinvolte.",
+      "en": "Google is introducing an OAuth 2.0 client requirement for AI agents using Workspace MCP servers. Traditional REST API integrations are not affected."
+    },
+    "category": {
+      "it": "NEWS NOTE / AI INTEGRATION",
+      "en": "NEWS NOTE / AI INTEGRATION"
+    },
+    "tags": {
+      "it": [
+        "Google Workspace",
+        "Model Context Protocol",
+        "OAuth 2.0",
+        "Agenti AI",
+        "Sicurezza"
+      ],
+      "en": [
+        "Google Workspace",
+        "Model Context Protocol",
+        "OAuth 2.0",
+        "AI Agents",
+        "Security"
+      ]
+    },
+    "published": "2026-11-02",
+    "readingTime": {
+      "it": "3 min",
+      "en": "3 min"
+    },
+    "socialVersion": "20261102a",
+    "sections": {
+      "it": [
+        {
+          "label": "01 / La modifica",
+          "title": "Una scadenza per le integrazioni AI",
+          "paragraphs": [
+            "Dall'11 novembre 2026, gli agenti AI che utilizzano i server Model Context Protocol (MCP) di Google Workspace dovranno collegarsi attraverso client OAuth 2.0 identificati esplicitamente come destinati ad agenti AI.",
+            "La modifica è stata [annunciata da Google il 12 ottobre](https://developers.google.com/workspace/release-notes) e riguarda i server MCP di Gmail, Google Drive, Calendar, Docs, Sheets, Slides e Chat.",
+            "MCP permette agli assistenti AI di utilizzare strumenti esterni per consultare informazioni ed eseguire operazioni. Nel caso di Workspace, un agente può utilizzare questi strumenti per cercare documenti, leggere informazioni o interagire con altri servizi, nei limiti delle autorizzazioni concesse.",
+            "Dal giorno indicato, i server MCP rifiuteranno le richieste provenienti da client OAuth non contrassegnati come agenti AI."
+          ]
+        },
+        {
+          "label": "02 / Autenticazione",
+          "title": "Cosa cambia nell'autenticazione",
+          "paragraphs": [
+            "In Google Auth Platform, nella sezione dedicata ai client OAuth, è disponibile l'opzione «Use this client for an AI-powered agent». Google richiede che questa impostazione sia attiva sui client utilizzati per chiamare i suoi server MCP.",
+            "La documentazione precisa anche una seconda scadenza: dal 12 novembre, i client rimasti non classificati come agenti non potranno essere utilizzati per accedere ai server MCP. Per ripristinare l'integrazione sarà necessario creare un nuovo client OAuth identificato come agente AI e aggiornare l'applicazione.",
+            "Il cambiamento non riguarda indistintamente tutte le applicazioni che utilizzano Google Workspace. Un software gestionale che consulta Google Drive tramite le normali API REST, per esempio, non è interessato da questo requisito.",
+            "Se invece un'applicazione utilizza lo stesso client OAuth sia per funzionalità tradizionali sia per un agente MCP, Google raccomanda di separare le due integrazioni utilizzando client distinti."
+          ]
+        },
+        {
+          "label": "03 / Controlli",
+          "title": "Cosa verificare prima dell'11 novembre",
+          "paragraphs": [
+            "Per chi gestisce integrazioni AI con Workspace, il controllo parte dai client OAuth effettivamente utilizzati.",
+            "Occorre identificare le applicazioni che chiamano i server MCP, verificare la relativa configurazione in Google Auth Platform e, dove necessario, predisporre un client dedicato all'agente.",
+            "È utile anche effettuare un test delle operazioni realmente utilizzate dall'applicazione, verificando che la connessione continui a funzionare con le autorizzazioni previste.",
+            "Esistono casi particolari. La [documentazione tecnica di Google](https://developers.google.com/workspace/guides/configure-mcp-servers) chiarisce, per esempio, che i service account con delega a livello di dominio seguono un meccanismo differente e non vengono rifiutati per la mancanza di questa specifica impostazione.",
+            "I server MCP di Workspace descritti nell'annuncio sono attualmente disponibili attraverso il Developer Preview Program."
+          ]
+        },
+        {
+          "label": "04 / Implicazioni",
+          "title": "L'identità dell'agente diventa parte dell'integrazione",
+          "paragraphs": [
+            "La modifica rende esplicita una distinzione tecnica: un'applicazione che chiama un'API e un agente AI che utilizza strumenti attraverso MCP possono richiedere configurazioni di accesso differenti.",
+            "Contrassegnare un client come agente AI, da solo, non significa restringere automaticamente le informazioni accessibili o stabilire quali azioni l'agente possa eseguire. Autorizzazioni e controlli applicativi continuano a essere necessari.",
+            "È una distinzione importante quando gli agenti vengono collegati a documenti, comunicazioni e sistemi aziendali.",
+            "Ne abbiamo già discusso nella [Research Note sulle integrazioni tra ChatGPT, API e MCP](https://empv.it/it/research-notes/collegare-chatgpt-gestionale-api-mcp/): la possibilità tecnica di utilizzare uno strumento deve rimanere separata dal diritto di accedere ai suoi dati e di modificarli."
+          ]
+        }
+      ],
+      "en": [
+        {
+          "label": "01 / The change",
+          "title": "A new requirement for AI integrations",
+          "paragraphs": [
+            "Starting November 11, 2026, applications using Google Workspace Model Context Protocol (MCP) servers will need OAuth 2.0 clients explicitly identified as being used by AI-powered agents.",
+            "[Google announced the change on October 12](https://developers.google.com/workspace/release-notes). It applies to MCP servers for Gmail, Google Drive, Calendar, Docs, Sheets, Slides and Chat.",
+            "MCP allows AI assistants to interact with external tools, retrieve information and perform supported actions. In Workspace, these tools can help an agent search documents, access information or interact with services within the permissions granted to the application.",
+            "Under the new requirement, MCP servers will reject requests from OAuth clients that are not marked as agentic."
+          ]
+        },
+        {
+          "label": "02 / Authentication",
+          "title": "What changes for OAuth clients",
+          "paragraphs": [
+            "Google Auth Platform includes a setting called «Use this client for an AI-powered agent». Developers calling Google Workspace MCP servers must enable this setting for the corresponding OAuth 2.0 client.",
+            "Google also specifies a second date. From November 12, clients that remain unmarked will be treated as non-agentic and will not be able to access Workspace MCP servers. Applications will need a newly created agentic OAuth client to restore that access.",
+            "This requirement does not apply to every integration using Google Workspace. For example, an application accessing Google Drive exclusively through standard REST APIs is not affected.",
+            "Where the same OAuth client serves both traditional application features and AI agents using MCP, Google recommends separating those functions into different clients."
+          ]
+        },
+        {
+          "label": "03 / Checks",
+          "title": "What developers should check",
+          "paragraphs": [
+            "Teams operating Workspace-connected AI agents should first identify which integrations actually call Google's MCP servers.",
+            "They should then inspect the associated OAuth clients in Google Auth Platform and configure dedicated agentic clients where required.",
+            "Testing existing workflows is also important, particularly where an agent retrieves information or performs authorized operations across multiple Workspace services.",
+            "There are documented exceptions. According to [Google's configuration guidance](https://developers.google.com/workspace/guides/configure-mcp-servers), service accounts using domain-wide delegation are not rejected for lacking this specific setting. Their access remains governed by the administrator's delegation configuration.",
+            "The Workspace MCP servers covered by the announcement are currently available through Google's Developer Preview Program."
+          ]
+        },
+        {
+          "label": "04 / Implications",
+          "title": "Agent identity becomes part of integration design",
+          "paragraphs": [
+            "The change introduces an explicit distinction between an application calling an API and an AI agent accessing tools through MCP.",
+            "Marking an OAuth client as agentic does not, by itself, establish which company data an agent may access or which actions it may perform. Those boundaries still depend on authorization and application-level controls.",
+            "As AI agents become connected to internal documents, communications and business systems, their technical identity becomes another part of integration design.",
+            "Our earlier [Research Note on ChatGPT, ERP integrations and MCP](https://empv.it/en/research-notes/connect-chatgpt-erp-api-mcp/) covers the related distinction between technical tool access and the permissions required to use it."
+          ]
+        }
+      ]
+    },
+    "takeaway": {
+      "it": "Dall'11 novembre, gli agenti che utilizzano i server MCP di Google Workspace devono essere identificati anche nella configurazione OAuth.",
+      "en": "From November 11, agents using Google Workspace MCP servers must also be identified in their OAuth configuration."
+    }
+  },
+
+  {
     "id": "gemini-4-carbon-cybersecurity",
     "index": "017",
     "slugs": {
