@@ -76,6 +76,44 @@ function cardVisual(noteId) {
   const orange = "#ff5a24";
   const faint = "#d8d6cf";
 
+  if (noteId === "google-workspace-mcp-oauth-agents") {
+    // Technical schematic: agent client -> OAuth identity -> Workspace MCP.
+    return `
+      <g transform="translate(800 146)" font-family="Arial, Helvetica, sans-serif">
+        <text x="8" y="0" font-size="14" font-weight="700" letter-spacing="1.8" fill="#77746e">AGENT / AUTH / WORKSPACE</text>
+        <path d="M8 20 H346" stroke="#d8d6cf" stroke-width="1.5"/>
+        <rect x="10" y="67" width="337" height="286" rx="16" fill="#f6f4ed" stroke="#d8d6cf" stroke-width="1.8"/>
+        <rect x="27" y="91" width="94" height="110" rx="12" fill="#171715"/>
+        <circle cx="74" cy="127" r="20" fill="none" stroke="#f6f4ed" stroke-width="2.2"/>
+        <circle cx="74" cy="127" r="8" fill="#ff5a24"/>
+        <path d="M74 107 V116 M74 138 V147 M54 127 H63 M85 127 H94" stroke="#f6f4ed" stroke-width="2.3"/>
+        <text x="74" y="181" text-anchor="middle" font-size="13" font-weight="700" fill="#f6f4ed">AI AGENT</text>
+        <path d="M122 146 H148" stroke="#ff5a24" stroke-width="3"/>
+        <path d="M142 138 L150 146 L142 154" stroke="#ff5a24" stroke-width="2.6" fill="none"/>
+        <rect x="152" y="91" width="96" height="110" rx="12" fill="#ff5a24"/>
+        <path d="M185 132 V121 C185 99 216 99 216 121 V132" stroke="#fff8ee" stroke-width="3" fill="none"/>
+        <rect x="180" y="132" width="41" height="32" rx="6" fill="none" stroke="#fff8ee" stroke-width="3"/>
+        <circle cx="200" cy="143" r="3" fill="#fff8ee"/>
+        <path d="M200 146 V154" stroke="#fff8ee" stroke-width="2"/>
+        <text x="200" y="181" text-anchor="middle" font-size="14" font-weight="700" fill="#fff8ee">OAUTH 2.0</text>
+        <path d="M249 146 H275" stroke="#ff5a24" stroke-width="3"/>
+        <path d="M269 138 L277 146 L269 154" stroke="#ff5a24" stroke-width="2.6" fill="none"/>
+        <rect x="279" y="91" width="54" height="110" rx="12" fill="#fffaf2" stroke="#171715" stroke-width="1.8"/>
+        <rect x="291" y="107" width="30" height="31" rx="5" fill="none" stroke="#171715" stroke-width="1.8"/>
+        <path d="M295 116 H317 M295 122 H317 M295 129 H309" stroke="#171715" stroke-width="2" stroke-linecap="round"/>
+        <text x="306" y="181" text-anchor="middle" font-size="12" font-weight="700" fill="#171715">MCP</text>
+        <path d="M28 219 H329" stroke="#d8d6cf" stroke-width="1.6"/>
+        <text x="31" y="249" font-size="13" font-weight="700" letter-spacing="1.5" fill="#77746e">REQUIRED CLIENT FLAG</text>
+        <rect x="29" y="262" width="303" height="53" rx="9" fill="#ffffff" stroke="#d8d6cf"/>
+        <circle cx="55" cy="287" r="12" fill="#ff5a24"/>
+        <path d="M49 287 L53 291 L61 282" stroke="#ffffff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="78" y="292" font-size="15" font-weight="700" fill="#171715">AI-POWERED AGENT</text>
+        <rect x="29" y="367" width="303" height="39" rx="8" fill="none" stroke="#ff5a24" stroke-width="1.5"/>
+        <text x="181" y="393" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="1" fill="#171715">11 NOV 2026</text>
+      </g>`;
+  }
+
+
 
   if (noteId === "qwen3-8-beijing-upload-attempt") {
     // Schematic of an agent's outbound HTTP call stopped by a network policy.
@@ -518,7 +556,9 @@ function approvedDotsSocialCardSvg(note, lang) {
 function socialCardSvg(note, lang) {
   if (note.id === "openai-dots") return approvedDotsSocialCardSvg(note, lang);
   const title = note.title[lang];
-  const lines = wrapCardTitle(title);
+  const lines = note.id === "google-workspace-mcp-oauth-agents"
+    ? (lang === "it" ? ["Google Workspace MCP:", "nuove regole OAuth", "per gli agenti AI"] : ["Google Workspace MCP:", "new OAuth rules", "for AI agents"])
+    : wrapCardTitle(title);
   const titleSize = lines.length >= 4 ? 49 : lines.length === 3 ? 54 : 60;
   const lineHeight = Math.round(titleSize * 1.04);
   const titleY = 230;
