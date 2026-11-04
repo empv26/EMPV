@@ -223,3 +223,13 @@ Gli anchor sono frasi pubblicitarie forzate, ad esempio “Premium Backlinks fro
 **Decisione:** non acquistare alcun servizio, non contattare i tre siti e non preparare un file Disavow solo sulla base di questi dati. Monitorare in Search Console eventuali *Azioni manuali* e investire su citazioni editoriali legittime. La presenza di backlink spam non prova una penalizzazione Google né una relazione commerciale tra EMPV e le pagine sorgenti. Non usare Domain Rating dei siti sorgenti come DR di EMPV.
 
 **Passo successivo richiesto:** Aprire `Organic search > Organic keywords` nell'interfaccia Ahrefs Free e documentare eventuali keyword, volumi, KD ed eventuali restrizioni del piano. I 36 seed restano privi di misurazione completa.
+
+## 12. Organic keywords — Ahrefs Site Explorer, screenshot del 4/11/2026
+
+Sorgente: screenshot del proprietario `Site Explorer > Organic keywords` su `empv.it`. Data tabella **4 Nov 2026**, intervallo grafico **Last month**, filtro superiore **All locations**, tutti i segmenti di posizione selezionati (1–3, 4–10, 11–20, 21–50, 51+), senza filtro keyword visibile. La tabella indica esplicitamente **“0 keywords / No results found”** e il grafico non mostra keyword conteggiate.
+
+**Interpretazione:** Ahrefs non rileva keyword organiche per il target nelle condizioni selezionate e nel proprio database alla data mostrata. Questo **NON prova** che EMPV sia assente dalle SERP, deindicizzato o privo di traffico Google. Google Search Console ha riportato **273 impressioni / 11 click** dal 1/10 al 2/11/2026 e mostra diverse query/pagine. Motivi possibili da verificare, non diagnosi: database Ahrefs con copertura diversa, dominio nuovo con ranking rarefatti, modalità di rilevazione differenti, aggiornamento dati e keyword rare. Non alterare robots, canonical o sitemap sulla base del numero zero Ahrefs.
+
+**Implicazione per le 36 keyword:** la sezione Organic keywords descrive le query **per cui Ahrefs vede già un ranking di empv.it**; non è lo strumento per misurare domanda globale delle 36 query ancora non presidiate. La misurazione del volume/KD dei 36 seed richiede `Keywords Explorer` con diritti del piano oppure Keyword Planner; l'accesso MCP Ahrefs resta bloccato con `Insufficient plan`.
+
+**Prossimo step UI:** provare `Keywords Explorer` e verificare se il piano Free consente qualche analisi di keyword con target Italia; nessuna richiesta di upgrade o pagamento senza consenso. Se non disponibile, proseguire su Search Console e audit SERP qualitativo, registrando la limitazione.
