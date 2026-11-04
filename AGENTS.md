@@ -4,7 +4,8 @@ EMPV is a bilingual editorial/creative/technology portfolio for Enrico Peruffo a
 
 ## Product direction
 - EMPV is a portfolio, not an AI agency website.
-- People first, then selected work, then Labs / R&D.
+- People first, then selected work, then five clearly explained services under «Cosa facciamo» / «What we do» on the homepage. Preserve the AI Lab index and all research details at their original IT/EN URLs, reachable from the homepage header (desktop and mobile); do not restore the AI Lab card grid to the homepage.
+- The first service is «EMPV Discovery»: a workflow mapping/needs-discovery method, not sales prospecting. The other services are custom software, automation/integrations, applied AI and local/private AI; preserve the distinction between AI use cases and AI deployment.
 - Keep copy concise, specific and evidence-led.
 - Avoid generic AI hype, generic SaaS visuals, conversion-funnel language and excessive CTAs.
 - Current public portfolio names may be shown explicitly.
