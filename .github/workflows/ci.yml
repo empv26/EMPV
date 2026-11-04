@@ -22,6 +22,10 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Build
         run: npm run build
+      - name: Verify legacy GitHub preview base path
+        run: |
+          grep -q 'http-equiv="refresh" content="0; url=/EMPV/it/"' dist/index.html
+          grep -q 'rel="canonical" href="https://2008hitch-afk.github.io/EMPV/it/"' dist/index.html
       - name: Verify bilingual services and AI Lab routes
         run: node scripts/check-services-static.mjs
       - name: Build production-like browser fixture

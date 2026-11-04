@@ -1633,8 +1633,68 @@ for (const route of routes) {
   await writeFile(join(dir, "index.html"), inject(template, route), "utf8");
 }
 
-await writeFile(new URL("../dist/index.html", import.meta.url), inject(template, { kind: "home", lang: "it" }), "utf8");
-await copyFile(new URL("../dist/index.html", import.meta.url), new URL("../dist/404.html", import.meta.url));
+// GitHub Pages has no repository-configurable HTTP 301 redirect. Keep the
+// existing SPA fallback for 404 responses, but replace the root homepage copy
+// with an instant redirect to the canonical /it/ (or /en/ for ?lang=en).
+// Google treats a 0-second meta refresh as permanent; a server-side 301
+// remains preferable if the hosting configuration supports it in the future.
+await writeFile(new URL("../dist/404.html", import.meta.url), inject(template, { kind: "home", lang: "it" }), "utf8");
+
+const rootVerificationTag = template.match(/<meta name="google-site-verification"[^>]*>/)?.[0];
+if (!rootVerificationTag) throw new Error("Root redirect would drop Google site verification.");
+
+const legacyRootTargets = {};
+for (const lang of ["it", "en"]) {
+  legacyRootTargets[lang + ":home:1"] = withBase(routePath({ kind: "home", lang }));
+  legacyRootTargets[lang + ":notes:1"] = withBase(routePath({ kind: "notesIndex", lang }));
+  for (const [slug, item] of Object.entries(manifest.details)) {
+    legacyRootTargets[lang + ":" + (item.type === "project" ? "project" : "lab") + ":" + slug] =
+      withBase(routePath({ kind: "detail", lang, detailKind: item.type, slug }));
+  }
+  for (const note of researchNotes) {
+    legacyRootTargets[lang + ":note:" + note.id] =
+      withBase(routePath({ kind: "note", lang, noteId: note.id }));
+  }
+  for (const slug of ["privacy", "cookies", "legal"]) {
+    legacyRootTargets[lang + ":legal:" + slug] =
+      withBase(routePath({ kind: "legal", lang, slug }));
+  }
+}
+
+const rootDestination = withBase("/it/");
+const rootRedirectHtml = [
+  '<!doctype html><html lang="it"><head>',
+  '<meta charset="UTF-8">',
+  '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+  rootVerificationTag,
+  '<link rel="canonical" href="' + esc(canonical({ kind: "home", lang: "it" })) + '">',
+  '<title>EMPV — Vai alla homepage italiana</title>',
+  '<script>',
+  '(() => {',
+  'const targets = ' + JSON.stringify(legacyRootTargets).replaceAll("<", "\\u003c") + ';',
+  'const params = new URLSearchParams(location.search);',
+  'const lang = params.get("lang") === "en" ? "en" : "it";',
+  'let target = targets[lang + ":home:1"];',
+  'for (const key of ["project", "lab", "note", "notes", "legal"]) {',
+  '  const value = params.get(key);',
+  '  if (value && targets[lang + ":" + key + ":" + value]) {',
+  '    target = targets[lang + ":" + key + ":" + value];',
+  '    break;',
+  '  }',
+  '}',
+  'params.delete("lang");',
+  'for (const key of ["project", "lab", "note", "notes", "legal"]) params.delete(key);',
+  'const query = params.toString();',
+  'location.replace(target + (query ? "?" + query : "") + location.hash);',
+  '})();',
+  '</script>',
+  '<meta http-equiv="refresh" content="0; url=' + esc(rootDestination) + '">',
+  '</head><body>',
+  '<main><p>EMPV: reindirizzamento alla <a href="' + esc(rootDestination) +
+    '">homepage italiana</a>.</p></main>',
+  '</body></html>'
+].join("\n");
+await writeFile(new URL("../dist/index.html", import.meta.url), rootRedirectHtml, "utf8");
 
 const indexable = routes.filter(route => route.kind !== "legal");
 const latestResearchNoteDate = researchNotes
