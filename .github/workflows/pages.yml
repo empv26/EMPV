@@ -89,6 +89,8 @@ jobs:
           ! grep -R 'src="/EMPV/' dist/*.html dist/it dist/en 2>/dev/null
           ! grep -R 'href="/EMPV/' dist/*.html dist/it dist/en 2>/dev/null
 
+      - name: Verify search and AI crawler readiness
+        run: node scripts/check-seo-geo-readiness.mjs
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
