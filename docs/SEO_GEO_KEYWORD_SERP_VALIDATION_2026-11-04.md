@@ -191,3 +191,19 @@ L'audit Search Console mostrato dal proprietario il 4/11 rileva **0 link esterni
 **P4 — GEO verificabile.** Rafforzare prove, nomi coerenti, pagine di progetto e fonti originali; monitorare separatamente citazioni dirette, menzioni AI e traffico da assistenti. Un riferimento `sameAs` o un backlink non garantisce citazioni da ChatGPT, Gemini, Claude o Copilot.
 
 **Stato di questa integrazione:** sola ricerca documentale sulla PR draft #49; nessuna modifica al sito pubblico né pubblicazione di nuove pagine.
+
+## 10. Evidenza diretta da Ahrefs Free — screenshot proprietario 4/11/2026
+
+Il proprietario ha mostrato la schermata autentica **Site Explorer > Referring domains**, target `empv.it/`, scope `Subdomains`, protocollo `http + https`. Questa è **evidenza dell'interfaccia Ahrefs**, distinta dall'API MCP (ancora `Insufficient plan`).
+
+| Dominio | Etichetta Ahrefs | Domain Rating sorgente | Traffico organico stimato sorgente | Links to target | Dofollow links to target | First seen |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| `12345791.xyz` | `SPAM` | 38 | 0 | 2 | 0 | 2026-11-02 |
+| `12345792.xyz` | `SPAM` | 38 | 0 | 2 | 0 | 2026-10-28 |
+| `12345793.xyz` | `SPAM` | 38 | 0 | 2 | 0 | 2026-10-28 |
+
+**Totale nella tabella:** 3 referring domains, 6 links to target, 0 dofollow links to target. Le colonne `Dofollow ref. domains` (39/38/37) e `Dofollow linked domains` (29) descrivono gli stessi domini sorgenti, **non** backlink dofollow verso EMPV. Il `DR 38` è il rating dei domini sorgenti, **non** di EMPV.
+
+**Interpretazione prudente:** si tratta di tre domini marcati spam e senza traffico organico stimato, non di referenze editoriali qualificate. Non conosciamo ancora le sei URL sorgenti, le pagine EMPV destinatarie, l'anchor text e l'effettivo `rel` dei singoli link: aprire **Backlink profile > Backlinks** o esportare la tabella per verificarli. Nessuna prova che il proprietario li abbia creati e nessuna ragione documentata per attribuire loro effetti positivi o penalizzazioni.
+
+**Intervento:** NON presentare automaticamente una lista di disavow. Google indica che in genere non serve e lo consiglia soltanto con numerosi link innaturali e un'azione manuale (o rischio concreto di essa); riferimento: https://support.google.com/webmasters/answer/2648487 . Verificare prima `Search Console > Sicurezza e azioni manuali > Azioni manuali`. Continuare a lavorare su acquisizione di citazioni editoriali reali e pertinenti. Questa rilevazione **non sostituisce** i volumi e la difficoltà delle 36 keyword (non disponibili tramite il piano Ahrefs MCP).
