@@ -18,6 +18,16 @@ assert.notEqual(root.match(/<title>(.*?)<\/title>/)?.[1], italianHome.match(/<ti
 assert.match(fallback, /data-prerendered="true"/, "404 fallback must preserve the React/static app");
 assert.match(italianHome, /EMPV Discovery/, "Italian homepage must remain intact");
 assert.match(englishHome, /Custom software/, "English homepage must remain intact");
+const officialIdentitySources = [
+  "https://www.linkedin.com/company/emp26/",
+  "https://x.com/EMPV26",
+  "https://github.com/empv26",
+];
+for (const source of officialIdentitySources) {
+  assert.ok(italianHome.includes(JSON.stringify(source)), "Organization sameAs missing official profile: " + source);
+  assert.ok(englishHome.includes(JSON.stringify(source)), "English Organization sameAs missing official profile: " + source);
+}
+
 
 const robots = await read("robots.txt");
 const sitemap = await read("sitemap.xml");
