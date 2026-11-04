@@ -689,9 +689,11 @@ const hrefFor = route => withBase(routePath(route));
 function processContextMarkup(lang, source) {
   const isIt = lang === "it";
   const label = isIt ? "Un passo in più" : "A broader view";
-  const lead = source === "project"
-    ? (isIt ? "La continuità tra sopralluogo, ufficio e produzione è un esempio di un problema più ampio." : "Continuity between fieldwork, office and workshop is one example of a broader workflow problem.")
-    : (isIt ? "Quando questo passaggio coinvolge più strumenti e persone, il singolo automatismo non basta sempre." : "When this step involves multiple tools and people, a single automation is not always enough.");
+  const lead = source === "quote-project"
+    ? (isIt ? "Raccogliere i dati per un preventivo è solo una parte del percorso: servono anche verifiche, passaggi e responsabilità chiari." : "Collecting quote details is only one part of the workflow: review steps, handoffs and responsibilities must also be clear.")
+    : source === "project"
+      ? (isIt ? "La continuità tra sopralluogo, ufficio e produzione è un esempio di un problema più ampio." : "Continuity between fieldwork, office and workshop is one example of a broader workflow problem.")
+      : (isIt ? "Quando questo passaggio coinvolge più strumenti e persone, il singolo automatismo non basta sempre." : "When this step involves multiple tools and people, a single automation is not always enough.");
   const anchor = isIt ? "Come affrontiamo l'automazione dei processi aziendali" : "How we approach business process automation";
   return '<aside class="process-context-link section-pad" aria-label="' + esc(label) + '"><span class="section-code">EMPV / ' + esc(label) + '</span><p>' + esc(lead) + ' <a href="' + esc(hrefFor({ kind: "processPage", lang })) + '">' + esc(anchor) + ' →</a></p></aside>';
 }
@@ -944,7 +946,7 @@ function detailMarkup(route) {
     comparison,
     '<section class="detail-blocks section-pad">', blocks, '</section>',
     detail.boundary ? '<section class="detail-boundary section-pad"><div class="section-code">EMPV / NOTE</div><p>' + esc(detail.boundary) + '</p></section>' : "",
-    (detail.type === "project" && route.slug === "commesse-posa") ? processContextMarkup(route.lang, "project") : "",
+    (detail.type === "project" && (route.slug === "commesse-posa" || route.slug === "richieste-preventivi")) ? processContextMarkup(route.lang, route.slug === "richieste-preventivi" ? "quote-project" : "project") : "",
     '<section class="detail-end section-pad"><a href="', esc(backHref), '"><span>', esc(backLabel), '</span></a></section>',
     '</main></div>'
   ].join("");
@@ -1087,7 +1089,7 @@ function noteMarkup(route) {
     '</div></section>',
     '<section class="detail-blocks section-pad research-note-blocks">', blocks, '</section>',
     '<section class="detail-boundary section-pad research-note-takeaway"><div class="section-code">EMPV / TAKEAWAY</div><p>', esc(note.takeaway[lang]), '</p></section>',
-    (note.id === "quote-intake" || note.id === "email-to-order") ? processContextMarkup(lang, "note") : "",
+    (note.id === "quote-intake" || note.id === "email-to-order" || note.id === "integrate-not-replace") ? processContextMarkup(lang, "note") : "",
     shareMarkup(route, note),
     '<section class="detail-end section-pad"><a href="', esc(hrefFor({ kind: "notesIndex", lang })), '"><span>Research Notes</span></a></section>',
     '</main></div>'
