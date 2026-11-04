@@ -1289,7 +1289,7 @@ function structuredData(route) {
         height: 192
       },
       image: { "@id": siteUrl + "/#logo" },
-      sameAs: ["https://www.linkedin.com/company/emp26/", "https://x.com/EMPV26"],
+      sameAs: ["https://www.linkedin.com/company/emp26/", "https://x.com/EMPV26", "https://github.com/empv26"],
       address: { "@type": "PostalAddress", addressLocality: "Bergamo", addressCountry: "IT" },
       member: [{ "@id": enricoId }, { "@id": micheleId }]
     },
