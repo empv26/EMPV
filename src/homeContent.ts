@@ -32,10 +32,10 @@ export const copy = {
     selectedTitle: "Progetti realizzati",
     selectedIntro:
       "Ogni progetto parte da un processo esistente. Il risultato non è uno stack tecnologico: è un modo diverso di lavorare.",
-    labsLabel: "02 / AI Lab",
-    labsTitle: "Un laboratorio per trasformare ipotesi AI in sistemi verificabili.",
-    labsIntro:
-      "Qui sviluppiamo e testiamo progetti AI che non nascono da un brief cliente: infrastrutture, prodotti e linee di ricerca usati per capire se un'idea regge come prodotto o sistema.",
+    servicesLabel: "02 / Cosa facciamo",
+    servicesTitle: "Dall'analisi dei processi ai sistemi che li supportano.",
+    servicesIntro:
+      "Analizziamo il lavoro, sviluppiamo software su misura, colleghiamo strumenti esistenti e valutiamo dove l'intelligenza artificiale può essere utile. Non tutto deve essere ricostruito da zero.",
     labsNote:
       "Prototipi, esperimenti e progetti AI in evoluzione · rendiamo pubblica la direzione, non i dettagli che costituiscono il vantaggio tecnico.",
     faqLabel: "03 / FAQ",
@@ -72,10 +72,10 @@ export const copy = {
     selectedTitle: "Projects delivered",
     selectedIntro:
       "Every project starts from an existing process. The outcome is not a technology stack: it is a different way of working.",
-    labsLabel: "02 / AI Lab",
-    labsTitle: "A lab for turning AI hypotheses into verifiable systems.",
-    labsIntro:
-      "Here we develop and test AI projects that do not start from a client brief: infrastructure, products and research directions used to find out whether an idea holds up as a product or system.",
+    servicesLabel: "02 / What we do",
+    servicesTitle: "From understanding workflows to building the systems that support them.",
+    servicesIntro:
+      "We analyze how work gets done, build custom software, connect existing tools and assess where AI can add value. Not everything needs to be rebuilt from scratch.",
     labsNote:
       "Evolving AI prototypes, experiments and projects · we make the direction public, not the details that form the technical advantage.",
     faqLabel: "03 / FAQ",
