@@ -4,6 +4,21 @@ import { readFile } from "node:fs/promises";
 const origin = process.env.SEO_CHECK_ORIGIN || "https://empv.it";
 const read = (path) => readFile(new URL("../dist/" + path, import.meta.url), "utf8");
 
+const root = await read("index.html");
+const fallback = await read("404.html");
+const italianHome = await read("it/index.html");
+const englishHome = await read("en/index.html");
+assert.match(root, /http-equiv="refresh" content="0; url=\/it\/"/, "Root must redirect immediately to Italian canonical");
+assert.match(root, /rel="canonical" href="https:\/\/empv\.it\/it\/"/, "Root must consolidate to Italian canonical");
+assert.match(root, /location\.replace\(/, "Root should preserve existing legacy query URLs");
+assert.match(root, /google-site-verification/, "Root must retain Google verification");
+assert.doesNotMatch(root, /class="hero"/, "Root must not render a second copy of the homepage");
+assert.notEqual(root.match(/<title>(.*?)<\/title>/)?.[1], italianHome.match(/<title>(.*?)<\/title>/)?.[1],
+  "Root must not share title with the real homepage");
+assert.match(fallback, /data-prerendered="true"/, "404 fallback must preserve the React/static app");
+assert.match(italianHome, /EMPV Discovery/, "Italian homepage must remain intact");
+assert.match(englishHome, /Custom software/, "English homepage must remain intact");
+
 const robots = await read("robots.txt");
 const sitemap = await read("sitemap.xml");
 const pairs = [
