@@ -24,3 +24,16 @@ jobs:
         run: npm run build
       - name: Verify bilingual services and AI Lab routes
         run: node scripts/check-services-static.mjs
+      - name: Install temporary browser QA dependencies
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Verify responsive services in browser
+        run: node scripts/check-services-browser.mjs
+      - name: Archive responsive screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: services-responsive-qa
+          path: ${{ runner.temp }}/empv-services-qa/*.png
+          if-no-files-found: ignore
