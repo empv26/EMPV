@@ -22,13 +22,15 @@ import BackgroundEffect, {
 import ProjectDetail from "./ProjectDetail";
 import ProjectGlassCard from "./ProjectGlassCard";
 import ProcessPage from "./processPage";
+import ServicesPage from "./ServicesPage";
 import LegalPage from "./LegalPage";
 import ResearchNotes from "./ResearchNotes";
 import SectionIndex from "./SectionIndex";
 import SiteFooter from "./SiteFooter";
 import { SeoHead, parseCurrentRoute, siteAssetHref, siteHref, type SiteRoute } from "./seo";
 import type { SiteLang } from "./detailContent";
-import { copy, faqs, labs, selected, type Lang, type Project } from "./homeContent";
+import { copy, faqs, selected, type Lang, type Project } from "./homeContent";
+import { services, type ServiceCard } from "./servicesContent";
 
 function GlobalCursor() {
   const reduceMotion = useReducedMotion();
@@ -94,8 +96,8 @@ function ProjectRow({ project, href, lang }: { project: Project; href: string; l
   return <ProjectGlassCard project={project} href={href} lang={lang} kind="project" />;
 }
 
-function LabRow({ project, href, lang }: { project: Project; href: string; lang: Lang }) {
-  return <ProjectGlassCard project={project} href={href} lang={lang} kind="lab" />;
+function ServiceRow({ service, href, lang }: { service: ServiceCard; href: string; lang: Lang }) {
+  return <ProjectGlassCard project={service} href={href} lang={lang} kind="service" />;
 }
 
 function PersonProfile({
@@ -457,7 +459,7 @@ function PortfolioApp({
   const reduceMotion = useReducedMotion();
   const c = copy[lang];
   const projectList = useMemo(() => selected[lang], [lang]);
-  const labList = useMemo(() => labs[lang], [lang]);
+  const serviceList = useMemo(() => services[lang], [lang]);
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.22], [0, reduceMotion ? 0 : -90]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.18], [1, 0.35]);
@@ -467,7 +469,7 @@ function PortfolioApp({
   }, [lang]);
 
   useEffect(() => {
-    const sections = ["people", "work", "labs", "faq"]
+    const sections = ["people", "work", "services", "faq"]
       .map((id) => document.getElementById(id))
       .filter((section): section is HTMLElement => Boolean(section));
 
@@ -692,22 +694,22 @@ function PortfolioApp({
 
         <ContactPrompt lang={lang} placement="home_projects" />
 
-        <section className="labs section-pad" id="labs">
+        <section className="labs section-pad" id="services">
           <div className="section-head labs-head">
             <div>
-              <div className="eyebrow">{c.labsLabel}</div>
-              <h2>{c.labsTitle}</h2>
+              <div className="eyebrow">{c.servicesLabel}</div>
+              <h2>{c.servicesTitle}</h2>
             </div>
-            <p>{c.labsIntro}</p>
+            <p>{c.servicesIntro}</p>
           </div>
 
           <div className="lab-list empv-card-grid">
-            {labList.map((project) => (
-              <LabRow
-                key={project.name}
-                project={project}
+            {serviceList.map((service) => (
+              <ServiceRow
+                key={service.slug}
+                service={service}
                 lang={lang}
-                href={siteHref({ kind: "detail", lang, detailKind: "lab", slug: project.slug })}
+                href={siteHref({ kind: "servicesPage", lang }) + "#" + service.slug}
               />
             ))}
           </div>
@@ -840,6 +842,8 @@ function App() {
     page = <ProjectDetail slug={route.slug} initialLang={initialLang} />;
   } else if (route.kind === "processPage") {
     page = <ProcessPage lang={route.lang} />;
+  } else if (route.kind === "servicesPage") {
+    page = <ServicesPage lang={route.lang} />;
   } else if (route.kind === "sectionIndex") {
     page = <SectionIndex section={route.section} initialLang={initialLang} />;
   } else if (route.kind === "notesIndex") {
