@@ -189,7 +189,9 @@ export default function ProjectDetail({ slug, initialLang = "it" }: DetailPagePr
           </section>
         )}
 
-        {detail.type === "project" && slug === "commesse-posa" && <ProcessContextLink lang={lang} source="project" />}
+        {detail.type === "project" && (slug === "commesse-posa" || slug === "richieste-preventivi") && (
+          <ProcessContextLink lang={lang} source={slug === "richieste-preventivi" ? "quote-project" : "project"} />
+        )}
         {detail.type === "project" && <ContactPrompt lang={lang} placement="project_detail" />}
 
         <section className="detail-end section-pad">
