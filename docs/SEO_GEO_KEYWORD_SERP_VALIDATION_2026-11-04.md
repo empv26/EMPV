@@ -207,3 +207,19 @@ Il proprietario ha mostrato la schermata autentica **Site Explorer > Referring d
 **Interpretazione prudente:** si tratta di tre domini marcati spam e senza traffico organico stimato, non di referenze editoriali qualificate. Non conosciamo ancora le sei URL sorgenti, le pagine EMPV destinatarie, l'anchor text e l'effettivo `rel` dei singoli link: aprire **Backlink profile > Backlinks** o esportare la tabella per verificarli. Nessuna prova che il proprietario li abbia creati e nessuna ragione documentata per attribuire loro effetti positivi o penalizzazioni.
 
 **Intervento:** NON presentare automaticamente una lista di disavow. Google indica che in genere non serve e lo consiglia soltanto con numerosi link innaturali e un'azione manuale (o rischio concreto di essa); riferimento: https://support.google.com/webmasters/answer/2648487 . Verificare prima `Search Console > Sicurezza e azioni manuali > Azioni manuali`. Continuare a lavorare su acquisizione di citazioni editoriali reali e pertinenti. Questa rilevazione **non sostituisce** i volumi e la difficoltà delle 36 keyword (non disponibili tramite il piano Ahrefs MCP).
+
+## 11. Dettaglio backlink — schermata Site Explorer > Backlinks del 4/11/2026
+
+Sorgente: screenshot fornito direttamente dal proprietario. Target selezionato `empv.it`, gruppo `All` con `Group similar`; UI visualizza **3 groups of links**, non necessariamente un inventario delle singole URL fisiche.
+
+| URL sorgente (come visualizzata) | Titolo osservato | Ahrefs link | DR / UR | Traffic source |
+| --- | --- | --- | --- | --- |
+| `https://12345793.xyz/authority-seo-links-for-higher-organic-visibility-s3p7213` | “High-Quality SEO Backlinks for Stronger Search Engine Rankings…” | NOFOLLOW verso `https://empv.it/` (risolta anche canonical `https://empv.it/it/`) | 38 / 0 | 0 |
+| `https://12345791.xyz/expert-seo-backlinks-for-higher-google-rankings-s1p7213` | “Premium Link Building Solutions for Higher Search Rankings…” | NOFOLLOW verso `https://empv.it/` | 38 / 0 | 0 |
+| `https://12345792.xyz/high-authority-seo-links-for-websites-and-businesses-s2p7213` | “Result-Driven SEO Backlink Services…” | NOFOLLOW verso `https://empv.it/` (risolta anche canonical `https://empv.it/it/`) | 38 / 0 | 0 |
+
+Gli anchor sono frasi pubblicitarie forzate, ad esempio “Premium Backlinks from empv.it for Websites Looking to Improve Google Rankings…” e “Expert Backlink Building Services from empv.it Designed to Grow Website Rankings…”. I siti sorgenti hanno etichetta **SPAM** su Ahrefs, categorie SEO/marketing e zero traffico stimato. L'assenza di dofollow conferma il report `Referring domains`: **0 dofollow links to target**.
+
+**Decisione:** non acquistare alcun servizio, non contattare i tre siti e non preparare un file Disavow solo sulla base di questi dati. Monitorare in Search Console eventuali *Azioni manuali* e investire su citazioni editoriali legittime. La presenza di backlink spam non prova una penalizzazione Google né una relazione commerciale tra EMPV e le pagine sorgenti. Non usare Domain Rating dei siti sorgenti come DR di EMPV.
+
+**Passo successivo richiesto:** Aprire `Organic search > Organic keywords` nell'interfaccia Ahrefs Free e documentare eventuali keyword, volumi, KD ed eventuali restrizioni del piano. I 36 seed restano privi di misurazione completa.
