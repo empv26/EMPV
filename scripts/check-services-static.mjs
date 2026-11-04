@@ -22,6 +22,17 @@ const [itHome, enHome, itServices, enServices, itLab, enLab, sitemap, llms] = aw
   read("llms.txt"),
 ]);
 
+const expectedServicesSeo = {
+  "it": {
+    "title": "Software su misura, automazioni e AI a Bergamo | EMPV",
+    "description": "Software gestionali su misura e integrazioni per aziende a Bergamo. EMPV analizza i processi e valuta automazioni, AI applicata e AI locale quando servono."
+  },
+  "en": {
+    "title": "Custom software, automation and AI in Bergamo | EMPV",
+    "description": "Custom software and integrations for businesses in Bergamo. EMPV maps workflows and evaluates automation, applied AI and local AI when useful."
+  }
+};
+
 for (const [lang, home, page, segment, lab] of [
   ["it", itHome, itServices, "cosa-facciamo", itLab],
   ["en", enHome, enServices, "what-we-do", enLab],
@@ -31,6 +42,10 @@ for (const [lang, home, page, segment, lab] of [
   assert.match(home, new RegExp('href="[^"]+/' + lang + '/lab/"'), lang + ": AI Lab must remain in header");
   assert.doesNotMatch(home, /class="empv-card-title">(?:System Twin|Opportunity Engine|Trustworthy Reasoning)<\/h3>/, lang + ": AI Lab card remains on homepage");
   assert.match(page, /data-prerendered="true"/, lang + ": services page is not prerendered");
+  const seo = expectedServicesSeo[lang];
+  assert.ok(page.includes("<title>" + seo.title + "</title>"), lang + ": commercial title not prerendered");
+  assert.ok(page.includes('name="description" content="' + seo.description + '"'), lang + ": commercial description not prerendered");
+
   assert.match(page, /"@type":"CollectionPage"/, lang + ": services CollectionPage missing");
   assert.equal((page.match(/"@type":"Service"/g) || []).length, 5, lang + ": expected five structured services");
 
