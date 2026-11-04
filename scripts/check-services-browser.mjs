@@ -95,6 +95,19 @@ try {
     const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: "reduce" });
     await page.goto(base + "/" + lang + "/", { waitUntil: "networkidle" });
     const menu = page.locator(".mobile-menu-toggle");
+    const mobileState = await page.evaluate(() => {
+      const el = document.querySelector(".mobile-menu-toggle");
+      return {
+        width: window.innerWidth,
+        screenWidth: screen.width,
+        viewportMeta: document.querySelector('meta[name="viewport"]')?.getAttribute("content"),
+        hasToggle: Boolean(el),
+        computedDisplay: el ? getComputedStyle(el).display : null,
+        rootChildren: document.getElementById("root")?.children.length,
+        scriptSrc: [...document.querySelectorAll('script[type="module"]')].map(el => el.getAttribute("src")),
+      };
+    });
+    console.log("MOBILE DIAGNOSTICS " + lang + " " + JSON.stringify(mobileState));
     assert.ok(await menu.isVisible(), lang + ": touch mobile toggle must be visible");
     await menu.click();
     assert.ok(await page.locator(".mobile-nav-panel a[href$='/lab/']").isVisible(), lang + ": AI Lab must remain accessible on mobile");
