@@ -49,7 +49,7 @@ export const processPageContent: Record<SiteLang, ProcessPageContent> = {
         title: "Mappare il processo serve a non automatizzare l'errore.",
         paragraphs: [
           "Mettiamo a confronto il flusso attuale (AS-IS) con quello possibile (TO-BE). Identifichiamo gli strumenti da conservare, i dati da condividere e i punti in cui una persona deve confermare ciò che il sistema ha preparato.",
-          "Un intervento può essere un'integrazione, una piccola applicazione interna, una regola deterministica oppure una funzione AI. Non scegliamo l'AI per principio: la utilizziamo soltanto quando aggiunge una capacità utile e verificabile."
+          "Un intervento può essere un'integrazione, una piccola applicazione interna, una regola deterministica oppure una funzione AI. Non scegliamo l'AI per principio: la utilizziamo soltanto quando aggiunge una capacità utile e verificabile. La ricognizione serve anche a rendere espliciti passaggi, responsabilità e vincoli prima di scegliere cosa sviluppare."
         ],
         bullets: [
           "Una sola fonte autorevole per ogni dato importante",
@@ -80,15 +80,16 @@ export const processPageContent: Record<SiteLang, ProcessPageContent> = {
         title: "Una modifica ha senso se cambia qualcosa nel lavoro quotidiano.",
         paragraphs: [
           "Prima dell'intervento scegliamo una misura comprensibile: quanti reinserimenti richiede una pratica, quanto tempo passa tra richiesta e presa in carico, quante verifiche manuali sono necessarie o quante informazioni mancano alla prima raccolta.",
-          "Confrontiamo lo stesso processo prima e dopo, tenendo conto delle eccezioni. Non promettiamo percentuali di risparmio senza una base reale. Se il risultato non è misurabile o il cambiamento complica il lavoro, va rivisto."
+          "Confrontiamo lo stesso processo prima e dopo, tenendo conto delle eccezioni. Non promettiamo percentuali di risparmio senza una base reale. Se il risultato non è misurabile o il cambiamento complica il lavoro, va rivisto. Per una prima valutazione bastano un caso rappresentativo, gli strumenti coinvolti e le eccezioni più frequenti; la fattibilità tecnica va poi verificata."
         ]
       }
     ],
     relatedLabel: "Approfondimenti e progetti",
-    relatedTitle: "Tre esempi per entrare nel dettaglio.",
+    relatedTitle: "Quattro percorsi per entrare nel dettaglio.",
     relatedIntro: "Nelle Research Notes affrontiamo le scelte tecniche. Nei progetti mostriamo come un problema operativo può essere ricostruito e affrontato.",
     resources: [
       { kind: "note", id: "quote-intake", title: "Richieste di preventivo", description: "Raccogliere informazioni senza automatizzare la decisione." },
+      { kind: "project", id: "richieste-preventivi", title: "Qualificazione richieste e preventivi", description: "Un progetto che struttura i dati prima della valutazione." },
       { kind: "note", id: "email-to-order", title: "Da email a ordine", description: "Preparare i dati senza sostituire il gestionale." },
       { kind: "project", id: "commesse-posa", title: "Commesse e posa", description: "Collegare sopralluogo, ufficio e officina." }
     ],
@@ -120,7 +121,7 @@ export const processPageContent: Record<SiteLang, ProcessPageContent> = {
         title: "Mapping the workflow prevents us from automating the wrong thing.",
         paragraphs: [
           "We compare the current workflow (AS-IS) with a possible future one (TO-BE). We identify which tools to keep, which data must be shared and where a person needs to approve what the system has prepared.",
-          "The answer may be an integration, a small internal web application, a deterministic rule or an AI capability. We do not introduce AI by default. It has to solve a specific, testable problem."
+          "The answer may be an integration, a small internal web application, a deterministic rule or an AI capability. We do not introduce AI by default. It has to solve a specific, testable problem. Mapping the workflow also makes handoffs, ownership and constraints explicit before choosing what to build."
         ],
         bullets: [
           "One authoritative source for important records",
@@ -151,15 +152,16 @@ export const processPageContent: Record<SiteLang, ProcessPageContent> = {
         title: "The change should be visible in day-to-day work.",
         paragraphs: [
           "Before implementation, we agree on a measure people can understand: repeated data entries per request, elapsed time until a case is taken up, manual checks or the information missing at first contact.",
-          "We compare the same workflow before and after, including exceptions. We do not claim savings percentages without a measured baseline. If a change makes the work more complicated, it needs revision."
+          "We compare the same workflow before and after, including exceptions. We do not claim savings percentages without a measured baseline. If a change makes the work more complicated, it needs revision. A representative case, the tools involved and common exceptions are enough to begin the discussion; technical feasibility must still be checked."
         ]
       }
     ],
     relatedLabel: "Further reading and projects",
-    relatedTitle: "Three ways to explore the details.",
+    relatedTitle: "Four ways to explore the details.",
     relatedIntro: "Our Research Notes cover technical decisions. Our project pages show how real operational problems can be understood and addressed.",
     resources: [
       { kind: "note", id: "quote-intake", title: "Quote requests", description: "Collect information without automating commercial judgment." },
+      { kind: "project", id: "richieste-preventivi", title: "Request and quote qualification", description: "A project structuring data before review." },
       { kind: "note", id: "email-to-order", title: "From email to order", description: "Prepare data without replacing the ERP." },
       { kind: "project", id: "commesse-posa", title: "Jobs and installation", description: "Connect site surveys, office and workshop." }
     ],
