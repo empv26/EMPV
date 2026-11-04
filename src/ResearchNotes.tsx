@@ -428,7 +428,7 @@ function ResearchNoteArticle({ lang, noteId }: { lang: SiteLang; noteId: string 
           <p>{note.takeaway[lang]}</p>
         </section>
 
-        {(noteId === "quote-intake" || noteId === "email-to-order") && (
+        {(noteId === "quote-intake" || noteId === "email-to-order" || noteId === "integrate-not-replace") && (
           <ProcessContextLink lang={lang} source="note" />
         )}
 
