@@ -31,6 +31,8 @@ jobs:
         run: |
           npx vite build --base=/
           node scripts/seo-build.mjs
+      - name: Verify search and AI crawler readiness
+        run: node scripts/check-seo-geo-readiness.mjs
       - name: Install temporary browser QA dependencies
         run: |
           npm install --no-save --no-package-lock playwright
