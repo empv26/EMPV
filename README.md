@@ -1,76 +1,57 @@
 # EMPV
 
-Bilingual editorial portfolio for **Enrico Peruffo** and **Michele Valleri**.
+**EMPV** develops custom digital systems, software, automation and applied AI, starting from real business workflows and operating constraints.
 
-## Positioning
+Bilingual editorial portfolio by **Enrico Peruffo** and **Michele Valleri**, based in Bergamo, Italy.
 
-EMPV presents people first, then delivered work, then products and R&D. It is intentionally not structured as a generic AI-agency website.
+**Official website:** [EMPV — Italiano](https://empv.it/it/) · [EMPV — English](https://empv.it/en/)
 
-## Current selected work
-- Cloeshouse Pet Resort
-- Centro Change
-- Cube Audio Service
+## What we do
 
-## Labs / R&D
-- Pet Operations SaaS
-- Local AI Capability Lab
-- DeepRAP / Epistemic AI
+The website presents five areas of work, with **EMPV Discovery** as the initial process-mapping method:
 
-## Stack
-- React 19
-- TypeScript
-- Vite
-- Motion
-- Lucide React
-- project-owned CSS
+1. **EMPV Discovery** — understand workflows, tools, responsibilities and priorities before designing solutions.
+2. **Custom software** — build applications and operating systems around specific needs.
+3. **Automation & integrations** — connect existing software, data and workflows.
+4. **AI for business** — assess and build AI-enabled capabilities where appropriate.
+5. **Private & on-premise AI** — evaluate controlled infrastructure and local-model deployments.
 
-## Run locally
+[What we do (EN)](https://empv.it/en/what-we-do/) · [Cosa facciamo (IT)](https://empv.it/it/cosa-facciamo/)
+
+## Selected work
+
+These public project descriptions document different operational contexts, without implying that the same solution or outcomes apply to every business:
+
+- [Job and installation operating system](https://empv.it/en/projects/commesse-posa/)
+- [Operations platform for a psychology practice](https://empv.it/en/projects/psicologia-operations/)
+- [Operations platform for a pet facility](https://empv.it/en/projects/pet-resort-operations/)
+- [Request qualification and quoting system](https://empv.it/en/projects/richieste-preventivi/)
+
+[Projects index](https://empv.it/en/projects/)
+
+## Research and technical notes
+
+[AI Lab](https://empv.it/en/lab/) covers applied research directions and prototypes; it remains separate from commercial services.
+
+[Research Notes](https://empv.it/en/research-notes/) present source-led technical reporting, with explicit context and limits rather than unsupported claims.
+
+## Stack and local development
+
+React, TypeScript, Vite, Motion, Lucide React and project-owned CSS.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Production check:
-
 ```bash
 npm run build
 ```
 
-## Design sources
+The production website is built as static prerendered IT/EN pages from `main` and deployed through GitHub Pages. SEO metadata, canonical URLs, hreflang and sitemaps are generated as part of the build.
 
-See `docs/UI_IMPLEMENTATION.md` and `AGENTS.md`.
+**Development constraints:** consult [AGENTS.md](AGENTS.md), the editorial guidance in `docs/` and the current code before making changes. The approved homepage Hero, Team photos, Glass Cards, Customize effects and Optical Glass footer must not be redesigned incidentally.
 
-The site selectively uses patterns and principles associated with shadcn/ui, Tailark, Magic UI and React Bits rather than vendoring entire upstream repositories.
+## Contact
 
-## Status
-
-First creative prototype. Real portraits, final project imagery, final copy review and deployment are intentionally still open.
-
-
-## Background Lab
-
-Experimental route:
-
-`/background-lab`
-
-The lab compares the same EMPV hero against selectively imported background components from Magic UI and React Bits. It exposes intensity, speed, depth and pointer-interaction controls without changing the default homepage.
-
-Quick homepage comparisons are also available through:
-
-- `?bg=particles`
-- `?bg=aero`
-- `?bg=beams`
-- `?bg=threads`
-- `?bg=waves`
-- `?bg=galaxy`
-- `?bg=orb`
-- `?bg=dither`
-- `?bg=prism`
-- `?bg=scanner`
-- `?bg=light-tunnel`
-- `?bg=side-rays`
-- `?bg=sliced-waves`
-- `?bg=silk`
-
-The production/default homepage remains `?bg=none`.
+For project enquiries, use the contact options on the [official EMPV site](https://empv.it/it/).
