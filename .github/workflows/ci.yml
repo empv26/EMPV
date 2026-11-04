@@ -22,3 +22,5 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Build
         run: npm run build
+      - name: Verify bilingual services and AI Lab routes
+        run: node scripts/check-services-static.mjs
