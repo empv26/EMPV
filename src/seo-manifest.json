@@ -21,6 +21,16 @@
       "description": "From email requests to job tracking: how EMPV maps workflows, integrates existing software and automates the steps that benefit from it."
     }
   },
+  "servicesPage": {
+    "it": {
+      "title": "Cosa facciamo — EMPV Discovery, software, automazioni e AI | EMPV",
+      "description": "Scopri i servizi EMPV: Discovery aziendale, software su misura, integrazioni e automazioni, AI applicata e soluzioni AI locali."
+    },
+    "en": {
+      "title": "What we do — EMPV Discovery, custom software and AI | EMPV",
+      "description": "Explore EMPV services: business discovery, custom software, integrations and automation, applied AI and local AI infrastructure."
+    }
+  },
   "sections": {
     "projects": {
       "it": {

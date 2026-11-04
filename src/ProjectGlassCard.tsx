@@ -2,15 +2,16 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import type { Lang, Project } from "./homeContent";
+import type { ServiceCard } from "./servicesContent";
 import "./project-glass.css";
 
-type CardKind = "project" | "lab";
+type CardKind = "project" | "lab" | "service";
 
 function CardSymbol({ slug }: { slug: string }) {
   const symbol =
-    slug === "psicologia-operations" || slug === "vertical-operations" ? "calendar" :
-    slug === "pet-resort-operations" || slug === "local-ai" ? "grid" :
-    slug === "richieste-preventivi" || slug === "opportunity-engine" ? "arrows" :
+    slug === "psicologia-operations" || slug === "vertical-operations" || slug === "software-su-misura" ? "calendar" :
+    slug === "pet-resort-operations" || slug === "local-ai" || slug === "ai-per-le-aziende" || slug === "ai-locale-privata" ? "grid" :
+    slug === "richieste-preventivi" || slug === "opportunity-engine" || slug === "automazioni-integrazioni" ? "arrows" :
     "nodes";
 
   return (
@@ -55,13 +56,14 @@ export default function ProjectGlassCard({
   lang,
   kind,
 }: {
-  project: Project;
+  project: Project | ServiceCard;
   href: string;
   lang: Lang;
   kind: CardKind;
 }) {
   const reducedMotion = useReducedMotion();
   const isLab = kind === "lab";
+  const isService = kind === "service";
 
   function onPointerMove(event: ReactPointerEvent<HTMLAnchorElement>) {
     if (event.pointerType !== "mouse" || reducedMotion) return;
@@ -95,12 +97,12 @@ export default function ProjectGlassCard({
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
     >
       <a
-        className={`empv-glass-card empv-glass-card--${kind}`}
+        className={`empv-glass-card empv-glass-card--${isService ? "lab" : kind}`}
         href={href}
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
         onPointerCancel={onPointerLeave}
-        aria-label={`${project.name} — ${lang === "it" ? "Apri il dettaglio" : "Open details"}`}
+        aria-label={`${project.name} — ${isService ? (lang === "it" ? "Scopri il servizio" : "Explore the service") : (lang === "it" ? "Apri il dettaglio" : "Open details")}`}
       >
         <div className="empv-card-top">
           <span className="empv-card-type">{project.index} / {project.kind}</span>
@@ -109,17 +111,31 @@ export default function ProjectGlassCard({
 
         <h3 className="empv-card-title">{project.name}</h3>
 
-        {isLab ? (
+        {isService ? (
           <>
-            <p className="empv-card-question">{project.question}</p>
+            <p className="empv-card-question">{project.description}</p>
+            <div className="empv-card-meta">
+              <div>
+                <small>{"whenLabel" in project ? project.whenLabel : ""}</small>
+                <p>{"when" in project ? project.when : ""}</p>
+              </div>
+              <div>
+                <small>{"whatLabel" in project ? project.whatLabel : ""}</small>
+                <p>{"what" in project ? project.what : ""}</p>
+              </div>
+            </div>
+          </>
+        ) : isLab ? (
+          <>
+            <p className="empv-card-question">{"question" in project ? project.question : ""}</p>
             <div className="empv-card-meta">
               <div>
                 <small>{lang === "it" ? "Stato del repo" : "Repository state"}</small>
-                <p>{project.state}</p>
+                <p>{"state" in project ? project.state : ""}</p>
               </div>
               <div>
                 <small>{lang === "it" ? "Focus corrente" : "Current focus"}</small>
-                <p>{project.focus}</p>
+                <p>{"focus" in project ? project.focus : ""}</p>
               </div>
             </div>
           </>
@@ -127,16 +143,18 @@ export default function ProjectGlassCard({
           <>
             <p className="empv-card-description">{project.description}</p>
             <div className="empv-card-tags">
-              {project.meta.map((item) => <span key={item}>{item}</span>)}
+              {"meta" in project && project.meta.map((item) => <span key={item}>{item}</span>)}
             </div>
           </>
         )}
 
         <div className="empv-card-action">
           <span>
-            {isLab
-              ? (lang === "it" ? "Esplora la ricerca" : "Explore research")
-              : (lang === "it" ? "Scopri il progetto" : "View project")}
+            {isService
+              ? (lang === "it" ? "Scopri il servizio" : "Explore the service")
+              : isLab
+                ? (lang === "it" ? "Esplora la ricerca" : "Explore research")
+                : (lang === "it" ? "Scopri il progetto" : "View project")}
           </span>
           <ArrowUpRight size={21} strokeWidth={1.45} aria-hidden="true" />
         </div>

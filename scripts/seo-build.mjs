@@ -27,11 +27,14 @@ const homeContent = await loadTypeScriptModule("../src/homeContent.ts");
 const detailContent = await loadTypeScriptModule("../src/detailContent.ts");
 const researchContent = await loadTypeScriptModule("../src/researchNotesContent.ts");
 const processContent = await loadTypeScriptModule("../src/processPageContent.ts");
+const servicesContent = await loadTypeScriptModule("../src/servicesContent.ts");
 const businessCardContent = await loadTypeScriptModule("../src/businessCardData.ts");
 const copy = homeContent.copy;
 const selected = homeContent.selected;
 const faqs = homeContent.faqs;
 const labs = homeContent.labs;
+const services = servicesContent.services;
+const servicesPageCopy = servicesContent.servicesPageCopy;
 const getDetail = detailContent.getDetail;
 const researchNotes = researchContent.researchNotes;
 const processPageContent = processContent.processPageContent;
@@ -618,6 +621,7 @@ function routePath(route) {
   }
   if (route.kind === "notesIndex") return "/" + route.lang + "/research-notes/";
   if (route.kind === "processPage") return route.lang === "it" ? "/it/automazione-processi-aziendali/" : "/en/business-process-automation/";
+  if (route.kind === "servicesPage") return route.lang === "it" ? "/it/cosa-facciamo/" : "/en/what-we-do/";
   if (route.kind === "note") {
     const note = getResearchNoteById(route.noteId);
     const slug = note ? note.slugs[route.lang] : route.noteId;
@@ -654,6 +658,8 @@ const copyFor = route => route.kind === "home"
       ? manifest.researchNotes.index[route.lang]
       : route.kind === "processPage"
         ? manifest.processPage[route.lang]
+      : route.kind === "servicesPage"
+        ? manifest.servicesPage[route.lang]
       : route.kind === "note"
         ? manifest.researchNotes.notes[route.noteId][route.lang]
         : manifest.legal[route.slug][route.lang];
@@ -751,10 +757,11 @@ function footerMarkup(lang) {
 // Prerendered equivalent of ProjectGlassCard: same layout/links before hydration.
 function glassCardMarkup(item, lang, kind) {
   const lab = kind === "lab";
+  const service = kind === "service";
   const icon =
-    item.slug === "psicologia-operations" || item.slug === "vertical-operations" ? "calendar" :
-    item.slug === "pet-resort-operations" || item.slug === "local-ai" ? "grid" :
-    item.slug === "richieste-preventivi" || item.slug === "opportunity-engine" ? "arrows" : "nodes";
+    item.slug === "psicologia-operations" || item.slug === "vertical-operations" || item.slug === "software-su-misura" ? "calendar" :
+    item.slug === "pet-resort-operations" || item.slug === "local-ai" || item.slug === "ai-per-le-aziende" || item.slug === "ai-locale-privata" ? "grid" :
+    item.slug === "richieste-preventivi" || item.slug === "opportunity-engine" || item.slug === "automazioni-integrazioni" ? "arrows" : "nodes";
 
   const shapes = {
     calendar: '<rect x="5" y="7" width="22" height="20" rx="3"/><path d="M10 4v6M22 4v6M5 14h22M11 19h5M11 23h10"/>',
@@ -762,10 +769,19 @@ function glassCardMarkup(item, lang, kind) {
     arrows: '<path d="M4 9h18l-5-5M22 9l-5 5M28 22H10l5-5M10 22l5 5"/>',
     nodes: '<path d="M7 8.5 16 6l9 9-10 11-9-9z"/><circle cx="7" cy="8.5" r="2.5"/><circle cx="16" cy="6" r="2.5"/><circle cx="25" cy="15" r="2.5"/><circle cx="15" cy="26" r="2.5"/><circle cx="6" cy="17" r="2.5"/>'
   };
-  const href = hrefFor({ kind: "detail", lang, detailKind: lab ? "lab" : "project", slug: item.slug });
-  const label = lang === "it" ? "Apri il dettaglio" : "Open details";
+  const href = service
+    ? hrefFor({ kind: "servicesPage", lang }) + "#" + item.slug
+    : hrefFor({ kind: "detail", lang, detailKind: lab ? "lab" : "project", slug: item.slug });
+  const label = service
+    ? (lang === "it" ? "Scopri il servizio" : "Explore the service")
+    : (lang === "it" ? "Apri il dettaglio" : "Open details");
   const svgArrow = '<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>';
-  const center = lab ? [
+  const center = service ? [
+    '<p class="empv-card-question">', esc(item.description), '</p>',
+    '<div class="empv-card-meta"><div><small>', esc(item.whenLabel),
+    '</small><p>', esc(item.when), '</p></div><div><small>', esc(item.whatLabel),
+    '</small><p>', esc(item.what), '</p></div></div>'
+  ].join("") : lab ? [
     '<p class="empv-card-question">', esc(item.question), '</p>',
     '<div class="empv-card-meta"><div><small>', lang === "it" ? "Stato del repo" : "Repository state",
     '</small><p>', esc(item.state), '</p></div><div><small>',
@@ -777,7 +793,7 @@ function glassCardMarkup(item, lang, kind) {
   ].join("");
 
   return [
-    '<div class="empv-card-entry"><a class="empv-glass-card empv-glass-card--', kind,
+    '<div class="empv-card-entry"><a class="empv-glass-card empv-glass-card--', service ? "lab" : kind,
     '" href="', esc(href), '" aria-label="', esc(item.name + " — " + label), '">',
     '<div class="empv-card-top"><span class="empv-card-type">', esc(item.index), ' / ', esc(item.kind), '</span>',
     '<span class="empv-card-disc"><svg class="empv-card-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">',
@@ -785,7 +801,8 @@ function glassCardMarkup(item, lang, kind) {
     '<h3 class="empv-card-title">', esc(item.name), '</h3>',
     center,
     '<div class="empv-card-action"><span>',
-    lab ? (lang === "it" ? "Esplora la ricerca" : "Explore research") :
+    service ? (lang === "it" ? "Scopri il servizio" : "Explore the service") :
+      lab ? (lang === "it" ? "Esplora la ricerca" : "Explore research") :
       (lang === "it" ? "Scopri il progetto" : "View project"),
     '</span>', svgArrow, '</div></a></div>'
   ].join("");
@@ -822,7 +839,7 @@ function homeMarkup(lang) {
   ].join("");
 
   const projects = selected[lang].map(project => glassCardMarkup(project, lang, "project")).join("");
-  const labItems = labs[lang].map(project => glassCardMarkup(project, lang, "lab")).join("");
+  const serviceItems = services[lang].map(item => glassCardMarkup(item, lang, "service")).join("");
 
   const faqItems = faqs[lang].map((item, index) => [
     '<details class="faq-item"><summary>',
@@ -866,8 +883,8 @@ function homeMarkup(lang) {
     '<a class="contact-action contact-action-secondary" href="https://wa.me/393792438705">',
     '<span class="contact-action-label">', it ? "Scrivici su WhatsApp" : "Message us on WhatsApp", '</span>',
     '<span class="contact-action-icon" aria-hidden="true">↗</span></a></div></section>',
-    '<section class="labs section-pad" id="labs"><div class="section-head labs-head"><div><div class="eyebrow">', esc(c.labsLabel), '</div><h2>', esc(c.labsTitle), '</h2></div><p>', esc(c.labsIntro), '</p></div>',
-    '<div class="lab-list empv-card-grid">', labItems, '</div></section>',
+    '<section class="labs section-pad" id="services"><div class="section-head labs-head"><div><div class="eyebrow">', esc(c.servicesLabel), '</div><h2>', esc(c.servicesTitle), '</h2></div><p>', esc(c.servicesIntro), '</p></div>',
+    '<div class="lab-list empv-card-grid">', serviceItems, '</div></section>',
     '<section class="faq section-pad" id="faq"><div class="faq-layout"><div class="faq-intro"><div class="eyebrow">', esc(c.faqLabel), '</div><h2>', esc(c.faqTitle), '</h2><p>', esc(c.faqIntro), '</p></div>',
     '<div class="faq-list">', faqItems, '</div></div></section>',
     '</main>',
@@ -1143,6 +1160,54 @@ function processPageMarkup(route) {
   ].join("");
 }
 
+function servicesPageMarkup(route) {
+  const lang = route.lang;
+  const isIt = lang === "it";
+  const otherLang = isIt ? "en" : "it";
+  const c = servicesPageCopy[lang];
+  const homeHref = hrefFor({ kind: "home", lang });
+  const processHref = hrefFor({ kind: "processPage", lang });
+  const emailSubject = isIt ? "EMPV — Parliamo di un processo aziendale" : "EMPV — Let's discuss a business process";
+  const emailHref = "mailto:hello@empv.it?subject=" + encodeURIComponent(emailSubject);
+  const sections = services[lang].map(item => [
+    '<article id="', esc(item.slug), '" class="detail-block" aria-labelledby="service-', esc(item.slug), '">',
+    '<div class="eyebrow">', esc(item.index), ' / ', esc(item.kind), '</div>',
+    '<div class="detail-block-main"><h2 id="service-', esc(item.slug), '">', esc(item.name), '</h2>',
+    '<p>', esc(item.description), '</p><ul>',
+    '<li><strong>', esc(item.whenLabel), ':</strong> ', esc(item.when), '</li>',
+    '<li><strong>', esc(item.whatLabel), ':</strong> ', esc(item.what), '</li>',
+    '</ul></div></article>'
+  ].join("")).join("");
+
+  return [
+    '<div class="detail-shell services-page" data-prerendered="true">',
+    '<header class="topbar detail-topbar">',
+    '<a class="wordmark" href="', esc(homeHref), '" aria-label="EMPV home">EMPV</a>',
+    '<a class="detail-nav-back" href="', esc(homeHref + "#services"), '">', esc(c.backLabel), '</a>',
+    '<a class="lang-switch" href="', esc(hrefFor({ kind: "servicesPage", lang: otherLang })), '" hreflang="', otherLang, '">', otherLang.toUpperCase(), '</a>',
+    '</header><main>',
+    '<section class="notes-index-hero"><div class="notes-index-hero-inner">',
+    '<div class="eyebrow">', esc(c.kicker), '</div><h1>', esc(c.title), '</h1><p>', esc(c.intro),
+    '</p></div></section>',
+    '<section class="detail-blocks section-pad" aria-label="', isIt ? "Servizi EMPV" : "EMPV services", '">',
+    sections, '</section>',
+    '<section class="process-related section-pad" aria-labelledby="services-related-title">',
+    '<div class="section-code">EMPV / ', esc(c.relatedLabel), '</div>',
+    '<h2 id="services-related-title">', esc(c.relatedTitle), '</h2>',
+    '<p class="process-related-intro">', esc(c.relatedText), '</p>',
+    '<div class="process-related-list"><a class="process-related-item" href="', esc(processHref), '">',
+    '<span><strong>', esc(c.relatedLink), '</strong></span><span aria-hidden="true">↗</span></a></div></section>',
+    '<section class="process-contact section-pad" aria-labelledby="services-contact-title">',
+    '<div class="section-code">EMPV / ', esc(c.contactLabel), '</div>',
+    '<div class="process-contact-main"><h2 id="services-contact-title">', esc(c.contactTitle), '</h2>',
+    '<p>', esc(c.contactText), '</p><div class="process-contact-actions">',
+    '<a href="', esc(emailHref), '" data-contact-placement="services_page">', esc(c.emailLabel), ' ↗</a>',
+    '<a href="https://wa.me/393792438705" data-contact-placement="services_page">', esc(c.whatsappLabel), ' ↗</a>',
+    '</div></div></section>',
+    '</main>', footerMarkup(lang), '</div>'
+  ].join("");
+}
+
 function businessCardMarkup(route) {
   const card = businessCards[route.person];
   const asset = path => withBase("/" + (path.startsWith("/") ? path.slice(1) : path));
@@ -1180,6 +1245,7 @@ function staticMarkup(route) {
   if (route.kind === "sectionIndex") return sectionIndexMarkup(route);
   if (route.kind === "notesIndex") return notesIndexMarkup(route.lang);
   if (route.kind === "processPage") return processPageMarkup(route);
+  if (route.kind === "servicesPage") return servicesPageMarkup(route);
   if (route.kind === "note") return noteMarkup(route);
   return legalMarkup(route);
 }
@@ -1354,6 +1420,33 @@ function structuredData(route) {
     });
   }
 
+  if (route.kind === "servicesPage") {
+    graph.push({
+      "@type": "CollectionPage",
+      "@id": url + "#services",
+      name: pageCopy.title,
+      description: pageCopy.description,
+      url,
+      inLanguage: route.lang,
+      isPartOf: { "@id": websiteId },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: services[route.lang].map((service, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "Service",
+            "@id": url + "#" + service.slug,
+            name: service.name,
+            description: service.description,
+            serviceType: service.kind,
+            provider: { "@id": orgId }
+          }
+        }))
+      }
+    });
+  }
+
   if (route.kind === "notesIndex") {
     graph.push({
       "@type": "CollectionPage",
@@ -1507,6 +1600,7 @@ for (const lang of ["it", "en"]) {
   routes.push({ kind: "sectionIndex", lang, section: "lab" });
   routes.push({ kind: "notesIndex", lang });
   routes.push({ kind: "processPage", lang });
+  routes.push({ kind: "servicesPage", lang });
 }
 for (const note of researchNotes) {
   for (const lang of ["it", "en"]) routes.push({ kind: "note", lang, noteId: note.id });
@@ -1598,8 +1692,8 @@ const llmsLines = [
   "",
   "## Primary",
   "",
-  "- [EMPV — Italiano](" + siteUrl + "/it/): Progetti, team, AI Lab e FAQ in italiano.",
-  "- [EMPV — English](" + siteUrl + "/en/): Projects, team, AI Lab and FAQ in English.",
+  "- [EMPV — Italiano](" + siteUrl + "/it/): Progetti, team, servizi EMPV e FAQ in italiano.",
+  "- [EMPV — English](" + siteUrl + "/en/): Projects, team, EMPV services and FAQ in English.",
   "- [Progetti — Italiano](" + siteUrl + "/it/progetti/): Indice dei progetti EMPV.",
   "- [Projects — English](" + siteUrl + "/en/projects/): EMPV project index.",
   "- [AI Lab — Italiano](" + siteUrl + "/it/lab/): Indice delle linee di ricerca e dei prototipi AI.",
@@ -1625,6 +1719,10 @@ for (const lab of labs.en) {
 
 llmsLines.push("", "## Services and processes", "");
 for (const lang of ["it", "en"]) {
+  llmsLines.push("- [" + manifest.servicesPage[lang].title + "](" + siteUrl + routePath({ kind: "servicesPage", lang }) + "): " + manifest.servicesPage[lang].description);
+  for (const service of services[lang]) {
+    llmsLines.push("- [" + service.name + " — " + lang.toUpperCase() + "](" + siteUrl + routePath({ kind: "servicesPage", lang }) + "#" + service.slug + "): " + service.description);
+  }
   llmsLines.push("- [" + manifest.processPage[lang].title + "](" + siteUrl + routePath({ kind: "processPage", lang }) + "): " + manifest.processPage[lang].description);
 }
 
