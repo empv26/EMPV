@@ -1,5 +1,5 @@
 # EMPV — Keyword e SERP: validazione della domanda commerciale
-**Data:** 4 novembre 2026 · **Stato:** ricerca SERP preliminare documentata; **volumi di ricerca non ancora misurati**.
+**Data:** 4 novembre 2026 · **Stato:** SERP e GSC verificate; volumi e KD Ahrefs non disponibili sul piano collegato.
 
 ## Obiettivo e cautele
 Individuare quali problemi le PMI cercano realmente prima di dedicare nuove pagine a SEO/GEO. La competitività osservata nelle pagine concorrenti **non** dimostra che una keyword abbia elevati volumi o sia redditizia. Questo documento integra, non sostituisce, `SEO_GEO_DEMAND_AUDIT_2026-11-04.md`.
@@ -10,7 +10,7 @@ Il sito EMPV è un portfolio tecnologico/editoriale, non un'agenzia di marketing
 - **Google Search Console / EMPV:** dati collegati, baseline già rilevata 1/10–2/11: 273 impressioni, 11 click, 9 click sulla query «empv». Il campione di query pubblicate da GSC non equivale all'intero volume del mercato.
 - **Bing Webmaster Search Performance:** 2 impressioni e 0 click nell'export precedente; **AI Performance:** 0 citazioni e 0 pagine citate nei tre mesi selezionati (screenshot del proprietario).
 - **Google Search Console / Link:** 0 link esterni mostrati e 60 link interni nello screenshot; il report non è un censimento completo del web.
-- **Keyword volume e difficoltà:** **NON disponibili**. Ahrefs è noto come account Free ma il plugin ChatGPT non risulta installato/collegato; Windsor.ai ha soltanto GA4 + Search Console, non Google Ads/Keyword Planner. Le analisi SERP di seguito sono indipendenti dalle metriche Ahrefs.
+- **Keyword volume e difficoltà:** **NON disponibili**. Ahrefs è stato collegato a ChatGPT, ma le interrogazioni dirette restituiscono `Insufficient plan`; Windsor.ai ha soltanto GA4 + Search Console, non Google Ads/Keyword Planner. Le analisi SERP di seguito sono indipendenti dalle metriche Ahrefs.
 - **Ricerca web pubblica del 4/11:** contenuto dei risultati e pagine dei concorrenti; ordinamento variabile secondo posizione, contesto, dispositivo e personalizzazione. Non assegnare posizioni numeriche né CTR attesi.
 
 ## 2. Campione di concorrenti e intento osservato
@@ -132,3 +132,62 @@ Per ChatGPT, Gemini, Claude e Copilot non esiste una leva testuale verificata ch
 1. **PR #48:** allineamento README e Organization sameAs: non è una misura di keyword demand; monitorare a parte il deployment.
 2. **Questa ricerca:** evidenzia cluster e concorrenza plausibili, ma non ha volumi o keyword difficulty verificati. **Nessun intervento sul sito autorizzato** in base al solo campione SERP.
 3. **Prossimo dato necessario:** export Google Keyword Planner dei 36 seed su tre geografie, oppure lettura diretta da Ahrefs collegato. Solo dopo selezionare una prima ottimizzazione commerciale con una baseline e una verifica di cannibalizzazione.
+
+## 8. Verifica live di Ahrefs collegato — 4/11/2026
+
+**Connessione:** app Ahrefs risulta installata e connessa. La connessione non equivale ad accesso API incluso nel piano.
+
+**Richieste effettive e risposte:**
+
+| API Ahrefs verificata | Parametri sintetici | Esito |
+| --- | --- | --- |
+| `subscription-info-limits-and-usage` | output JSON | `Insufficient plan` |
+| `management-projects` | output JSON | `Insufficient plan` |
+| `public-domain-rating-free` | `empv.it` | `Insufficient plan` |
+| `keywords-explorer-overview` | «software su misura bergamo», country `IT`, volume e difficulty | `Insufficient plan` |
+| `site-explorer-backlinks-stats` | `empv.it`, `subdomains`, 2026-11-04 | `Insufficient plan` |
+| `site-explorer-metrics` | `empv.it`, `IT`, `subdomains`, 2026-11-04 | `Insufficient plan` |
+
+**Conclusione:** non è stato restituito alcun valore quantitativo Ahrefs. Tutte le **36 keyword** della sezione 3 restano senza `volume_IT`, `keyword_difficulty_IT`, `volume_Bergamo` e `keyword_difficulty_Bergamo` misurati. Anche Domain Rating, backlink e riferimenti dei domini restano **non verificabili con Ahrefs** in questo accesso. Non riportare zero al posto di dato mancante. Keyword Explorer overview usa per la selezione geografica un codice paese `IT`, non una provincia: una misura diretta dei volumi comunali/provinciali non è stata verificata da questa API.
+
+### Fallback basato su Search Console (Windsor.ai connesso)
+
+Lettura reale del **1/10–2/11/2026** dalla proprietà `https://empv.it/`:
+- baseline già documentata: **273 impressioni e 11 click** aggregati GSC;
+- query esposta **`empv`**: 106 impressioni, 9 click, posizione media 3,2642; le query con click non interamente visibili in GSC non autorizzano a imputare click a keyword commerciali specifiche;
+- pagina **`/it/automazione-processi-aziendali/`**: 21 impressioni e 1 click, posizione media 10,7143;
+- Research Note **`/en/research-notes/integrating-an-erp-without-replacing-it/`**: 29 impressioni e 0 click, posizione media 10,5517;
+- progetto **`/it/progetti/richieste-preventivi/`**: 23 impressioni e 0 click, posizione media 6,1304;
+- progetto **`/it/progetti/commesse-posa/`**: 13 impressioni e 0 click, posizione media 17,0769.
+
+Queste sono **impressioni delle pagine EMPV**, non volume mensile complessivo delle keyword corrispondenti. GSC mostra un campione di query con elementi anonimizzati: le somme della dimensione query non coincidono necessariamente con il totale proprietà.
+
+### Campione SERP indipendente verificato
+
+Pagine web consultate come **concorrenti di contenuto**, non come una classifica con posizioni Ahrefs:
+
+| Tema | URL pubblico | Evidenza della pagina |
+| --- | --- | --- |
+| Software e integrazioni Bergamo | https://almaware.net/ | Servizi custom, integrazioni con software esistente, web app e portfolio |
+| Software e AI Bergamo | https://agentixai.it/ | Software, agenti AI, integrazioni, metodo per processi |
+| Gestionale su misura Bergamo | https://kosynk.com/servizi/software-gestionali-su-misura | Problemi da Excel, workflow, gestionali, primo contatto |
+| AI locale / RAG / on-prem | https://www.kappa404.it/soluzioni-ai/ai-locale | Scenari e limiti del locale vs cloud, PoC, costi pubblici di altri fornitori |
+| Integrazioni gestionali/API | https://automatia.it/servizi/integrazioni-api | API, sincronizzazione, criteri per integrare o sostituire sistemi |
+
+### Backlink — stato corretto
+
+L'audit Search Console mostrato dal proprietario il 4/11 rileva **0 link esterni riportati**; Bing Webmaster presenta **«No data available»** per il report Backlinks. Ahrefs ha negato l'accesso ai report (`Insufficient plan`). Nessuna di queste evidenze certifica zero backlink esistenti nel web. Mantenere la baseline come **«non disponibili/nessuno rilevato dagli strumenti consultati»**, non come misurazione completa.
+
+## 9. Piano operativo prioritizzato, in assenza di volume Ahrefs
+
+**P0 — misurazione (prima di nuovi contenuti).** Utilizzare Google Search Console come metrica già accessibile: monitorare query non-brand, impressioni per landing, click e lead verificati; risolvere l'assenza di una fonte volumi per Italia/Bergamo. Google Keyword Planner richiede la configurazione di Google Ads con dati di fatturazione: non attivare pubblicità o addebiti senza scelta esplicita dell'utente. In alternativa valutare accessi e piani Ahrefs sulla base di disponibilità reali; non consigliare upgrade come precondizione per ogni lavoro SEO.
+
+**P1 — migliorare ciò che esiste.** Prima candidata: `/it/automazione-processi-aziendali/`, con attenzione a esempi reali di integrazione ERP/gestionali e percorsi contestuali tra progetti e Research Notes. Verificare click brand vs non-brand, qualità dei collegamenti, eventuale cannibalizzazione prima di modificare copy. Nessun claim di risparmi non misurati.
+
+**P2 — validare pagina «software su misura Bergamo».** Confrontare intenzione di scelta fornitore, contatti reali ricevuti e risultati del cluster A; pagina specifica solo se si differenzia significativamente dall'hub `Cosa facciamo`. Nessuna nuova voce obbligatoria nel menu o ristrutturazione homepage.
+
+**P3 — prova e autorevolezza.** Rafforzare casi studio pubblicabili previa autorizzazione dei clienti; link editoriali naturali da collaborazioni reali, no schemi di scambio. AI locale: conservare la distinzione tra progetto finanziato Invitalia e workstation ancora da installare/testare; comunicati stampa esterni solo dopo evidenze tecniche e consenso del titolare.
+
+**P4 — GEO verificabile.** Rafforzare prove, nomi coerenti, pagine di progetto e fonti originali; monitorare separatamente citazioni dirette, menzioni AI e traffico da assistenti. Un riferimento `sameAs` o un backlink non garantisce citazioni da ChatGPT, Gemini, Claude o Copilot.
+
+**Stato di questa integrazione:** sola ricerca documentale sulla PR draft #49; nessuna modifica al sito pubblico né pubblicazione di nuove pagine.
