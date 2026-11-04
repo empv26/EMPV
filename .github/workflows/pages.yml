@@ -50,6 +50,10 @@ jobs:
           grep -q 'application/ld+json' dist/it/index.html
           test -f dist/llms.txt
           test -f dist/favicon-96x96.png
+          test -f dist/empv-logo-192.png
+          grep -q 'https://empv.it/empv-logo-192.png' dist/it/index.html
+          grep -q 'id="services-evidence-title"' dist/it/cosa-facciamo/index.html
+          grep -q 'id="services-evidence-title"' dist/en/what-we-do/index.html
           test -f dist/a63245e78ed06560bbeec2cddd627b84.txt
           grep -qx 'a63245e78ed06560bbeec2cddd627b84' dist/a63245e78ed06560bbeec2cddd627b84.txt
           grep -q 'href="/favicon-96x96.png"' dist/it/index.html

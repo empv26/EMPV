@@ -5,6 +5,7 @@ import type { SiteLang } from "./detailContent";
 import { services, servicesPageCopy } from "./servicesContent";
 import { siteHref } from "./seo";
 import SiteFooter from "./SiteFooter";
+import { selected } from "./homeContent";
 
 export default function ServicesPage({ lang }: { lang: SiteLang }) {
   const c = servicesPageCopy[lang];
@@ -84,6 +85,27 @@ export default function ServicesPage({ lang }: { lang: SiteLang }) {
               </div>
             </motion.article>
           ))}
+        </section>
+
+        <section className="process-related section-pad" aria-labelledby="services-evidence-title">
+          <div className="section-code">EMPV / {c.evidenceLabel}</div>
+          <h2 id="services-evidence-title">{c.evidenceTitle}</h2>
+          <p className="process-related-intro">{c.evidenceIntro}</p>
+          <div className="process-related-list">
+            {selected[lang].map((project) => (
+              <a
+                className="process-related-item"
+                key={project.slug}
+                href={siteHref({ kind: "detail", lang, detailKind: "project", slug: project.slug })}
+              >
+                <span>
+                  <strong>{project.name}</strong>
+                  <small>{project.description}</small>
+                </span>
+                <ArrowUpRight size={20} strokeWidth={1.5} aria-hidden="true" />
+              </a>
+            ))}
+          </div>
         </section>
 
         <section className="process-related section-pad" aria-labelledby="services-related-title">

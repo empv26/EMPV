@@ -1171,6 +1171,13 @@ function servicesPageMarkup(route) {
   const processHref = hrefFor({ kind: "processPage", lang });
   const emailSubject = isIt ? "EMPV — Parliamo di un processo aziendale" : "EMPV — Let's discuss a business process";
   const emailHref = "mailto:hello@empv.it?subject=" + encodeURIComponent(emailSubject);
+  const evidence = selected[lang].map(project => [
+    '<a class="process-related-item" href="',
+    esc(hrefFor({ kind: "detail", lang, detailKind: "project", slug: project.slug })),
+    '"><span><strong>', esc(project.name), '</strong><small>',
+    esc(project.description),
+    '</small></span><span aria-hidden="true">↗</span></a>'
+  ].join("")).join("");
   const sections = services[lang].map(item => [
     '<article id="', esc(item.slug), '" class="detail-block" aria-labelledby="service-', esc(item.slug), '">',
     '<div class="eyebrow">', esc(item.index), ' / ', esc(item.kind), '</div>',
@@ -1193,6 +1200,11 @@ function servicesPageMarkup(route) {
     '</p></div></section>',
     '<section class="detail-blocks section-pad" aria-label="', isIt ? "Servizi EMPV" : "EMPV services", '">',
     sections, '</section>',
+    '<section class="process-related section-pad" aria-labelledby="services-evidence-title">',
+    '<div class="section-code">EMPV / ', esc(c.evidenceLabel), '</div>',
+    '<h2 id="services-evidence-title">', esc(c.evidenceTitle), '</h2>',
+    '<p class="process-related-intro">', esc(c.evidenceIntro), '</p>',
+    '<div class="process-related-list">', evidence, '</div></section>',
     '<section class="process-related section-pad" aria-labelledby="services-related-title">',
     '<div class="section-code">EMPV / ', esc(c.relatedLabel), '</div>',
     '<h2 id="services-related-title">', esc(c.relatedTitle), '</h2>',
@@ -1271,10 +1283,10 @@ function structuredData(route) {
       logo: {
         "@type": "ImageObject",
         "@id": siteUrl + "/#logo",
-        url: siteUrl + "/favicon-96x96.png",
-        contentUrl: siteUrl + "/favicon-96x96.png",
-        width: 96,
-        height: 96
+        url: siteUrl + "/empv-logo-192.png",
+        contentUrl: siteUrl + "/empv-logo-192.png",
+        width: 192,
+        height: 192
       },
       image: { "@id": siteUrl + "/#logo" },
       sameAs: ["https://www.linkedin.com/company/emp26/", "https://x.com/EMPV26"],
@@ -1758,6 +1770,16 @@ llmsLines.push(
 await writeFile(
   new URL("../dist/favicon-96x96.png", import.meta.url),
   Buffer.from(faviconPngBase64, "base64")
+);
+
+// Reuse the approved EMPV favicon artwork; export a larger, crawlable logo only
+// for Organization structured data. The site's visible favicon remains unchanged.
+await writeFile(
+  new URL("../dist/empv-logo-192.png", import.meta.url),
+  await sharp(Buffer.from(faviconPngBase64, "base64"))
+    .resize(192, 192, { kernel: "lanczos3" })
+    .png()
+    .toBuffer()
 );
 
 await writeFile(
