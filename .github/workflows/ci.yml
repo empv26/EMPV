@@ -24,6 +24,13 @@ jobs:
         run: npm run build
       - name: Verify bilingual services and AI Lab routes
         run: node scripts/check-services-static.mjs
+      - name: Build production-like browser fixture
+        env:
+          VITE_SITE_ORIGIN: "https://empv.it"
+          VITE_SITE_BASE_PATH: ""
+        run: |
+          npx vite build --base=/
+          node scripts/seo-build.mjs
       - name: Install temporary browser QA dependencies
         run: |
           npm install --no-save --no-package-lock playwright
