@@ -118,6 +118,27 @@ try {
     await page.close();
     checks += 1;
   }
+  const rootCases = [
+    ["/", "/it/"],
+    ["/?lang=en&bg=galaxy&palette=indigo", "/en/?bg=galaxy&palette=indigo"],
+    ["/?project=commesse-posa&lang=en", "/en/projects/commesse-posa/"],
+    ["/?notes=1", "/it/research-notes/"],
+    ["/?palette=amber#services", "/it/?palette=amber#services"],
+  ];
+  for (const [from, expected] of rootCases) {
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+    const errors = [];
+    page.on("pageerror", error => errors.push(error.message));
+    await page.goto(base + from, { waitUntil: "networkidle" });
+    const actual = new URL(page.url());
+    const target = new URL(base + expected);
+    assert.equal(actual.pathname + actual.search + actual.hash, target.pathname + target.search + target.hash,
+      "Root redirect should preserve canonical route and allowed query/hash for " + from);
+    assert.deepEqual(errors, [], "Root redirect has JavaScript errors for " + from);
+    await page.close();
+    console.log("PASS root redirect " + from + " -> " + expected);
+  }
+
   console.log("PASS services browser QA: " + checks + " viewport/language and mobile checks, screenshots in " + folder);
 } finally {
   await browser.close();
