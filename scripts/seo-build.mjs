@@ -1160,6 +1160,54 @@ function processPageMarkup(route) {
   ].join("");
 }
 
+function servicesPageMarkup(route) {
+  const lang = route.lang;
+  const isIt = lang === "it";
+  const otherLang = isIt ? "en" : "it";
+  const c = servicesPageCopy[lang];
+  const homeHref = hrefFor({ kind: "home", lang });
+  const processHref = hrefFor({ kind: "processPage", lang });
+  const emailSubject = isIt ? "EMPV — Parliamo di un processo aziendale" : "EMPV — Let's discuss a business process";
+  const emailHref = "mailto:hello@empv.it?subject=" + encodeURIComponent(emailSubject);
+  const sections = services[lang].map(item => [
+    '<article id="', esc(item.slug), '" class="detail-block" aria-labelledby="service-', esc(item.slug), '">',
+    '<div class="eyebrow">', esc(item.index), ' / ', esc(item.kind), '</div>',
+    '<div class="detail-block-main"><h2 id="service-', esc(item.slug), '">', esc(item.name), '</h2>',
+    '<p>', esc(item.description), '</p><ul>',
+    '<li><strong>', esc(item.whenLabel), ':</strong> ', esc(item.when), '</li>',
+    '<li><strong>', esc(item.whatLabel), ':</strong> ', esc(item.what), '</li>',
+    '</ul></div></article>'
+  ].join("")).join("");
+
+  return [
+    '<div class="detail-shell services-page" data-prerendered="true">',
+    '<header class="topbar detail-topbar">',
+    '<a class="wordmark" href="', esc(homeHref), '" aria-label="EMPV home">EMPV</a>',
+    '<a class="detail-nav-back" href="', esc(homeHref + "#services"), '">', esc(c.backLabel), '</a>',
+    '<a class="lang-switch" href="', esc(hrefFor({ kind: "servicesPage", lang: otherLang })), '" hreflang="', otherLang, '">', otherLang.toUpperCase(), '</a>',
+    '</header><main>',
+    '<section class="notes-index-hero"><div class="notes-index-hero-inner">',
+    '<div class="eyebrow">', esc(c.kicker), '</div><h1>', esc(c.title), '</h1><p>', esc(c.intro),
+    '</p></div></section>',
+    '<section class="detail-blocks section-pad" aria-label="', isIt ? "Servizi EMPV" : "EMPV services", '">',
+    sections, '</section>',
+    '<section class="process-related section-pad" aria-labelledby="services-related-title">',
+    '<div class="section-code">EMPV / ', esc(c.relatedLabel), '</div>',
+    '<h2 id="services-related-title">', esc(c.relatedTitle), '</h2>',
+    '<p class="process-related-intro">', esc(c.relatedText), '</p>',
+    '<div class="process-related-list"><a class="process-related-item" href="', esc(processHref), '">',
+    '<span><strong>', esc(c.relatedLink), '</strong></span><span aria-hidden="true">↗</span></a></div></section>',
+    '<section class="process-contact section-pad" aria-labelledby="services-contact-title">',
+    '<div class="section-code">EMPV / ', esc(c.contactLabel), '</div>',
+    '<div class="process-contact-main"><h2 id="services-contact-title">', esc(c.contactTitle), '</h2>',
+    '<p>', esc(c.contactText), '</p><div class="process-contact-actions">',
+    '<a href="', esc(emailHref), '" data-contact-placement="services_page">', esc(c.emailLabel), ' ↗</a>',
+    '<a href="https://wa.me/393792438705" data-contact-placement="services_page">', esc(c.whatsappLabel), ' ↗</a>',
+    '</div></div></section>',
+    '</main>', footerMarkup(lang), '</div>'
+  ].join("");
+}
+
 function businessCardMarkup(route) {
   const card = businessCards[route.person];
   const asset = path => withBase("/" + (path.startsWith("/") ? path.slice(1) : path));
@@ -1197,6 +1245,7 @@ function staticMarkup(route) {
   if (route.kind === "sectionIndex") return sectionIndexMarkup(route);
   if (route.kind === "notesIndex") return notesIndexMarkup(route.lang);
   if (route.kind === "processPage") return processPageMarkup(route);
+  if (route.kind === "servicesPage") return servicesPageMarkup(route);
   if (route.kind === "note") return noteMarkup(route);
   return legalMarkup(route);
 }
@@ -1371,6 +1420,33 @@ function structuredData(route) {
     });
   }
 
+  if (route.kind === "servicesPage") {
+    graph.push({
+      "@type": "CollectionPage",
+      "@id": url + "#services",
+      name: pageCopy.title,
+      description: pageCopy.description,
+      url,
+      inLanguage: route.lang,
+      isPartOf: { "@id": websiteId },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: services[route.lang].map((service, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "Service",
+            "@id": url + "#" + service.slug,
+            name: service.name,
+            description: service.description,
+            serviceType: service.kind,
+            provider: { "@id": orgId }
+          }
+        }))
+      }
+    });
+  }
+
   if (route.kind === "notesIndex") {
     graph.push({
       "@type": "CollectionPage",
@@ -1524,6 +1600,7 @@ for (const lang of ["it", "en"]) {
   routes.push({ kind: "sectionIndex", lang, section: "lab" });
   routes.push({ kind: "notesIndex", lang });
   routes.push({ kind: "processPage", lang });
+  routes.push({ kind: "servicesPage", lang });
 }
 for (const note of researchNotes) {
   for (const lang of ["it", "en"]) routes.push({ kind: "note", lang, noteId: note.id });
@@ -1615,8 +1692,8 @@ const llmsLines = [
   "",
   "## Primary",
   "",
-  "- [EMPV — Italiano](" + siteUrl + "/it/): Progetti, team, AI Lab e FAQ in italiano.",
-  "- [EMPV — English](" + siteUrl + "/en/): Projects, team, AI Lab and FAQ in English.",
+  "- [EMPV — Italiano](" + siteUrl + "/it/): Progetti, team, servizi EMPV e FAQ in italiano.",
+  "- [EMPV — English](" + siteUrl + "/en/): Projects, team, EMPV services and FAQ in English.",
   "- [Progetti — Italiano](" + siteUrl + "/it/progetti/): Indice dei progetti EMPV.",
   "- [Projects — English](" + siteUrl + "/en/projects/): EMPV project index.",
   "- [AI Lab — Italiano](" + siteUrl + "/it/lab/): Indice delle linee di ricerca e dei prototipi AI.",
@@ -1642,6 +1719,10 @@ for (const lab of labs.en) {
 
 llmsLines.push("", "## Services and processes", "");
 for (const lang of ["it", "en"]) {
+  llmsLines.push("- [" + manifest.servicesPage[lang].title + "](" + siteUrl + routePath({ kind: "servicesPage", lang }) + "): " + manifest.servicesPage[lang].description);
+  for (const service of services[lang]) {
+    llmsLines.push("- [" + service.name + " — " + lang.toUpperCase() + "](" + siteUrl + routePath({ kind: "servicesPage", lang }) + "#" + service.slug + "): " + service.description);
+  }
   llmsLines.push("- [" + manifest.processPage[lang].title + "](" + siteUrl + routePath({ kind: "processPage", lang }) + "): " + manifest.processPage[lang].description);
 }
 
