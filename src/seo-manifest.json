@@ -14,11 +14,11 @@
   "processPage": {
     "it": {
       "title": "Automazione processi aziendali a Bergamo | EMPV",
-      "description": "Dalle richieste via email alla gestione commesse: come EMPV mappa i passaggi di lavoro, integra gli strumenti esistenti e automatizza dove serve."
+      "description": "EMPV analizza i flussi tra email, ERP e team, verifica le integrazioni e sviluppa automazioni su misura per richieste, preventivi e commesse."
     },
     "en": {
       "title": "Business process automation in Bergamo | EMPV",
-      "description": "From email requests to job tracking: how EMPV maps workflows, integrates existing software and automates the steps that benefit from it."
+      "description": "EMPV maps workflows across email, ERP and teams, checks integration feasibility and builds tailored automation for requests, quotes and jobs."
     }
   },
   "servicesPage": {
