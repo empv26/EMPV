@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import sharp from "sharp";
 
 const read = (path) => readFile(new URL("../dist/" + path, import.meta.url), "utf8");
 const slugs = [
@@ -37,6 +38,11 @@ for (const [lang, home, page, segment, lab] of [
     assert.ok(home.includes("/" + lang + "/" + segment + "/#" + slug), lang + ": missing card link " + slug);
     assert.ok(page.includes('id="' + slug + '"'), lang + ": missing service anchor " + slug);
   }
+  const portfolioPath = lang === "it" ? "progetti" : "projects";
+  for (const slug of ["commesse-posa", "psicologia-operations", "pet-resort-operations", "richieste-preventivi"]) {
+    assert.ok(page.includes("/" + lang + "/" + portfolioPath + "/" + slug + "/"), lang + ": missing contextual project link " + slug);
+  }
+  assert.match(page, /id="services-evidence-title"/, lang + ": evidence section missing");
   assert.match(lab, /System Twin/, lang + ": existing AI Lab page changed unexpectedly");
 }
 
@@ -47,5 +53,13 @@ assert.match(enServices, /href="[^"]+\/en\/business-process-automation\/"/, "EN 
 assert.match(sitemap, /\/it\/cosa-facciamo\//, "Italian services missing from sitemap");
 assert.match(sitemap, /\/en\/what-we-do\//, "English services missing from sitemap");
 assert.match(llms, /EMPV Discovery/, "Services missing from llms.txt");
+for (const [lang, home] of [["it", itHome], ["en", enHome]]) {
+  assert.ok(home.includes("https://empv.it/empv-logo-192.png") || home.includes("/empv-logo-192.png"),
+    lang + ": Organization logo not referenced");
+}
+const logo = await sharp(await readFile(new URL("../dist/empv-logo-192.png", import.meta.url))).metadata();
+assert.equal(logo.width, 192, "Organization logo width");
+assert.equal(logo.height, 192, "Organization logo height");
+assert.equal(logo.format, "png", "Organization logo encoding");
 
 console.log("Services SEO regression checks: IT/EN homepage, Glass cards, links, AI Lab preservation, static routes, JSON-LD, sitemap and llms.txt — PASS");
