@@ -198,6 +198,16 @@
       }
     },
     "notes": {
+      "nvidia-nemo-agent-failures-regression-tests": {
+        "it": {
+          "title": "NVIDIA NeMo: dagli errori degli agenti AI ai test di regressione | EMPV",
+          "description": "NVIDIA mostra come usare NeMo Compass e NeMo Eval Author per rilevare errori degli agenti AI, creare test e valutare correzioni."
+        },
+        "en": {
+          "title": "NVIDIA NeMo: turning AI agent failures into regression tests | EMPV",
+          "description": "NVIDIA demonstrates how NeMo Compass and NeMo Eval Author identify AI agent failures, generate evaluations, and test targeted fixes."
+        }
+      },
       "google-workspace-mcp-oauth-agents": {
         "it": {
           "title": "Google Workspace MCP: dall'11 novembre cambiano le regole OAuth per gli agenti AI | EMPV",
