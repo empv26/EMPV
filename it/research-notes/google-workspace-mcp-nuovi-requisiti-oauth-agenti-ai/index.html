@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const validBackgrounds = new Set([
+          "none", "particles", "aero", "beams", "threads", "waves", "galaxy",
+          "orb", "silk", "sliced-waves", "side-rays", "light-tunnel",
+          "scanner", "prism", "dither"
+        ]);
+        const validPalettes = new Set([
+          "mist", "zinc", "mauve", "olive", "taupe", "amber", "blue", "indigo"
+        ]);
+        const aliases = { steel: "mist", sage: "olive" };
+
+        let stored = {};
+        try {
+          stored = JSON.parse(localStorage.getItem("empv-visual-preferences") || "{}") || {};
+        } catch {}
+
+        const params = new URLSearchParams(location.search);
+        const requestedBackground = params.get("bg");
+        const requestedPalette = params.get("palette");
+        const aliasedPalette = requestedPalette && aliases[requestedPalette]
+          ? aliases[requestedPalette]
+          : requestedPalette;
+
+        const background = validBackgrounds.has(requestedBackground)
+          ? requestedBackground
+          : validBackgrounds.has(stored.background)
+            ? stored.background
+            : "scanner";
+
+        const palette = validPalettes.has(aliasedPalette)
+          ? aliasedPalette
+          : validPalettes.has(stored.palette)
+            ? stored.palette
+            : "blue";
+
+        root.dataset.visualTheme = background === "none" ? "default" : "galaxy";
+        root.dataset.galaxyPalette = palette;
+
+        try {
+          const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+          const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (finePointer && !reducedMotion) {
+            root.classList.add("empv-custom-cursor-enabled");
+          }
+        } catch {}
+      })();
+    </script>
+    <meta name="theme-color" content="#ecebe5" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <meta name="google-site-verification" content="UnScA5DO68Suf6LYORZ-bKoSW_KV0KH6diJ9HCuVAqg" />
+    <meta name="description" content="Dall'11 novembre 2026, gli agenti AI sui server MCP di Google Workspace richiedono client OAuth dedicati. Requisiti, esclusioni e verifiche." />
+    <title>Google Workspace MCP: dall'11 novembre cambiano le regole OAuth per gli agenti AI | EMPV</title>
+    <script type="module" crossorigin src="/assets/index-_Q_qHLBJ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cqsd0oq4.css">
+      <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://empv.it/it/research-notes/google-workspace-mcp-nuovi-requisiti-oauth-agenti-ai/" />
+    <link rel="alternate" hreflang="it" href="https://empv.it/it/research-notes/google-workspace-mcp-nuovi-requisiti-oauth-agenti-ai/" />
+    <link rel="alternate" hreflang="en" href="https://empv.it/en/research-notes/google-workspace-mcp-new-oauth-requirements-ai-agents/" />
+    <link rel="alternate" hreflang="x-default" href="https://empv.it/it/research-notes/google-workspace-mcp-nuovi-requisiti-oauth-agenti-ai/" />
+    <link rel="describedby" href="https://empv.it/llms.txt" type="text/markdown" />
+    <meta property="og:title" content="Google Workspace MCP: dall'11 novembre cambiano le regole OAuth per gli agenti AI | EMPV" />
+    <meta property="og:description" content="Dall'11 novembre 2026, gli agenti AI sui server MCP di Google Workspace richiedono client OAuth dedicati. Requisiti, esclusioni e verifiche." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://empv.it/it/research-notes/google-workspace-mcp-nuovi-requisiti-oauth-agenti-ai/" />
+    <meta property="og:site_name" content="EMPV" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:image" content="https://empv.it/social/research-notes/google-workspace-mcp-oauth-agents-it-20261102a.png" />
+    <meta property="og:image:url" content="https://empv.it/social/research-notes/google-workspace-mcp-oauth-agents-it-20261102a.png" />
+    <meta property="og:image:secure_url" content="https://empv.it/social/research-notes/google-workspace-mcp-oauth-agents-it-20261102a.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Google Workspace MCP: dall'11 novembre cambia l'accesso degli agenti AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@EMPV26" />
+    <meta name="twitter:title" content="Google Workspace MCP: dall'11 novembre cambiano le regole OAuth per gli agenti AI | EMPV" />
+    <meta name="twitter:description" content="Dall'11 novembre 2026, gli agenti AI sui server MCP di Google Workspace richiedono client OAuth dedicati. Requisiti, esclusioni e verifiche." />
+    <meta name="twitter:image" content="https://empv.it/social/research-notes/google-workspace-mcp-oauth-agents-it-20261102a.png" />
+    <meta name="twitter:image:alt" content="Google Workspace MCP: dall'11 novembre cambia l'accesso degli agenti AI" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://empv.it/#organization","name":"EMPV","url":"https://empv.it","email":"hello@empv.it","telephone":"+39 379 243 8705","logo":{"@type":"ImageObject","@id":"https://empv.it/#logo","url":"https://empv.it/empv-logo-192.png","contentUrl":"https://empv.it/empv-logo-192.png","width":192,"height":192},"image":{"@id":"https://empv.it/#logo"},"sameAs":["https://www.linkedin.com/company/emp26/","https://x.com/EMPV26","https://github.com/empv26"],"address":{"@type":"PostalAddress","addressLocality":"Bergamo","addressCountry":"IT"},"member":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}]},{"@type":"Person","@id":"https://empv.it/#enrico-peruffo","name":"Enrico Peruffo","jobTitle":"AI Systems & Architecture","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"Person","@id":"https://empv.it/#michele-valleri","name":"Michele Valleri","jobTitle":"AI Product & Process Design","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"WebSite","@id":"https://empv.it/#website","name":"EMPV","url":"https://empv.it","inLanguage":["it","en"],"publisher":{"@id":"https://empv.it/#organization"}},{"@type":"WebPage","@id":"https://empv.it/it/research-notes/google-workspace-mcp-nuovi-requisiti-oauth-agenti-ai/#webpage","url":"https://empv.it/it/research-notes/google-workspace-mcp-nuovi-requisiti-oauth-agenti-ai/","name":"Google Workspace MCP: dall'11 novembre cambiano le regole OAuth per gli agenti AI | EMPV","description":"Dall'11 novembre 2026, gli agenti AI sui server MCP di Google Workspace richiedono client OAuth dedicati. Requisiti, esclusioni e verifiche.","inLanguage":"it","isPartOf":{"@id":"https://empv.it/#website"},"about":{"@id":"https://empv.it/#organization"}},{"@type":"Article","@id":"https://empv.it/it/research-notes/google-workspace-mcp-nuovi-requisiti-oauth-agenti-ai/#article","headline":"Google Workspace MCP: dall'11 novembre cambia l'accesso degli agenti AI","description":"Google introduce un requisito per i client OAuth 2.0 che utilizzano i server MCP di Gmail, Drive, Calendar e altri servizi Workspace. Le integrazioni REST tradizionali non sono coinvolte.","datePublished":"2026-11-02","dateModified":"2026-11-02","inLanguage":"it","keywords":["Google Workspace","Model Context Protocol","OAuth 2.0","Agenti AI","Sicurezza"],"image":{"@type":"ImageObject","url":"https://empv.it/social/research-notes/google-workspace-mcp-oauth-agents-it-20261102a.png","width":1200,"height":630},"mainEntityOfPage":{"@id":"https://empv.it/it/research-notes/google-workspace-mcp-nuovi-requisiti-oauth-agenti-ai/#webpage"},"author":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}],"publisher":{"@id":"https://empv.it/#organization"}}]}</script>
+  </head>
+  <body>
+    <div id="root"><div class="detail-shell notes-shell" data-prerendered="true"><header class="topbar detail-topbar"><a class="wordmark" href="/it/" aria-label="EMPV home">EMPV</a><a class="detail-nav-back" href="/it/research-notes/">Research Notes</a><a class="lang-switch" href="/en/research-notes/google-workspace-mcp-new-oauth-requirements-ai-agents/" hreflang="en">EN</a></header><main><section class="detail-hero research-note-hero"><div class="detail-hero-inner"><div class="detail-kicker-row"><span class="eyebrow">EMPV / RESEARCH NOTES</span><span class="detail-index">NOTE / 018</span></div><div class="detail-title-wrap detail-title-project research-note-title"><p class="detail-kicker">NEWS NOTE / AI INTEGRATION</p><h1>Google Workspace MCP: dall'11 novembre cambia l'accesso degli agenti AI</h1></div><div class="detail-hero-bottom"><p class="detail-lead">Google introduce un requisito per i client OAuth 2.0 che utilizzano i server MCP di Gmail, Drive, Calendar e altri servizi Workspace. Le integrazioni REST tradizionali non sono coinvolte.</p><div class="detail-status"><span>Pubblicata</span><strong>2026-11-02 · 3 min</strong></div></div><div class="tags detail-tags"><span>Google Workspace</span><span>Model Context Protocol</span><span>OAuth 2.0</span><span>Agenti AI</span><span>Sicurezza</span></div></div></section><section class="detail-blocks section-pad research-note-blocks"><article class="detail-block research-note-block"><div class="eyebrow">01 / La modifica</div><div class="detail-block-main"><h2>Una scadenza per le integrazioni AI</h2><div class="research-note-copy"><p>Dall'11 novembre 2026, gli agenti AI che utilizzano i server Model Context Protocol (MCP) di Google Workspace dovranno collegarsi attraverso client OAuth 2.0 identificati esplicitamente come destinati ad agenti AI.</p><p>La modifica è stata <a href="https://developers.google.com/workspace/release-notes" target="_blank" rel="noreferrer noopener">annunciata da Google il 12 ottobre</a> e riguarda i server MCP di Gmail, Google Drive, Calendar, Docs, Sheets, Slides e Chat.</p><p>MCP permette agli assistenti AI di utilizzare strumenti esterni per consultare informazioni ed eseguire operazioni. Nel caso di Workspace, un agente può utilizzare questi strumenti per cercare documenti, leggere informazioni o interagire con altri servizi, nei limiti delle autorizzazioni concesse.</p><p>Dal giorno indicato, i server MCP rifiuteranno le richieste provenienti da client OAuth non contrassegnati come agenti AI.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">02 / Autenticazione</div><div class="detail-block-main"><h2>Cosa cambia nell'autenticazione</h2><div class="research-note-copy"><p>In Google Auth Platform, nella sezione dedicata ai client OAuth, è disponibile l'opzione «Use this client for an AI-powered agent». Google richiede che questa impostazione sia attiva sui client utilizzati per chiamare i suoi server MCP.</p><p>La documentazione precisa anche una seconda scadenza: dal 12 novembre, i client rimasti non classificati come agenti non potranno essere utilizzati per accedere ai server MCP. Per ripristinare l'integrazione sarà necessario creare un nuovo client OAuth identificato come agente AI e aggiornare l'applicazione.</p><p>Il cambiamento non riguarda indistintamente tutte le applicazioni che utilizzano Google Workspace. Un software gestionale che consulta Google Drive tramite le normali API REST, per esempio, non è interessato da questo requisito.</p><p>Se invece un'applicazione utilizza lo stesso client OAuth sia per funzionalità tradizionali sia per un agente MCP, Google raccomanda di separare le due integrazioni utilizzando client distinti.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">03 / Controlli</div><div class="detail-block-main"><h2>Cosa verificare prima dell'11 novembre</h2><div class="research-note-copy"><p>Per chi gestisce integrazioni AI con Workspace, il controllo parte dai client OAuth effettivamente utilizzati.</p><p>Occorre identificare le applicazioni che chiamano i server MCP, verificare la relativa configurazione in Google Auth Platform e, dove necessario, predisporre un client dedicato all'agente.</p><p>È utile anche effettuare un test delle operazioni realmente utilizzate dall'applicazione, verificando che la connessione continui a funzionare con le autorizzazioni previste.</p><p>Esistono casi particolari. La <a href="https://developers.google.com/workspace/guides/configure-mcp-servers" target="_blank" rel="noreferrer noopener">documentazione tecnica di Google</a> chiarisce, per esempio, che i service account con delega a livello di dominio seguono un meccanismo differente e non vengono rifiutati per la mancanza di questa specifica impostazione.</p><p>I server MCP di Workspace descritti nell'annuncio sono attualmente disponibili attraverso il Developer Preview Program.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">04 / Implicazioni</div><div class="detail-block-main"><h2>L'identità dell'agente diventa parte dell'integrazione</h2><div class="research-note-copy"><p>La modifica rende esplicita una distinzione tecnica: un'applicazione che chiama un'API e un agente AI che utilizza strumenti attraverso MCP possono richiedere configurazioni di accesso differenti.</p><p>Contrassegnare un client come agente AI, da solo, non significa restringere automaticamente le informazioni accessibili o stabilire quali azioni l'agente possa eseguire. Autorizzazioni e controlli applicativi continuano a essere necessari.</p><p>È una distinzione importante quando gli agenti vengono collegati a documenti, comunicazioni e sistemi aziendali.</p><p>Ne abbiamo già discusso nella <a href="https://empv.it/it/research-notes/collegare-chatgpt-gestionale-api-mcp/" target="_blank" rel="noreferrer noopener">Research Note sulle integrazioni tra ChatGPT, API e MCP</a>: la possibilità tecnica di utilizzare uno strumento deve rimanere separata dal diritto di accedere ai suoi dati e di modificarli.</p></div></div></article></section><section class="detail-boundary section-pad research-note-takeaway"><div class="section-code">EMPV / TAKEAWAY</div><p>Dall'11 novembre, gli agenti che utilizzano i server MCP di Google Workspace devono essere identificati anche nella configurazione OAuth.</p></section><section class="research-note-share section-pad" aria-label="Condividi questa Research Note"><div class="section-code">EMPV / CONDIVIDI</div><div class="research-note-share-inner"><p>Condividi questa Research Note.</p><div class="research-note-share-actions"><a class="research-note-share-primary" href="https://empv.it/it/research-notes/google-workspace-mcp-nuovi-requisiti-oauth-agenti-ai/?share=20261102a">Condividi</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fempv.it%2Fit%2Fresearch-notes%2Fgoogle-workspace-mcp-nuovi-requisiti-oauth-agenti-ai%2F%3Fshare%3D20261102a" target="_blank" rel="noreferrer noopener">LinkedIn</a><a href="https://twitter.com/intent/tweet?text=Google%20Workspace%20MCP%3A%20dall'11%20novembre%20cambia%20l'accesso%20degli%20agenti%20AI%20%E2%80%94%20EMPV%20Research%20Notes&amp;url=https%3A%2F%2Fempv.it%2Fit%2Fresearch-notes%2Fgoogle-workspace-mcp-nuovi-requisiti-oauth-agenti-ai%2F%3Fshare%3D20261102a" target="_blank" rel="noreferrer noopener">X</a><a href="https://wa.me/?text=Google%20Workspace%20MCP%3A%20dall'11%20novembre%20cambia%20l'accesso%20degli%20agenti%20AI%20%E2%80%94%20EMPV%20Research%20Notes%20https%3A%2F%2Fempv.it%2Fit%2Fresearch-notes%2Fgoogle-workspace-mcp-nuovi-requisiti-oauth-agenti-ai%2F%3Fshare%3D20261102a" target="_blank" rel="noreferrer noopener">WhatsApp</a><a href="https://empv.it/it/research-notes/google-workspace-mcp-nuovi-requisiti-oauth-agenti-ai/?share=20261102a">Copia link</a></div></div></section><section class="detail-end section-pad"><a href="/it/research-notes/"><span>Research Notes</span></a></section></main></div></div>
+  </body>
+</html>
