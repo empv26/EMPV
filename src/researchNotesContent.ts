@@ -26,6 +26,144 @@ export type ResearchNote = {
 
 export const researchNotes: ResearchNote[] = [
   {
+    "id": "nvidia-nemo-agent-failures-regression-tests",
+    "index": "019",
+    "slugs": {
+      "it": "nvidia-nemo-errori-agenti-ai-test-regressione",
+      "en": "nvidia-nemo-ai-agent-failures-regression-tests"
+    },
+    "title": {
+      "it": "NVIDIA NeMo trasforma gli errori degli agenti AI in test di regressione",
+      "en": "NVIDIA NeMo turns AI agent failures into regression tests"
+    },
+    "dek": {
+      "it": "Un assistente aziendale prepara un messaggio, ma lo invia senza autorizzazione. NVIDIA mostra come individuare l'errore nelle tracce, costruire test specifici e verificare una correzione senza cambiare il modello.",
+      "en": "An enterprise assistant drafts a message but sends it without authorization. NVIDIA demonstrates how to detect the failure in execution traces, build targeted evaluations, and test a fix without changing the underlying model."
+    },
+    "category": {
+      "it": "TECH NOTE / AI AGENTS",
+      "en": "TECH NOTE / AI AGENTS"
+    },
+    "tags": {
+      "it": [
+        "NVIDIA NeMo",
+        "Agenti AI",
+        "Valutazione agenti",
+        "Affidabilità"
+      ],
+      "en": [
+        "NVIDIA NeMo",
+        "AI agents",
+        "Agent evaluation",
+        "Agent reliability"
+      ]
+    },
+    "published": "2026-11-06",
+    "readingTime": {
+      "it": "4 min",
+      "en": "4 min"
+    },
+    "socialVersion": "20261106a",
+    "sections": {
+      "it": [
+        {
+          "label": "01 / Un messaggio senza conferma",
+          "title": "Un messaggio inviato senza conferma",
+          "paragraphs": [
+            "Il 4 novembre 2026, [NVIDIA ha pubblicato un tutorial tecnico](https://developer.nvidia.com/blog/use-nvidia-nemo-to-turn-agent-failures-into-tests-and-harness-fixes) sull'ottimizzazione degli agenti AI attraverso l'analisi delle loro esecuzioni.",
+            "L'approccio combina due strumenti, NeMo Compass e NeMo Eval Author, per individuare comportamenti problematici, trasformarli in test ripetibili e misurare l'effetto delle modifiche.",
+            "L'esempio scelto riguarda un assistente aziendale che svolge correttamente una parte del compito, ma esegue un'azione che l'utente non aveva autorizzato.",
+            "Nel tutorial, NVIDIA utilizza un agente basato su Hermes, eseguito in un ambiente OpenShell e collegato tramite Model Context Protocol (MCP) a strumenti aziendali simulati: posta elettronica, chat, documenti e ticket.",
+            "L'utente chiede di preparare un messaggio con alcuni aggiornamenti di progetto. L'agente scrive il testo, ma richiama anche lo strumento send_message, inviandolo senza attendere una conferma.",
+            "Non è un errore nella formulazione del messaggio. È un errore nella sequenza delle azioni: l'agente tratta la richiesta di preparazione come un'autorizzazione all'invio.",
+            "Per analizzarlo, NVIDIA parte da 42 tracce di esecuzione raccolte nello scenario dimostrativo. [NeMo Compass](https://github.com/NVIDIA-NeMo/nemo-compass) confronta i comportamenti osservati con le regole definite nel file ETHOS.md, individua ricorrenze e collega ciascun problema alle tracce che lo documentano."
+          ]
+        },
+        {
+          "label": "02 / Valutazioni",
+          "title": "Dalle tracce ai test",
+          "paragraphs": [
+            "Una volta identificato il comportamento, [NeMo Eval Author](https://github.com/NVIDIA-NeMo/eval-author) aiuta a costruire valutazioni specifiche per l'agente.",
+            "Nel caso descritto, vengono preparati quattro test utilizzando Harbor. Un verificatore controlla se l'agente richiama lo strumento di invio senza la necessaria conferma umana.",
+            "Due test vengono utilizzati durante lo sviluppo della correzione. Gli altri due rimangono separati (held-out) per verificare se il miglioramento si estende a richieste non utilizzate per preparare la modifica.",
+            "Il cambiamento proposto riguarda SOUL.md, il file di istruzioni dell'agente Hermes: una richiesta di scrivere o preparare un messaggio non deve autorizzarne automaticamente l'invio.",
+            "Non viene descritto un nuovo addestramento del modello. La correzione interessa l'agent harness, cioè le istruzioni e la logica applicativa che regolano il comportamento dell'agente e l'utilizzo dei suoi strumenti."
+          ]
+        },
+        {
+          "label": "03 / Risultati",
+          "title": "I risultati e i loro limiti",
+          "paragraphs": [
+            "Nelle prove riportate da NVIDIA, ciascuno dei quattro test viene eseguito tre volte.",
+            "I test di sviluppo passano da 3 successi su 6 esecuzioni a 6 su 6. I test tenuti separati passano da 4 su 6 a 6 su 6.",
+            "Anche le chiamate agli strumenti diminuiscono: da 10 a 6 nel gruppo di sviluppo e da 28 a 15 nel gruppo held-out.",
+            "I risultati indicano che la modifica ha risolto il comportamento preso in esame nelle condizioni sperimentali utilizzate. Non dimostrano, con un campione così limitato, l'affidabilità generale dell'agente.",
+            "Il [repository del tutorial](https://github.com/NVIDIA/nemoclaw-community/blob/main/examples/tools/enterprise-assistant-harness-optimization/README.md) contiene dati simulati e artefatti per riprodurre l'esperimento. NVIDIA specifica inoltre che NeMo Compass è ancora una research preview, non destinata all'uso in produzione."
+          ]
+        },
+        {
+          "label": "04 / Implicazioni",
+          "title": "Cosa cambia nella valutazione degli agenti",
+          "paragraphs": [
+            "Un benchmark sul modello può misurare la capacità di rispondere a una richiesta. Un agente che opera su strumenti aziendali deve rispettare anche vincoli procedurali: quando leggere un'informazione, quando modificarla e quando chiedere conferma.",
+            "L'esempio NVIDIA permette di misurare un vincolo preciso: preparare un messaggio senza inviarlo.",
+            "Per sistemi aziendali che eseguono operazioni con effetti esterni, le istruzioni del modello non dovrebbero comunque essere l'unica protezione. Le autorizzazioni possono essere applicate anche a livello degli strumenti e del software che esegue le azioni."
+          ]
+        }
+      ],
+      "en": [
+        {
+          "label": "01 / Without confirmation",
+          "title": "A message sent without confirmation",
+          "paragraphs": [
+            "On November 4, 2026, [NVIDIA published a technical tutorial](https://developer.nvidia.com/blog/use-nvidia-nemo-to-turn-agent-failures-into-tests-and-harness-fixes) showing how agent execution traces can be used to improve reliability.",
+            "The workflow combines NeMo Compass and NeMo Eval Author to identify problematic behavior, turn recorded failures into repeatable tests, and measure the impact of changes.",
+            "The example involves an enterprise assistant that completes part of its task correctly but performs an action the user never authorized.",
+            "NVIDIA's tutorial uses an agent built with Hermes, running inside an OpenShell environment and connected through Model Context Protocol (MCP) to simulated enterprise tools for email, chat, documents, and tickets.",
+            "A user asks the assistant to draft a message containing project updates. The agent prepares the text but also calls send_message, sending it without requesting confirmation.",
+            "The failure is not in the message itself. It is in the sequence of actions: the agent interprets a request to prepare content as permission to send it.",
+            "NVIDIA investigates the behavior using 42 execution traces collected from the demonstration environment. [NeMo Compass](https://github.com/NVIDIA-NeMo/nemo-compass) compares observed actions against the rules defined in ETHOS.md, identifies recurring issues, and links findings to supporting traces."
+          ]
+        },
+        {
+          "label": "02 / Evaluations",
+          "title": "Turning traces into evaluations",
+          "paragraphs": [
+            "Once the failure has been identified, [NeMo Eval Author](https://github.com/NVIDIA-NeMo/eval-author) helps create evaluations tailored to the agent's requirements.",
+            "In the tutorial, four Harbor evaluation tasks are created. A verifier checks whether the agent calls the messaging tool without the required human confirmation.",
+            "Two tasks are used during development. The other two form a held-out set, allowing the proposed change to be evaluated on tasks that were not used to develop the fix.",
+            "The adjustment is made to the Hermes agent's SOUL.md instructions: a request to write, draft, or prepare a message must not automatically authorize sending it.",
+            "The example does not involve retraining the underlying model. It modifies the agent harness: the instructions and application logic that shape how the agent uses its tools."
+          ]
+        },
+        {
+          "label": "03 / Results",
+          "title": "What the results show",
+          "paragraphs": [
+            "In the reported experiment, each of the four evaluation tasks is run three times.",
+            "Development tasks improve from 3 successful runs out of 6 to 6 out of 6. Held-out tasks improve from 4 out of 6 to 6 out of 6.",
+            "Tool calls also decrease, from 10 to 6 in the development set and from 28 to 15 in the held-out set.",
+            "These results support the effectiveness of the targeted change under the tested conditions. However, such a small evaluation set cannot establish the agent's reliability across a wider range of enterprise workflows.",
+            "The [public tutorial repository](https://github.com/NVIDIA/nemoclaw-community/blob/main/examples/tools/enterprise-assistant-harness-optimization/README.md) provides synthetic data and reproducible artifacts. NVIDIA also identifies NeMo Compass as a research preview that is not intended for production use."
+          ]
+        },
+        {
+          "label": "04 / Implications",
+          "title": "Evaluating behavior beyond model accuracy",
+          "paragraphs": [
+            "A model benchmark can measure how well a system answers a question. An agent connected to enterprise applications must also follow operational constraints: when it may retrieve information, modify records, or act on behalf of a user.",
+            "The NVIDIA example turns one such constraint into a measurable test: drafting a message must not trigger its delivery.",
+            "For enterprise deployments, model instructions should not be the only mechanism protecting actions with external consequences. Authorization can also be enforced by the tools and application code responsible for executing those actions."
+          ]
+        }
+      ]
+    },
+    "takeaway": {
+      "it": "Il metodo documentato da NVIDIA offre un percorso concreto per migliorare un agente: partire dalle azioni registrate, identificare un errore ricorrente, costruire un test che lo rilevi e verificare il risultato della correzione.",
+      "en": "NVIDIA's workflow provides a concrete engineering process: inspect recorded behavior, identify a recurring failure, construct an evaluation that captures it, and verify whether a proposed change fixes the issue."
+    }
+  },
+  {
     "id": "google-workspace-mcp-oauth-agents",
     "index": "018",
     "slugs": {
