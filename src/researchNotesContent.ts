@@ -26,6 +26,130 @@ export type ResearchNote = {
 
 export const researchNotes: ResearchNote[] = [
   {
+    "id": "browser-use-1-python-cdp",
+    "index": "020",
+    "slugs": {
+      "it": "browser-use-1-agenti-ai-browser-python",
+      "en": "browser-use-1-ai-agents-python-browser"
+    },
+    "title": {
+      "it": "Browser Use 1.0 riscrive gli agenti web: meno codice, Python e accesso diretto al browser",
+      "en": "Browser Use 1.0 rebuilds web agents around Python and direct browser control"
+    },
+    "dek": {
+      "it": "La versione 1.0 sostituisce azioni predefinite e serializzazione del DOM con codice Python in un ambiente persistente e controllo diretto via CDP. I benchmark mostrano costi inferiori, ma non un vantaggio conclusivo nella riuscita dei compiti.",
+      "en": "Version 1.0 replaces fixed actions and DOM serialization with Python in a persistent environment and direct CDP control. Its benchmarks suggest lower costs, but not a conclusive task-success advantage."
+    },
+    "category": {
+      "it": "TECH NOTE / AI AGENTS",
+      "en": "TECH NOTE / AI AGENTS"
+    },
+    "tags": {
+      "it": [
+        "Browser Use",
+        "Agenti AI",
+        "Browser automation",
+        "Python",
+        "Chrome DevTools Protocol"
+      ],
+      "en": [
+        "Browser Use",
+        "AI agents",
+        "Browser automation",
+        "Python",
+        "Chrome DevTools Protocol"
+      ]
+    },
+    "published": "2026-11-10",
+    "readingTime": {
+      "it": "4 min",
+      "en": "4 min"
+    },
+    "socialVersion": "20261110a",
+    "sections": {
+      "it": [
+        {
+          "label": "01 / Architettura",
+          "title": "Dalle azioni predefinite al codice Python",
+          "paragraphs": [
+            "Il 10 novembre 2026 [Browser Use ha pubblicato la versione 1.0](https://github.com/browser-use/browser-use/releases/tag/1.0.0), riscrivendo il modo in cui un agente AI interagisce con le pagine web.",
+            "La libreria abbandona l'approccio basato sulla serializzazione del DOM e su uno schema fisso di azioni. Il modello genera invece codice Python eseguito in un REPL persistente: variabili, oggetti e stato rimangono disponibili tra un passaggio e l'altro.",
+            "Il controllo del browser avviene attraverso il [Chrome DevTools Protocol (CDP)](https://chromedevtools.github.io/devtools-protocol/). Secondo le note di rilascio, la riscrittura elimina 136.866 righe di codice, circa l'80% della libreria precedente. È una misura della semplificazione interna, non una prova automatica di maggiore affidabilità."
+          ]
+        },
+        {
+          "label": "02 / Esecuzione",
+          "title": "Che cosa cambia per chi sviluppa",
+          "paragraphs": [
+            "Un agente può combinare istruzioni Python, stato persistente e operazioni sul browser senza dover scegliere ogni volta da un elenco rigido di comandi. Questo aumenta la flessibilità, ma rende ancora più importante controllare codice generato, permessi e azioni con effetti esterni.",
+            "Cambiano anche alcune impostazioni: `Browser()` usa per impostazione predefinita Browser Use Cloud, mentre `Browser('chromium')` seleziona l'esecuzione locale. Il modello predefinito è `bu-fast`, accessibile tramite il gateway Browser Use, pur restando possibile configurare altri provider.",
+            "Il limite predefinito dei passaggi scende da 500 a 100 e il timeout indicato è di 1.700 secondi. La versione include gestione di output strutturati, caricamenti e download, oscuramento dei segreti e restrizioni sui domini. La [guida alla migrazione](https://github.com/browser-use/browser-use/blob/main/MIGRATING.md) documenta le incompatibilità da considerare prima di aggiornare un'integrazione esistente."
+          ]
+        },
+        {
+          "label": "03 / Benchmark",
+          "title": "Costi e tempi migliorano, il successo resta da interpretare",
+          "paragraphs": [
+            "Nel [benchmark BU Bench v2](https://github.com/browser-use/browser-use/releases/tag/1.0.0) riportato insieme al rilascio, 60 attività vengono eseguite tre volte. La configurazione Browser Use 1.0 ultrafast ottiene il 62,5% di successo, contro il 56,3% di Browser Use Pi.",
+            "Il costo medio dichiarato è di 0,070 dollari per attività contro 0,082 dollari; il tempo medio è di 650 secondi contro 743. Sono risultati relativi alle configurazioni e all'ambiente di prova utilizzati, non a ogni possibile installazione.",
+            "Il confronto sul successo è meno netto di quanto suggeriscano le percentuali: un'interruzione del provider ha influenzato la prova. Escludendo quegli errori, il divario riportato è di 1,1 punti percentuali, con intervallo da -3,2 a +5,7: non emerge una differenza statisticamente significativa. Inoltre il modello predefinito `bu-fast` non è quello valutato nel confronto citato."
+          ]
+        },
+        {
+          "label": "04 / Implicazioni",
+          "title": "Dove può essere utile e che cosa verificare",
+          "paragraphs": [
+            "Per un'azienda, gli agenti browser possono automatizzare attività che si svolgono in interfacce web prive di API adeguate: consultare portali, recuperare dati, compilare moduli o coordinare passaggi ripetitivi.",
+            "Il codice generato dinamicamente e l'accesso diretto al browser richiedono però controlli precisi: sessioni isolate, credenziali con privilegi minimi, autorizzazioni per le azioni irreversibili e test su pagine che cambiano struttura.",
+            "La versione 1.0 rende più essenziale l'architettura del framework. La valutazione per un utilizzo produttivo dipende comunque dalla stabilità delle attività reali, dalla gestione degli errori e dal costo complessivo di supervisione."
+          ]
+        }
+      ],
+      "en": [
+        {
+          "label": "01 / Architecture",
+          "title": "From fixed actions to generated Python",
+          "paragraphs": [
+            "On November 10, 2026, [Browser Use released version 1.0](https://github.com/browser-use/browser-use/releases/tag/1.0.0), changing how its AI agents interact with web pages.",
+            "The library moves away from DOM serialization and a fixed action schema. Instead, the model generates Python code executed in a persistent REPL, keeping variables, objects and state available across steps.",
+            "Browser operations use the [Chrome DevTools Protocol (CDP)](https://chromedevtools.github.io/devtools-protocol/). According to the release notes, the rewrite removes 136,866 lines of code, approximately 80% of the previous library. A smaller codebase does not, by itself, establish greater reliability."
+          ]
+        },
+        {
+          "label": "02 / Execution",
+          "title": "What changes for developers",
+          "paragraphs": [
+            "An agent can combine Python instructions, persistent state and browser operations without selecting each step from a rigid set of commands. This increases flexibility while making controls over generated code, permissions and consequential actions more important.",
+            "Defaults have also changed: `Browser()` now uses Browser Use Cloud, while `Browser('chromium')` selects local execution. The default model is `bu-fast` through the Browser Use gateway, although other model providers can be configured.",
+            "The default step limit drops from 500 to 100, with a stated timeout of 1,700 seconds. The release includes structured outputs, uploads and downloads, secret redaction and domain restrictions. The [migration guide](https://github.com/browser-use/browser-use/blob/main/MIGRATING.md) documents compatibility changes for existing integrations."
+          ]
+        },
+        {
+          "label": "03 / Benchmarks",
+          "title": "Lower cost and latency, less certain success gains",
+          "paragraphs": [
+            "In the [BU Bench v2 results](https://github.com/browser-use/browser-use/releases/tag/1.0.0) accompanying the release, 60 tasks were each run three times. Browser Use 1.0 ultrafast achieved a 62.5% success rate, compared with 56.3% for Browser Use Pi.",
+            "Reported average cost was $0.070 per task versus $0.082, and average duration was 650 seconds versus 743. These figures describe the tested configurations and conditions, not every deployment.",
+            "A provider outage affected the comparison. After excluding provider errors, the reported success-rate gap narrowed to 1.1 percentage points, with an interval from -3.2 to +5.7: not a statistically significant difference. The default `bu-fast` model was not the model evaluated in this comparison."
+          ]
+        },
+        {
+          "label": "04 / Implications",
+          "title": "Where it may help and what still needs testing",
+          "paragraphs": [
+            "Browser agents can support enterprise workflows performed through web interfaces without suitable APIs: checking portals, retrieving information, filling forms and coordinating repetitive steps.",
+            "Dynamically generated code and direct browser access still require safeguards, including isolated sessions, least-privilege credentials, approval gates for irreversible actions and tests against changing page layouts.",
+            "Version 1.0 simplifies the framework architecture. Production suitability still depends on task-level reliability, error handling and the total cost of human oversight."
+          ]
+        }
+      ]
+    },
+    "takeaway": {
+      "it": "Browser Use 1.0 semplifica l'architettura degli agenti web con Python persistente e CDP; i benefici su costo e tempi vanno verificati insieme ad affidabilità e controlli operativi.",
+      "en": "Browser Use 1.0 simplifies web-agent architecture with persistent Python and CDP; cost and speed improvements still need to be assessed alongside reliability and operational safeguards."
+    }
+  },
+  {
     "id": "nvidia-nemo-agent-failures-regression-tests",
     "index": "019",
     "slugs": {
