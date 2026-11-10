@@ -67,8 +67,8 @@ export const researchNotes: ResearchNote[] = [
     },
     "socialVersion": "20261110a",
     "socialImage": {
-      "it": "/social/research-notes/browser-use-1-python-cdp-it-20261110a.svg",
-      "en": "/social/research-notes/browser-use-1-python-cdp-en-20261110a.svg"
+      "it": "/social/research-notes/browser-use-1-python-cdp-it-20261110a.png",
+      "en": "/social/research-notes/browser-use-1-python-cdp-en-20261110a.png"
     },
     "sections": {
       "it": [
