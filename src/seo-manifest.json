@@ -387,6 +387,16 @@
           "title": "PHP2Shell: critical PHP vulnerabilities and fixes | EMPV",
           "description": "PHP2Shell: CVE-2026-109618 and CVE-2026-109619. Fixed PHP releases, immediate security checks and exploitation attempts before disclosure."
         }
+      },
+      "browser-use-1-python-cdp": {
+        "it": {
+          "title": "Browser Use 1.0: agenti web con Python e CDP | EMPV",
+          "description": "Browser Use 1.0 riscrive gli agenti web con Python persistente e controllo diretto via CDP. Architettura, benchmark, costi e limiti."
+        },
+        "en": {
+          "title": "Browser Use 1.0: web agents with Python and CDP | EMPV",
+          "description": "Browser Use 1.0 rebuilds web agents with persistent Python and direct CDP control. Architecture, benchmarks, costs and limitations."
+        }
       }
     }
   }
