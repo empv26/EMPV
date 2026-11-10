@@ -66,6 +66,10 @@ export const researchNotes: ResearchNote[] = [
       "en": "4 min"
     },
     "socialVersion": "20261110a",
+    "socialImage": {
+      "it": "/social/research-notes/browser-use-1-python-cdp-it-20261110a.svg",
+      "en": "/social/research-notes/browser-use-1-python-cdp-en-20261110a.svg"
+    },
     "sections": {
       "it": [
         {
