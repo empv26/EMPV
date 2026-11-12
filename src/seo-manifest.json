@@ -198,6 +198,16 @@
       }
     },
     "notes": {
+      "openai-businesses-chatgpt-business-agents": {
+        "it": {
+          "title": "OpenAI porta le aziende dentro ChatGPT: Business Hub e Business Agents | EMPV",
+          "description": "OpenAI introduce Business Hub e Business Agents in ChatGPT: profili aziendali, metriche di visibilità, disponibilità e limiti operativi."
+        },
+        "en": {
+          "title": "OpenAI brings businesses into ChatGPT: Business Hub and Business Agents | EMPV",
+          "description": "OpenAI introduces Business Hub and Business Agents in ChatGPT: managed business profiles, visibility insights, availability and current limitations."
+        }
+      },
       "nvidia-nemo-agent-failures-regression-tests": {
         "it": {
           "title": "NVIDIA NeMo: dagli errori degli agenti AI ai test di regressione | EMPV",
