@@ -26,6 +26,143 @@ export type ResearchNote = {
 
 export const researchNotes: ResearchNote[] = [
   {
+    "id": "openai-businesses-chatgpt-business-agents",
+    "index": "021",
+    "slugs": {
+      "it": "openai-business-hub-business-agents-chatgpt",
+      "en": "openai-business-hub-business-agents-chatgpt"
+    },
+    "title": {
+      "it": "OpenAI porta le aziende dentro ChatGPT: come funzionano Business Hub e Business Agents",
+      "en": "OpenAI brings businesses into ChatGPT with Business Hub and Business Agents"
+    },
+    "dek": {
+      "it": "OpenAI introduce profili aziendali gestiti direttamente in ChatGPT, con informazioni aggiornabili e statistiche di visibilità. Negli Stati Uniti debuttano anche agenti che rispondono per conto delle imprese, ma con funzioni ancora limitate.",
+      "en": "OpenAI is introducing business-managed profiles in ChatGPT, with updated information and visibility insights. Business Agents are also launching for eligible US companies, although their operational capabilities remain limited."
+    },
+    "category": {
+      "it": "NEWS NOTE / AI BUSINESS",
+      "en": "NEWS NOTE / AI BUSINESS"
+    },
+    "tags": {
+      "it": [
+        "OpenAI",
+        "Business Hub",
+        "Business Agents",
+        "ChatGPT",
+        "AI per le imprese"
+      ],
+      "en": [
+        "OpenAI",
+        "Business Hub",
+        "Business Agents",
+        "ChatGPT",
+        "Business AI"
+      ]
+    },
+    "published": "2026-11-12",
+    "readingTime": {
+      "it": "4 min",
+      "en": "4 min"
+    },
+    "sections": {
+      "it": [
+        {
+          "label": "01 / Business Hub",
+          "title": "Le aziende possono gestire il proprio profilo in ChatGPT",
+          "paragraphs": [
+            "Il 10 novembre 2026 [OpenAI ha presentato Businesses in ChatGPT](https://openai.com/index/introducing-businesses-chatgpt/), una piattaforma in beta che permette alle aziende idonee di rivendicare la propria presenza all'interno di ChatGPT.",
+            "Attraverso Business Hub, un'impresa può verificare il proprio profilo e aggiornare informazioni come sito web, descrizione dell'attività, categorie di prodotti e servizi e politiche commerciali. I rivenditori possono inoltre caricare feed di prodotto con prezzi e disponibilità, anche tramite Shopify.",
+            "La procedura richiede una verifica del collegamento con l'azienda e una successiva verifica dell'identità tramite Persona. Il contrassegno blu compare dopo l'approvazione di quest'ultima. Le modifiche vengono esaminate da OpenAI e non sono necessariamente riflesse subito nelle risposte di ChatGPT.",
+            "Il sistema non sostituisce le altre fonti utilizzate dal modello. OpenAI precisa che rivendicare un profilo non garantisce più raccomandazioni né un posizionamento privilegiato."
+          ]
+        },
+        {
+          "label": "02 / Visibilità",
+          "title": "Le nuove statistiche mostrano come viene citata un'azienda",
+          "paragraphs": [
+            "Business Hub introduce una sezione Insights con dati aggregati relativi agli ultimi 28 giorni.",
+            "Le aziende possono consultare il numero di menzioni, i clic verso il proprio sito e i *discovery topics*, ossia gli argomenti ricorrenti nelle risposte in cui compare l'attività.",
+            "La definizione di menzione cambia secondo il tipo di impresa. Per un'attività online viene conteggiato un riferimento al suo sito, non la semplice comparsa del nome del marchio. Per un'attività locale conta invece la visualizzazione del risultato relativo alla sede.",
+            "Queste metriche non mostrano le domande individuali degli utenti e non misurano direttamente le intenzioni di acquisto. OpenAI non condivide con le imprese il contenuto delle conversazioni, comprese quelle con i Business Agents. Inoltre, i dati possono essere nascosti quando non raggiungono determinate soglie.",
+            "Rispetto alle analisi sulle citazioni dei motori AI, già affrontate nella [Research Note EMPV su SEO e GEO](https://empv.it/it/research-notes/seo-geo-come-ai-sceglie-fonti-citazioni/), la novità è la disponibilità di alcune metriche direttamente dalla piattaforma. Non rappresentano però una misura completa della visibilità del marchio."
+          ]
+        },
+        {
+          "label": "03 / Business Agents",
+          "title": "Un agente conversazionale che rappresenta l'impresa",
+          "paragraphs": [
+            "La seconda funzione annunciata è Business Agents, disponibile inizialmente per attività e-commerce e servizi online idonei negli Stati Uniti.",
+            "Quando un'azienda compare in una risposta di ChatGPT, l'utente può aprirne il profilo e, se disponibile, avviare una conversazione con il suo agente. Può chiedere informazioni sui prodotti, confrontare alternative o chiarire condizioni commerciali.",
+            "L'azienda fornisce informazioni e istruzioni, prova le risposte e decide quando pubblicare l'agente. La conversazione è identificata come interazione con un'AI che rappresenta l'impresa ed è separata dalle risposte indipendenti di ChatGPT.",
+            "Le funzionalità operative rimangono circoscritte. Secondo la [documentazione OpenAI](https://help.openai.com/en/articles/20001635-setting-up-your-business-on-chatgpt), nella versione attuale l'agente non può completare acquisti, effettuare prenotazioni o verificare lo stato degli ordini. Può indirizzare il cliente al sito aziendale per proseguire. Non utilizza nemmeno le funzionalità di eventuali plugin dell'azienda presenti in ChatGPT.",
+            "OpenAI consente anche di sponsorizzare un Business Agent attraverso la propria piattaforma pubblicitaria. Le esperienze sponsorizzate devono essere riconoscibili e restano separate dalle risposte indipendenti dell'assistente."
+          ]
+        },
+        {
+          "label": "04 / Limiti e implicazioni",
+          "title": "Un nuovo punto di contatto, non ancora un sistema operativo aziendale",
+          "paragraphs": [
+            "Business Hub e Business Agents affrontano due passaggi distinti: rendere disponibili informazioni aziendali aggiornate e permettere agli utenti interessati di approfondirle attraverso una conversazione.",
+            "Per un'impresa, questo introduce un nuovo punto di contatto da gestire. Informazioni di prodotto, condizioni commerciali, disponibilità e risposte alle domande frequenti devono rimanere coerenti con quanto pubblicato sul sito e nei sistemi aziendali.",
+            "Un Business Agent, nella forma attuale, non equivale a un'integrazione operativa con CRM, ERP o sistemi di gestione degli ordini. Una conversazione può aiutare il cliente a scegliere, ma il completamento delle operazioni rimane al di fuori dell'agente.",
+            "Anche la disponibilità geografica va distinta: la rivendicazione dei profili è aperta alle aziende idonee nei mercati supportati, mentre gli agenti partono dagli Stati Uniti. Per le attività locali, la procedura iniziale presenta ulteriori limitazioni.",
+            "OpenAI prevede di estendere il servizio ad altri mercati e categorie, senza indicare una tempistica precisa. Resta quindi da verificare quanto queste nuove funzioni incideranno effettivamente sulla scoperta delle aziende e sulle interazioni che producono risultati commerciali."
+          ]
+        }
+      ],
+      "en": [
+        {
+          "label": "01 / Business Hub",
+          "title": "Companies can manage their presence in ChatGPT",
+          "paragraphs": [
+            "On November 10, 2026, [OpenAI introduced Businesses in ChatGPT](https://openai.com/index/introducing-businesses-chatgpt/), a beta platform that allows eligible companies to claim and manage their presence in ChatGPT.",
+            "Through Business Hub, a company can verify its profile and update information such as its website, business description, product and service categories, and commercial policies. Retailers can also provide product feeds containing prices and availability, including through Shopify.",
+            "The process requires verification of the company's ownership or authorized representation, followed by identity verification through Persona. The blue verification badge appears only after Persona approval. OpenAI reviews business information updates, which may take time to appear in ChatGPT responses.",
+            "The system does not replace other information sources used by the model. OpenAI explicitly states that claiming a profile does not guarantee more recommendations or preferential placement."
+          ]
+        },
+        {
+          "label": "02 / Visibility",
+          "title": "New insights show how businesses appear in ChatGPT",
+          "paragraphs": [
+            "Business Hub introduces an Insights section with aggregated activity covering the previous 28 days.",
+            "Businesses can examine mentions, website clicks and *discovery topics*: recurring subjects in ChatGPT answers where the business appears.",
+            "The definition of a mention depends on the business type. For an online business, ChatGPT must reference its website; merely naming the brand does not count. For a local business, displaying a result for that location counts as a mention.",
+            "These metrics do not expose individual user prompts or directly measure purchase intent. OpenAI does not share consumer conversations with businesses, including conversations with Business Agents. Reporting also depends on minimum activity thresholds, so missing metrics do not necessarily indicate zero activity.",
+            "EMPV previously examined how AI systems select sources in its [Research Note on SEO and GEO](https://empv.it/en/research-notes/seo-geo-how-ai-search-selects-citations/). Business Hub adds a different capability: selected visibility metrics provided directly by ChatGPT. They should not be interpreted as a complete measure of brand exposure."
+          ]
+        },
+        {
+          "label": "03 / Business Agents",
+          "title": "A conversational agent representing the company",
+          "paragraphs": [
+            "The second product is Business Agents, initially available to eligible ecommerce and online service businesses in the United States.",
+            "When a business appears in a ChatGPT response, users can open its profile and, where available, start a conversation with its agent. They can ask about products, compare alternatives or clarify commercial terms.",
+            "Businesses provide the information and instructions, test the responses and decide when to publish the agent. The resulting conversation is clearly identified as an AI interaction representing the company. It remains separate from ChatGPT's independent answers.",
+            "Operational capabilities are still limited. According to [OpenAI's documentation](https://help.openai.com/en/articles/20001635-setting-up-your-business-on-chatgpt), the current version cannot complete purchases, make bookings or check order status. It can direct users to the business website to complete those activities. It also cannot access the capabilities of a company's separate ChatGPT plugins.",
+            "Businesses may sponsor their agents and use them as destinations for ChatGPT Ads. Sponsored experiences must be labeled and remain separate from the assistant's independent responses."
+          ]
+        },
+        {
+          "label": "04 / Limitations and implications",
+          "title": "A new customer touchpoint, not yet an operating system",
+          "paragraphs": [
+            "Business Hub and Business Agents address two different stages: maintaining up-to-date company information and allowing interested users to explore that information through conversation.",
+            "For businesses, this creates another customer-facing channel to maintain. Product details, commercial terms, availability and answers to common questions need to remain consistent with the company's website and internal systems.",
+            "In its current form, a Business Agent is not equivalent to an operational integration with a CRM, ERP or order management system. A conversation can support a customer's decision, but completing business transactions still happens outside the agent.",
+            "Availability also differs between the two products. Eligible companies in supported markets can claim their profiles, while Business Agents initially target the United States. Additional restrictions apply to claiming local business listings.",
+            "OpenAI plans to expand the products to more markets and business categories, but has not announced a specific timeline. It remains unclear how much these features will affect business discovery or measurable commercial outcomes."
+          ]
+        }
+      ]
+    },
+    "takeaway": {
+      "it": "Businesses in ChatGPT permette alle imprese di gestire informazioni e osservare una parte della propria visibilità nell'assistente. I Business Agents aggiungono una conversazione dedicata, ma non sostituiscono ancora le integrazioni e i processi operativi aziendali.",
+      "en": "Businesses in ChatGPT gives companies a way to maintain information and observe part of their visibility within the assistant. Business Agents add a dedicated conversational interface, but do not yet replace enterprise integrations or operational workflows."
+    }
+  },
+  {
     "id": "browser-use-1-python-cdp",
     "index": "020",
     "slugs": {
