@@ -53,6 +53,17 @@ try {
     });
     if (visibility.dark) assert.equal(visibility.background, 'rgb(16, 30, 53)', `${lang}/${width}/${slide+1}: dark slide lost its background`);
     assert.deepEqual(visibility.clipped, [], `${lang}/${width}/${slide+1}: text clipped vertically`);
+    if (slide === 4) {
+     const caption = await page.locator('#empv-crm-example').evaluate(figure => {
+      const photo=figure.querySelector('.empv-crm-photo').getBoundingClientRect();
+      const caption=figure.querySelector('figcaption').getBoundingClientRect();
+      return {outside:caption.top>=photo.bottom, height:caption.height, text:figure.querySelector('figcaption').textContent.trim()};
+     });
+     assert.ok(caption.outside && caption.height>20, `${lang}/${width}: CRM caption must remain outside photo crop`);
+     const label={it:'CRM aziendale connesso',en:'Connected CRM',fr:'CRM connecté'}[lang];
+     assert.ok(caption.text.includes(label), `${lang}/${width}: CRM caption translation`);
+     await page.screenshot({path:join(folder,`${lang}-${width}-whatsapp.png`),fullPage:true});
+    }
    }
    await page.locator('#pageSelect').selectOption('0');
    await page.screenshot({path:join(folder,`${lang}-${width}-cover.png`),fullPage:true});
