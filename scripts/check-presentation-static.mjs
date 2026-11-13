@@ -1,0 +1,15 @@
+import { readFileSync, existsSync } from 'node:fs';
+import assert from 'node:assert/strict';
+const root = 'dist/presentazione/';
+const html = readFileSync(root + 'index.html', 'utf8');
+assert.equal((html.match(/<section class="slide-frame/g) || []).length, 15);
+assert.ok(html.includes('https://empv.it/presentazione/'));
+assert.ok(!html.includes('data:image/'));
+assert.ok(!html.includes('cdn.tailwindcss.com') && !html.includes('unpkg.com'));
+for (const [, asset] of html.matchAll(/(?:src|href)="(assets\/[^"#]+)"/g)) assert.ok(existsSync(root + asset), asset);
+for (const lang of ['it', 'en', 'fr']) assert.ok(html.includes(`data-empv-language="${lang}"`));
+assert.ok(html.includes('empv.brochure.language.v1'));
+assert.ok(existsSync(root + 'assets/social-cover.jpg'));
+assert.ok(readFileSync('dist/sitemap.xml', 'utf8').includes('/presentazione/</loc>'));
+assert.ok(!/\(V\d+\)/.test(html), 'No internal version labels');
+console.log('Presentation static checks PASS: 15 slides, local assets, language controls, canonical and social metadata.');
