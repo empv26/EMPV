@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const validBackgrounds = new Set([
+          "none", "particles", "aero", "beams", "threads", "waves", "galaxy",
+          "orb", "silk", "sliced-waves", "side-rays", "light-tunnel",
+          "scanner", "prism", "dither"
+        ]);
+        const validPalettes = new Set([
+          "mist", "zinc", "mauve", "olive", "taupe", "amber", "blue", "indigo"
+        ]);
+        const aliases = { steel: "mist", sage: "olive" };
+
+        let stored = {};
+        try {
+          stored = JSON.parse(localStorage.getItem("empv-visual-preferences") || "{}") || {};
+        } catch {}
+
+        const params = new URLSearchParams(location.search);
+        const requestedBackground = params.get("bg");
+        const requestedPalette = params.get("palette");
+        const aliasedPalette = requestedPalette && aliases[requestedPalette]
+          ? aliases[requestedPalette]
+          : requestedPalette;
+
+        const background = validBackgrounds.has(requestedBackground)
+          ? requestedBackground
+          : validBackgrounds.has(stored.background)
+            ? stored.background
+            : "scanner";
+
+        const palette = validPalettes.has(aliasedPalette)
+          ? aliasedPalette
+          : validPalettes.has(stored.palette)
+            ? stored.palette
+            : "blue";
+
+        root.dataset.visualTheme = background === "none" ? "default" : "galaxy";
+        root.dataset.galaxyPalette = palette;
+
+        try {
+          const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+          const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (finePointer && !reducedMotion) {
+            root.classList.add("empv-custom-cursor-enabled");
+          }
+        } catch {}
+      })();
+    </script>
+    <meta name="theme-color" content="#ecebe5" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <meta name="google-site-verification" content="UnScA5DO68Suf6LYORZ-bKoSW_KV0KH6diJ9HCuVAqg" />
+    <meta name="description" content="OpenAI introduces Business Hub and Business Agents in ChatGPT: managed business profiles, visibility insights, availability and current limitations." />
+    <title>OpenAI brings businesses into ChatGPT: Business Hub and Business Agents | EMPV</title>
+    <script type="module" crossorigin src="/assets/index-Bgi1twjK.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cqsd0oq4.css">
+      <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://empv.it/en/research-notes/openai-business-hub-business-agents-chatgpt/" />
+    <link rel="alternate" hreflang="it" href="https://empv.it/it/research-notes/openai-business-hub-business-agents-chatgpt/" />
+    <link rel="alternate" hreflang="en" href="https://empv.it/en/research-notes/openai-business-hub-business-agents-chatgpt/" />
+    <link rel="alternate" hreflang="x-default" href="https://empv.it/it/research-notes/openai-business-hub-business-agents-chatgpt/" />
+    <link rel="describedby" href="https://empv.it/llms.txt" type="text/markdown" />
+    <meta property="og:title" content="OpenAI brings businesses into ChatGPT: Business Hub and Business Agents | EMPV" />
+    <meta property="og:description" content="OpenAI introduces Business Hub and Business Agents in ChatGPT: managed business profiles, visibility insights, availability and current limitations." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://empv.it/en/research-notes/openai-business-hub-business-agents-chatgpt/" />
+    <meta property="og:site_name" content="EMPV" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://empv.it/social/research-notes/openai-businesses-chatgpt-business-agents-en-20261112.png" />
+    <meta property="og:image:url" content="https://empv.it/social/research-notes/openai-businesses-chatgpt-business-agents-en-20261112.png" />
+    <meta property="og:image:secure_url" content="https://empv.it/social/research-notes/openai-businesses-chatgpt-business-agents-en-20261112.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="OpenAI brings businesses into ChatGPT with Business Hub and Business Agents" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@EMPV26" />
+    <meta name="twitter:title" content="OpenAI brings businesses into ChatGPT: Business Hub and Business Agents | EMPV" />
+    <meta name="twitter:description" content="OpenAI introduces Business Hub and Business Agents in ChatGPT: managed business profiles, visibility insights, availability and current limitations." />
+    <meta name="twitter:image" content="https://empv.it/social/research-notes/openai-businesses-chatgpt-business-agents-en-20261112.png" />
+    <meta name="twitter:image:alt" content="OpenAI brings businesses into ChatGPT with Business Hub and Business Agents" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://empv.it/#organization","name":"EMPV","url":"https://empv.it","email":"hello@empv.it","telephone":"+39 379 243 8705","logo":{"@type":"ImageObject","@id":"https://empv.it/#logo","url":"https://empv.it/empv-logo-192.png","contentUrl":"https://empv.it/empv-logo-192.png","width":192,"height":192},"image":{"@id":"https://empv.it/#logo"},"sameAs":["https://www.linkedin.com/company/emp26/","https://x.com/EMPV26","https://github.com/empv26"],"address":{"@type":"PostalAddress","addressLocality":"Bergamo","addressCountry":"IT"},"member":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}]},{"@type":"Person","@id":"https://empv.it/#enrico-peruffo","name":"Enrico Peruffo","jobTitle":"AI Systems & Architecture","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"Person","@id":"https://empv.it/#michele-valleri","name":"Michele Valleri","jobTitle":"AI Product & Process Design","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"WebSite","@id":"https://empv.it/#website","name":"EMPV","url":"https://empv.it","inLanguage":["it","en"],"publisher":{"@id":"https://empv.it/#organization"}},{"@type":"WebPage","@id":"https://empv.it/en/research-notes/openai-business-hub-business-agents-chatgpt/#webpage","url":"https://empv.it/en/research-notes/openai-business-hub-business-agents-chatgpt/","name":"OpenAI brings businesses into ChatGPT: Business Hub and Business Agents | EMPV","description":"OpenAI introduces Business Hub and Business Agents in ChatGPT: managed business profiles, visibility insights, availability and current limitations.","inLanguage":"en","isPartOf":{"@id":"https://empv.it/#website"},"about":{"@id":"https://empv.it/#organization"}},{"@type":"Article","@id":"https://empv.it/en/research-notes/openai-business-hub-business-agents-chatgpt/#article","headline":"OpenAI brings businesses into ChatGPT with Business Hub and Business Agents","description":"OpenAI is introducing business-managed profiles in ChatGPT, with updated information and visibility insights. Business Agents are also launching for eligible US companies, although their operational capabilities remain limited.","datePublished":"2026-11-12","dateModified":"2026-11-12","inLanguage":"en","keywords":["OpenAI","Business Hub","Business Agents","ChatGPT","Business AI"],"image":{"@type":"ImageObject","url":"https://empv.it/social/research-notes/openai-businesses-chatgpt-business-agents-en-20261112.png","width":1200,"height":630},"mainEntityOfPage":{"@id":"https://empv.it/en/research-notes/openai-business-hub-business-agents-chatgpt/#webpage"},"author":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}],"publisher":{"@id":"https://empv.it/#organization"}}]}</script>
+  </head>
+  <body>
+    <div id="root"><div class="detail-shell notes-shell" data-prerendered="true"><header class="topbar detail-topbar"><a class="wordmark" href="/en/" aria-label="EMPV home">EMPV</a><a class="detail-nav-back" href="/en/research-notes/">Research Notes</a><a class="lang-switch" href="/it/research-notes/openai-business-hub-business-agents-chatgpt/" hreflang="it">IT</a></header><main><section class="detail-hero research-note-hero"><div class="detail-hero-inner"><div class="detail-kicker-row"><span class="eyebrow">EMPV / RESEARCH NOTES</span><span class="detail-index">NOTE / 021</span></div><div class="detail-title-wrap detail-title-project research-note-title"><p class="detail-kicker">NEWS NOTE / AI BUSINESS</p><h1>OpenAI brings businesses into ChatGPT with Business Hub and Business Agents</h1></div><div class="detail-hero-bottom"><p class="detail-lead">OpenAI is introducing business-managed profiles in ChatGPT, with updated information and visibility insights. Business Agents are also launching for eligible US companies, although their operational capabilities remain limited.</p><div class="detail-status"><span>Published</span><strong>2026-11-12 · 4 min</strong></div></div><div class="tags detail-tags"><span>OpenAI</span><span>Business Hub</span><span>Business Agents</span><span>ChatGPT</span><span>Business AI</span></div></div></section><section class="detail-blocks section-pad research-note-blocks"><article class="detail-block research-note-block"><div class="eyebrow">01 / Business Hub</div><div class="detail-block-main"><h2>Companies can manage their presence in ChatGPT</h2><div class="research-note-copy"><p>On November 10, 2026, <a href="https://openai.com/index/introducing-businesses-chatgpt/" target="_blank" rel="noreferrer noopener">OpenAI introduced Businesses in ChatGPT</a>, a beta platform that allows eligible companies to claim and manage their presence in ChatGPT.</p><p>Through Business Hub, a company can verify its profile and update information such as its website, business description, product and service categories, and commercial policies. Retailers can also provide product feeds containing prices and availability, including through Shopify.</p><p>The process requires verification of the company's ownership or authorized representation, followed by identity verification through Persona. The blue verification badge appears only after Persona approval. OpenAI reviews business information updates, which may take time to appear in ChatGPT responses.</p><p>The system does not replace other information sources used by the model. OpenAI explicitly states that claiming a profile does not guarantee more recommendations or preferential placement.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">02 / Visibility</div><div class="detail-block-main"><h2>New insights show how businesses appear in ChatGPT</h2><div class="research-note-copy"><p>Business Hub introduces an Insights section with aggregated activity covering the previous 28 days.</p><p>Businesses can examine mentions, website clicks and *discovery topics*: recurring subjects in ChatGPT answers where the business appears.</p><p>The definition of a mention depends on the business type. For an online business, ChatGPT must reference its website; merely naming the brand does not count. For a local business, displaying a result for that location counts as a mention.</p><p>These metrics do not expose individual user prompts or directly measure purchase intent. OpenAI does not share consumer conversations with businesses, including conversations with Business Agents. Reporting also depends on minimum activity thresholds, so missing metrics do not necessarily indicate zero activity.</p><p>EMPV previously examined how AI systems select sources in its <a href="https://empv.it/en/research-notes/seo-geo-how-ai-search-selects-citations/" target="_blank" rel="noreferrer noopener">Research Note on SEO and GEO</a>. Business Hub adds a different capability: selected visibility metrics provided directly by ChatGPT. They should not be interpreted as a complete measure of brand exposure.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">03 / Business Agents</div><div class="detail-block-main"><h2>A conversational agent representing the company</h2><div class="research-note-copy"><p>The second product is Business Agents, initially available to eligible ecommerce and online service businesses in the United States.</p><p>When a business appears in a ChatGPT response, users can open its profile and, where available, start a conversation with its agent. They can ask about products, compare alternatives or clarify commercial terms.</p><p>Businesses provide the information and instructions, test the responses and decide when to publish the agent. The resulting conversation is clearly identified as an AI interaction representing the company. It remains separate from ChatGPT's independent answers.</p><p>Operational capabilities are still limited. According to <a href="https://help.openai.com/en/articles/20001635-setting-up-your-business-on-chatgpt" target="_blank" rel="noreferrer noopener">OpenAI's documentation</a>, the current version cannot complete purchases, make bookings or check order status. It can direct users to the business website to complete those activities. It also cannot access the capabilities of a company's separate ChatGPT plugins.</p><p>Businesses may sponsor their agents and use them as destinations for ChatGPT Ads. Sponsored experiences must be labeled and remain separate from the assistant's independent responses.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">04 / Limitations and implications</div><div class="detail-block-main"><h2>A new customer touchpoint, not yet an operating system</h2><div class="research-note-copy"><p>Business Hub and Business Agents address two different stages: maintaining up-to-date company information and allowing interested users to explore that information through conversation.</p><p>For businesses, this creates another customer-facing channel to maintain. Product details, commercial terms, availability and answers to common questions need to remain consistent with the company's website and internal systems.</p><p>In its current form, a Business Agent is not equivalent to an operational integration with a CRM, ERP or order management system. A conversation can support a customer's decision, but completing business transactions still happens outside the agent.</p><p>Availability also differs between the two products. Eligible companies in supported markets can claim their profiles, while Business Agents initially target the United States. Additional restrictions apply to claiming local business listings.</p><p>OpenAI plans to expand the products to more markets and business categories, but has not announced a specific timeline. It remains unclear how much these features will affect business discovery or measurable commercial outcomes.</p></div></div></article></section><section class="detail-boundary section-pad research-note-takeaway"><div class="section-code">EMPV / TAKEAWAY</div><p>Businesses in ChatGPT gives companies a way to maintain information and observe part of their visibility within the assistant. Business Agents add a dedicated conversational interface, but do not yet replace enterprise integrations or operational workflows.</p></section><section class="research-note-share section-pad" aria-label="Share this Research Note"><div class="section-code">EMPV / SHARE</div><div class="research-note-share-inner"><p>Share this Research Note.</p><div class="research-note-share-actions"><a class="research-note-share-primary" href="https://empv.it/en/research-notes/openai-business-hub-business-agents-chatgpt/?share=20261112">Share</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fopenai-business-hub-business-agents-chatgpt%2F%3Fshare%3D20261112" target="_blank" rel="noreferrer noopener">LinkedIn</a><a href="https://twitter.com/intent/tweet?text=OpenAI%20brings%20businesses%20into%20ChatGPT%20with%20Business%20Hub%20and%20Business%20Agents%20%E2%80%94%20EMPV%20Research%20Notes&amp;url=https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fopenai-business-hub-business-agents-chatgpt%2F%3Fshare%3D20261112" target="_blank" rel="noreferrer noopener">X</a><a href="https://wa.me/?text=OpenAI%20brings%20businesses%20into%20ChatGPT%20with%20Business%20Hub%20and%20Business%20Agents%20%E2%80%94%20EMPV%20Research%20Notes%20https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fopenai-business-hub-business-agents-chatgpt%2F%3Fshare%3D20261112" target="_blank" rel="noreferrer noopener">WhatsApp</a><a href="https://empv.it/en/research-notes/openai-business-hub-business-agents-chatgpt/?share=20261112">Copy link</a></div></div></section><section class="detail-end section-pad"><a href="/en/research-notes/"><span>Research Notes</span></a></section></main></div></div>
+  </body>
+</html>

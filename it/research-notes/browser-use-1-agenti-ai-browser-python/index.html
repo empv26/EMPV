@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const validBackgrounds = new Set([
+          "none", "particles", "aero", "beams", "threads", "waves", "galaxy",
+          "orb", "silk", "sliced-waves", "side-rays", "light-tunnel",
+          "scanner", "prism", "dither"
+        ]);
+        const validPalettes = new Set([
+          "mist", "zinc", "mauve", "olive", "taupe", "amber", "blue", "indigo"
+        ]);
+        const aliases = { steel: "mist", sage: "olive" };
+
+        let stored = {};
+        try {
+          stored = JSON.parse(localStorage.getItem("empv-visual-preferences") || "{}") || {};
+        } catch {}
+
+        const params = new URLSearchParams(location.search);
+        const requestedBackground = params.get("bg");
+        const requestedPalette = params.get("palette");
+        const aliasedPalette = requestedPalette && aliases[requestedPalette]
+          ? aliases[requestedPalette]
+          : requestedPalette;
+
+        const background = validBackgrounds.has(requestedBackground)
+          ? requestedBackground
+          : validBackgrounds.has(stored.background)
+            ? stored.background
+            : "scanner";
+
+        const palette = validPalettes.has(aliasedPalette)
+          ? aliasedPalette
+          : validPalettes.has(stored.palette)
+            ? stored.palette
+            : "blue";
+
+        root.dataset.visualTheme = background === "none" ? "default" : "galaxy";
+        root.dataset.galaxyPalette = palette;
+
+        try {
+          const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+          const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (finePointer && !reducedMotion) {
+            root.classList.add("empv-custom-cursor-enabled");
+          }
+        } catch {}
+      })();
+    </script>
+    <meta name="theme-color" content="#ecebe5" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <meta name="google-site-verification" content="UnScA5DO68Suf6LYORZ-bKoSW_KV0KH6diJ9HCuVAqg" />
+    <meta name="description" content="Browser Use 1.0 riscrive gli agenti web con Python persistente e controllo diretto via CDP. Architettura, benchmark, costi e limiti." />
+    <title>Browser Use 1.0: agenti web con Python e CDP | EMPV</title>
+    <script type="module" crossorigin src="/assets/index-Bgi1twjK.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cqsd0oq4.css">
+      <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://empv.it/it/research-notes/browser-use-1-agenti-ai-browser-python/" />
+    <link rel="alternate" hreflang="it" href="https://empv.it/it/research-notes/browser-use-1-agenti-ai-browser-python/" />
+    <link rel="alternate" hreflang="en" href="https://empv.it/en/research-notes/browser-use-1-ai-agents-python-browser/" />
+    <link rel="alternate" hreflang="x-default" href="https://empv.it/it/research-notes/browser-use-1-agenti-ai-browser-python/" />
+    <link rel="describedby" href="https://empv.it/llms.txt" type="text/markdown" />
+    <meta property="og:title" content="Browser Use 1.0: agenti web con Python e CDP | EMPV" />
+    <meta property="og:description" content="Browser Use 1.0 riscrive gli agenti web con Python persistente e controllo diretto via CDP. Architettura, benchmark, costi e limiti." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://empv.it/it/research-notes/browser-use-1-agenti-ai-browser-python/" />
+    <meta property="og:site_name" content="EMPV" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:image" content="https://empv.it/social/research-notes/browser-use-1-python-cdp-it-20261110a.png" />
+    <meta property="og:image:url" content="https://empv.it/social/research-notes/browser-use-1-python-cdp-it-20261110a.png" />
+    <meta property="og:image:secure_url" content="https://empv.it/social/research-notes/browser-use-1-python-cdp-it-20261110a.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Browser Use 1.0 riscrive gli agenti web: meno codice, Python e accesso diretto al browser" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@EMPV26" />
+    <meta name="twitter:title" content="Browser Use 1.0: agenti web con Python e CDP | EMPV" />
+    <meta name="twitter:description" content="Browser Use 1.0 riscrive gli agenti web con Python persistente e controllo diretto via CDP. Architettura, benchmark, costi e limiti." />
+    <meta name="twitter:image" content="https://empv.it/social/research-notes/browser-use-1-python-cdp-it-20261110a.png" />
+    <meta name="twitter:image:alt" content="Browser Use 1.0 riscrive gli agenti web: meno codice, Python e accesso diretto al browser" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://empv.it/#organization","name":"EMPV","url":"https://empv.it","email":"hello@empv.it","telephone":"+39 379 243 8705","logo":{"@type":"ImageObject","@id":"https://empv.it/#logo","url":"https://empv.it/empv-logo-192.png","contentUrl":"https://empv.it/empv-logo-192.png","width":192,"height":192},"image":{"@id":"https://empv.it/#logo"},"sameAs":["https://www.linkedin.com/company/emp26/","https://x.com/EMPV26","https://github.com/empv26"],"address":{"@type":"PostalAddress","addressLocality":"Bergamo","addressCountry":"IT"},"member":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}]},{"@type":"Person","@id":"https://empv.it/#enrico-peruffo","name":"Enrico Peruffo","jobTitle":"AI Systems & Architecture","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"Person","@id":"https://empv.it/#michele-valleri","name":"Michele Valleri","jobTitle":"AI Product & Process Design","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"WebSite","@id":"https://empv.it/#website","name":"EMPV","url":"https://empv.it","inLanguage":["it","en"],"publisher":{"@id":"https://empv.it/#organization"}},{"@type":"WebPage","@id":"https://empv.it/it/research-notes/browser-use-1-agenti-ai-browser-python/#webpage","url":"https://empv.it/it/research-notes/browser-use-1-agenti-ai-browser-python/","name":"Browser Use 1.0: agenti web con Python e CDP | EMPV","description":"Browser Use 1.0 riscrive gli agenti web con Python persistente e controllo diretto via CDP. Architettura, benchmark, costi e limiti.","inLanguage":"it","isPartOf":{"@id":"https://empv.it/#website"},"about":{"@id":"https://empv.it/#organization"}},{"@type":"Article","@id":"https://empv.it/it/research-notes/browser-use-1-agenti-ai-browser-python/#article","headline":"Browser Use 1.0 riscrive gli agenti web: meno codice, Python e accesso diretto al browser","description":"La versione 1.0 sostituisce azioni predefinite e serializzazione del DOM con codice Python in un ambiente persistente e controllo diretto via CDP. I benchmark mostrano costi inferiori, ma non un vantaggio conclusivo nella riuscita dei compiti.","datePublished":"2026-11-10","dateModified":"2026-11-10","inLanguage":"it","keywords":["Browser Use","Agenti AI","Browser automation","Python","Chrome DevTools Protocol"],"image":{"@type":"ImageObject","url":"https://empv.it/social/research-notes/browser-use-1-python-cdp-it-20261110a.png","width":1200,"height":630},"mainEntityOfPage":{"@id":"https://empv.it/it/research-notes/browser-use-1-agenti-ai-browser-python/#webpage"},"author":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}],"publisher":{"@id":"https://empv.it/#organization"}}]}</script>
+  </head>
+  <body>
+    <div id="root"><div class="detail-shell notes-shell" data-prerendered="true"><header class="topbar detail-topbar"><a class="wordmark" href="/it/" aria-label="EMPV home">EMPV</a><a class="detail-nav-back" href="/it/research-notes/">Research Notes</a><a class="lang-switch" href="/en/research-notes/browser-use-1-ai-agents-python-browser/" hreflang="en">EN</a></header><main><section class="detail-hero research-note-hero"><div class="detail-hero-inner"><div class="detail-kicker-row"><span class="eyebrow">EMPV / RESEARCH NOTES</span><span class="detail-index">NOTE / 020</span></div><div class="detail-title-wrap detail-title-project research-note-title"><p class="detail-kicker">TECH NOTE / AI AGENTS</p><h1>Browser Use 1.0 riscrive gli agenti web: meno codice, Python e accesso diretto al browser</h1></div><div class="detail-hero-bottom"><p class="detail-lead">La versione 1.0 sostituisce azioni predefinite e serializzazione del DOM con codice Python in un ambiente persistente e controllo diretto via CDP. I benchmark mostrano costi inferiori, ma non un vantaggio conclusivo nella riuscita dei compiti.</p><div class="detail-status"><span>Pubblicata</span><strong>2026-11-10 · 4 min</strong></div></div><div class="tags detail-tags"><span>Browser Use</span><span>Agenti AI</span><span>Browser automation</span><span>Python</span><span>Chrome DevTools Protocol</span></div></div></section><section class="detail-blocks section-pad research-note-blocks"><article class="detail-block research-note-block"><div class="eyebrow">01 / Architettura</div><div class="detail-block-main"><h2>Dalle azioni predefinite al codice Python</h2><div class="research-note-copy"><p>Il 10 novembre 2026 <a href="https://github.com/browser-use/browser-use/releases/tag/1.0.0" target="_blank" rel="noreferrer noopener">Browser Use ha pubblicato la versione 1.0</a>, riscrivendo il modo in cui un agente AI interagisce con le pagine web.</p><p>La libreria abbandona l'approccio basato sulla serializzazione del DOM e su uno schema fisso di azioni. Il modello genera invece codice Python eseguito in un REPL persistente: variabili, oggetti e stato rimangono disponibili tra un passaggio e l'altro.</p><p>Il controllo del browser avviene attraverso il <a href="https://chromedevtools.github.io/devtools-protocol/" target="_blank" rel="noreferrer noopener">Chrome DevTools Protocol (CDP)</a>. Secondo le note di rilascio, la riscrittura elimina 136.866 righe di codice, circa l'80% della libreria precedente. È una misura della semplificazione interna, non una prova automatica di maggiore affidabilità.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">02 / Esecuzione</div><div class="detail-block-main"><h2>Che cosa cambia per chi sviluppa</h2><div class="research-note-copy"><p>Un agente può combinare istruzioni Python, stato persistente e operazioni sul browser senza dover scegliere ogni volta da un elenco rigido di comandi. Questo aumenta la flessibilità, ma rende ancora più importante controllare codice generato, permessi e azioni con effetti esterni.</p><p>Cambiano anche alcune impostazioni: `Browser()` usa per impostazione predefinita Browser Use Cloud, mentre `Browser('chromium')` seleziona l'esecuzione locale. Il modello predefinito è `bu-fast`, accessibile tramite il gateway Browser Use, pur restando possibile configurare altri provider.</p><p>Il limite predefinito dei passaggi scende da 500 a 100 e il timeout indicato è di 1.700 secondi. La versione include gestione di output strutturati, caricamenti e download, oscuramento dei segreti e restrizioni sui domini. La <a href="https://github.com/browser-use/browser-use/blob/main/MIGRATING.md" target="_blank" rel="noreferrer noopener">guida alla migrazione</a> documenta le incompatibilità da considerare prima di aggiornare un'integrazione esistente.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">03 / Benchmark</div><div class="detail-block-main"><h2>Costi e tempi migliorano, il successo resta da interpretare</h2><div class="research-note-copy"><p>Nel <a href="https://github.com/browser-use/browser-use/releases/tag/1.0.0" target="_blank" rel="noreferrer noopener">benchmark BU Bench v2</a> riportato insieme al rilascio, 60 attività vengono eseguite tre volte. La configurazione Browser Use 1.0 ultrafast ottiene il 62,5% di successo, contro il 56,3% di Browser Use Pi.</p><p>Il costo medio dichiarato è di 0,070 dollari per attività contro 0,082 dollari; il tempo medio è di 650 secondi contro 743. Sono risultati relativi alle configurazioni e all'ambiente di prova utilizzati, non a ogni possibile installazione.</p><p>Il confronto sul successo è meno netto di quanto suggeriscano le percentuali: un'interruzione del provider ha influenzato la prova. Escludendo quegli errori, il divario riportato è di 1,1 punti percentuali, con intervallo da -3,2 a +5,7: non emerge una differenza statisticamente significativa. Inoltre il modello predefinito `bu-fast` non è quello valutato nel confronto citato.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">04 / Implicazioni</div><div class="detail-block-main"><h2>Dove può essere utile e che cosa verificare</h2><div class="research-note-copy"><p>Per un'azienda, gli agenti browser possono automatizzare attività che si svolgono in interfacce web prive di API adeguate: consultare portali, recuperare dati, compilare moduli o coordinare passaggi ripetitivi.</p><p>Il codice generato dinamicamente e l'accesso diretto al browser richiedono però controlli precisi: sessioni isolate, credenziali con privilegi minimi, autorizzazioni per le azioni irreversibili e test su pagine che cambiano struttura.</p><p>La versione 1.0 rende più essenziale l'architettura del framework. La valutazione per un utilizzo produttivo dipende comunque dalla stabilità delle attività reali, dalla gestione degli errori e dal costo complessivo di supervisione.</p></div></div></article></section><section class="detail-boundary section-pad research-note-takeaway"><div class="section-code">EMPV / TAKEAWAY</div><p>Browser Use 1.0 semplifica l'architettura degli agenti web con Python persistente e CDP; i benefici su costo e tempi vanno verificati insieme ad affidabilità e controlli operativi.</p></section><section class="research-note-share section-pad" aria-label="Condividi questa Research Note"><div class="section-code">EMPV / CONDIVIDI</div><div class="research-note-share-inner"><p>Condividi questa Research Note.</p><div class="research-note-share-actions"><a class="research-note-share-primary" href="https://empv.it/it/research-notes/browser-use-1-agenti-ai-browser-python/?share=20261110a">Condividi</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fempv.it%2Fit%2Fresearch-notes%2Fbrowser-use-1-agenti-ai-browser-python%2F%3Fshare%3D20261110a" target="_blank" rel="noreferrer noopener">LinkedIn</a><a href="https://twitter.com/intent/tweet?text=Browser%20Use%201.0%20riscrive%20gli%20agenti%20web%3A%20meno%20codice%2C%20Python%20e%20accesso%20diretto%20al%20browser%20%E2%80%94%20EMPV%20Research%20Notes&amp;url=https%3A%2F%2Fempv.it%2Fit%2Fresearch-notes%2Fbrowser-use-1-agenti-ai-browser-python%2F%3Fshare%3D20261110a" target="_blank" rel="noreferrer noopener">X</a><a href="https://wa.me/?text=Browser%20Use%201.0%20riscrive%20gli%20agenti%20web%3A%20meno%20codice%2C%20Python%20e%20accesso%20diretto%20al%20browser%20%E2%80%94%20EMPV%20Research%20Notes%20https%3A%2F%2Fempv.it%2Fit%2Fresearch-notes%2Fbrowser-use-1-agenti-ai-browser-python%2F%3Fshare%3D20261110a" target="_blank" rel="noreferrer noopener">WhatsApp</a><a href="https://empv.it/it/research-notes/browser-use-1-agenti-ai-browser-python/?share=20261110a">Copia link</a></div></div></section><section class="detail-end section-pad"><a href="/it/research-notes/"><span>Research Notes</span></a></section></main></div></div>
+  </body>
+</html>

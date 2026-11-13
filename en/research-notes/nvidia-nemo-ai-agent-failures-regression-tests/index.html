@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const validBackgrounds = new Set([
+          "none", "particles", "aero", "beams", "threads", "waves", "galaxy",
+          "orb", "silk", "sliced-waves", "side-rays", "light-tunnel",
+          "scanner", "prism", "dither"
+        ]);
+        const validPalettes = new Set([
+          "mist", "zinc", "mauve", "olive", "taupe", "amber", "blue", "indigo"
+        ]);
+        const aliases = { steel: "mist", sage: "olive" };
+
+        let stored = {};
+        try {
+          stored = JSON.parse(localStorage.getItem("empv-visual-preferences") || "{}") || {};
+        } catch {}
+
+        const params = new URLSearchParams(location.search);
+        const requestedBackground = params.get("bg");
+        const requestedPalette = params.get("palette");
+        const aliasedPalette = requestedPalette && aliases[requestedPalette]
+          ? aliases[requestedPalette]
+          : requestedPalette;
+
+        const background = validBackgrounds.has(requestedBackground)
+          ? requestedBackground
+          : validBackgrounds.has(stored.background)
+            ? stored.background
+            : "scanner";
+
+        const palette = validPalettes.has(aliasedPalette)
+          ? aliasedPalette
+          : validPalettes.has(stored.palette)
+            ? stored.palette
+            : "blue";
+
+        root.dataset.visualTheme = background === "none" ? "default" : "galaxy";
+        root.dataset.galaxyPalette = palette;
+
+        try {
+          const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+          const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (finePointer && !reducedMotion) {
+            root.classList.add("empv-custom-cursor-enabled");
+          }
+        } catch {}
+      })();
+    </script>
+    <meta name="theme-color" content="#ecebe5" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <meta name="google-site-verification" content="UnScA5DO68Suf6LYORZ-bKoSW_KV0KH6diJ9HCuVAqg" />
+    <meta name="description" content="NVIDIA demonstrates how NeMo Compass and NeMo Eval Author identify AI agent failures, generate evaluations, and test targeted fixes." />
+    <title>NVIDIA NeMo: turning AI agent failures into regression tests | EMPV</title>
+    <script type="module" crossorigin src="/assets/index-Bgi1twjK.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cqsd0oq4.css">
+      <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://empv.it/en/research-notes/nvidia-nemo-ai-agent-failures-regression-tests/" />
+    <link rel="alternate" hreflang="it" href="https://empv.it/it/research-notes/nvidia-nemo-errori-agenti-ai-test-regressione/" />
+    <link rel="alternate" hreflang="en" href="https://empv.it/en/research-notes/nvidia-nemo-ai-agent-failures-regression-tests/" />
+    <link rel="alternate" hreflang="x-default" href="https://empv.it/it/research-notes/nvidia-nemo-errori-agenti-ai-test-regressione/" />
+    <link rel="describedby" href="https://empv.it/llms.txt" type="text/markdown" />
+    <meta property="og:title" content="NVIDIA NeMo: turning AI agent failures into regression tests | EMPV" />
+    <meta property="og:description" content="NVIDIA demonstrates how NeMo Compass and NeMo Eval Author identify AI agent failures, generate evaluations, and test targeted fixes." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://empv.it/en/research-notes/nvidia-nemo-ai-agent-failures-regression-tests/" />
+    <meta property="og:site_name" content="EMPV" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://empv.it/social/research-notes/nvidia-nemo-agent-failures-regression-tests-en-20261106a.png" />
+    <meta property="og:image:url" content="https://empv.it/social/research-notes/nvidia-nemo-agent-failures-regression-tests-en-20261106a.png" />
+    <meta property="og:image:secure_url" content="https://empv.it/social/research-notes/nvidia-nemo-agent-failures-regression-tests-en-20261106a.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="NVIDIA NeMo turns AI agent failures into regression tests" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@EMPV26" />
+    <meta name="twitter:title" content="NVIDIA NeMo: turning AI agent failures into regression tests | EMPV" />
+    <meta name="twitter:description" content="NVIDIA demonstrates how NeMo Compass and NeMo Eval Author identify AI agent failures, generate evaluations, and test targeted fixes." />
+    <meta name="twitter:image" content="https://empv.it/social/research-notes/nvidia-nemo-agent-failures-regression-tests-en-20261106a.png" />
+    <meta name="twitter:image:alt" content="NVIDIA NeMo turns AI agent failures into regression tests" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://empv.it/#organization","name":"EMPV","url":"https://empv.it","email":"hello@empv.it","telephone":"+39 379 243 8705","logo":{"@type":"ImageObject","@id":"https://empv.it/#logo","url":"https://empv.it/empv-logo-192.png","contentUrl":"https://empv.it/empv-logo-192.png","width":192,"height":192},"image":{"@id":"https://empv.it/#logo"},"sameAs":["https://www.linkedin.com/company/emp26/","https://x.com/EMPV26","https://github.com/empv26"],"address":{"@type":"PostalAddress","addressLocality":"Bergamo","addressCountry":"IT"},"member":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}]},{"@type":"Person","@id":"https://empv.it/#enrico-peruffo","name":"Enrico Peruffo","jobTitle":"AI Systems & Architecture","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"Person","@id":"https://empv.it/#michele-valleri","name":"Michele Valleri","jobTitle":"AI Product & Process Design","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"WebSite","@id":"https://empv.it/#website","name":"EMPV","url":"https://empv.it","inLanguage":["it","en"],"publisher":{"@id":"https://empv.it/#organization"}},{"@type":"WebPage","@id":"https://empv.it/en/research-notes/nvidia-nemo-ai-agent-failures-regression-tests/#webpage","url":"https://empv.it/en/research-notes/nvidia-nemo-ai-agent-failures-regression-tests/","name":"NVIDIA NeMo: turning AI agent failures into regression tests | EMPV","description":"NVIDIA demonstrates how NeMo Compass and NeMo Eval Author identify AI agent failures, generate evaluations, and test targeted fixes.","inLanguage":"en","isPartOf":{"@id":"https://empv.it/#website"},"about":{"@id":"https://empv.it/#organization"}},{"@type":"Article","@id":"https://empv.it/en/research-notes/nvidia-nemo-ai-agent-failures-regression-tests/#article","headline":"NVIDIA NeMo turns AI agent failures into regression tests","description":"An enterprise assistant drafts a message but sends it without authorization. NVIDIA demonstrates how to detect the failure in execution traces, build targeted evaluations, and test a fix without changing the underlying model.","datePublished":"2026-11-06","dateModified":"2026-11-06","inLanguage":"en","keywords":["NVIDIA NeMo","AI agents","Agent evaluation","Agent reliability"],"image":{"@type":"ImageObject","url":"https://empv.it/social/research-notes/nvidia-nemo-agent-failures-regression-tests-en-20261106a.png","width":1200,"height":630},"mainEntityOfPage":{"@id":"https://empv.it/en/research-notes/nvidia-nemo-ai-agent-failures-regression-tests/#webpage"},"author":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}],"publisher":{"@id":"https://empv.it/#organization"}}]}</script>
+  </head>
+  <body>
+    <div id="root"><div class="detail-shell notes-shell" data-prerendered="true"><header class="topbar detail-topbar"><a class="wordmark" href="/en/" aria-label="EMPV home">EMPV</a><a class="detail-nav-back" href="/en/research-notes/">Research Notes</a><a class="lang-switch" href="/it/research-notes/nvidia-nemo-errori-agenti-ai-test-regressione/" hreflang="it">IT</a></header><main><section class="detail-hero research-note-hero"><div class="detail-hero-inner"><div class="detail-kicker-row"><span class="eyebrow">EMPV / RESEARCH NOTES</span><span class="detail-index">NOTE / 019</span></div><div class="detail-title-wrap detail-title-project research-note-title"><p class="detail-kicker">TECH NOTE / AI AGENTS</p><h1>NVIDIA NeMo turns AI agent failures into regression tests</h1></div><div class="detail-hero-bottom"><p class="detail-lead">An enterprise assistant drafts a message but sends it without authorization. NVIDIA demonstrates how to detect the failure in execution traces, build targeted evaluations, and test a fix without changing the underlying model.</p><div class="detail-status"><span>Published</span><strong>2026-11-06 · 4 min</strong></div></div><div class="tags detail-tags"><span>NVIDIA NeMo</span><span>AI agents</span><span>Agent evaluation</span><span>Agent reliability</span></div></div></section><section class="detail-blocks section-pad research-note-blocks"><article class="detail-block research-note-block"><div class="eyebrow">01 / Without confirmation</div><div class="detail-block-main"><h2>A message sent without confirmation</h2><div class="research-note-copy"><p>On November 4, 2026, <a href="https://developer.nvidia.com/blog/use-nvidia-nemo-to-turn-agent-failures-into-tests-and-harness-fixes" target="_blank" rel="noreferrer noopener">NVIDIA published a technical tutorial</a> showing how agent execution traces can be used to improve reliability.</p><p>The workflow combines NeMo Compass and NeMo Eval Author to identify problematic behavior, turn recorded failures into repeatable tests, and measure the impact of changes.</p><p>The example involves an enterprise assistant that completes part of its task correctly but performs an action the user never authorized.</p><p>NVIDIA's tutorial uses an agent built with Hermes, running inside an OpenShell environment and connected through Model Context Protocol (MCP) to simulated enterprise tools for email, chat, documents, and tickets.</p><p>A user asks the assistant to draft a message containing project updates. The agent prepares the text but also calls send_message, sending it without requesting confirmation.</p><p>The failure is not in the message itself. It is in the sequence of actions: the agent interprets a request to prepare content as permission to send it.</p><p>NVIDIA investigates the behavior using 42 execution traces collected from the demonstration environment. <a href="https://github.com/NVIDIA-NeMo/nemo-compass" target="_blank" rel="noreferrer noopener">NeMo Compass</a> compares observed actions against the rules defined in ETHOS.md, identifies recurring issues, and links findings to supporting traces.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">02 / Evaluations</div><div class="detail-block-main"><h2>Turning traces into evaluations</h2><div class="research-note-copy"><p>Once the failure has been identified, <a href="https://github.com/NVIDIA-NeMo/eval-author" target="_blank" rel="noreferrer noopener">NeMo Eval Author</a> helps create evaluations tailored to the agent's requirements.</p><p>In the tutorial, four Harbor evaluation tasks are created. A verifier checks whether the agent calls the messaging tool without the required human confirmation.</p><p>Two tasks are used during development. The other two form a held-out set, allowing the proposed change to be evaluated on tasks that were not used to develop the fix.</p><p>The adjustment is made to the Hermes agent's SOUL.md instructions: a request to write, draft, or prepare a message must not automatically authorize sending it.</p><p>The example does not involve retraining the underlying model. It modifies the agent harness: the instructions and application logic that shape how the agent uses its tools.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">03 / Results</div><div class="detail-block-main"><h2>What the results show</h2><div class="research-note-copy"><p>In the reported experiment, each of the four evaluation tasks is run three times.</p><p>Development tasks improve from 3 successful runs out of 6 to 6 out of 6. Held-out tasks improve from 4 out of 6 to 6 out of 6.</p><p>Tool calls also decrease, from 10 to 6 in the development set and from 28 to 15 in the held-out set.</p><p>These results support the effectiveness of the targeted change under the tested conditions. However, such a small evaluation set cannot establish the agent's reliability across a wider range of enterprise workflows.</p><p>The <a href="https://github.com/NVIDIA/nemoclaw-community/blob/main/examples/tools/enterprise-assistant-harness-optimization/README.md" target="_blank" rel="noreferrer noopener">public tutorial repository</a> provides synthetic data and reproducible artifacts. NVIDIA also identifies NeMo Compass as a research preview that is not intended for production use.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">04 / Implications</div><div class="detail-block-main"><h2>Evaluating behavior beyond model accuracy</h2><div class="research-note-copy"><p>A model benchmark can measure how well a system answers a question. An agent connected to enterprise applications must also follow operational constraints: when it may retrieve information, modify records, or act on behalf of a user.</p><p>The NVIDIA example turns one such constraint into a measurable test: drafting a message must not trigger its delivery.</p><p>For enterprise deployments, model instructions should not be the only mechanism protecting actions with external consequences. Authorization can also be enforced by the tools and application code responsible for executing those actions.</p></div></div></article></section><section class="detail-boundary section-pad research-note-takeaway"><div class="section-code">EMPV / TAKEAWAY</div><p>NVIDIA's workflow provides a concrete engineering process: inspect recorded behavior, identify a recurring failure, construct an evaluation that captures it, and verify whether a proposed change fixes the issue.</p></section><section class="research-note-share section-pad" aria-label="Share this Research Note"><div class="section-code">EMPV / SHARE</div><div class="research-note-share-inner"><p>Share this Research Note.</p><div class="research-note-share-actions"><a class="research-note-share-primary" href="https://empv.it/en/research-notes/nvidia-nemo-ai-agent-failures-regression-tests/?share=20261106a">Share</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fnvidia-nemo-ai-agent-failures-regression-tests%2F%3Fshare%3D20261106a" target="_blank" rel="noreferrer noopener">LinkedIn</a><a href="https://twitter.com/intent/tweet?text=NVIDIA%20NeMo%20turns%20AI%20agent%20failures%20into%20regression%20tests%20%E2%80%94%20EMPV%20Research%20Notes&amp;url=https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fnvidia-nemo-ai-agent-failures-regression-tests%2F%3Fshare%3D20261106a" target="_blank" rel="noreferrer noopener">X</a><a href="https://wa.me/?text=NVIDIA%20NeMo%20turns%20AI%20agent%20failures%20into%20regression%20tests%20%E2%80%94%20EMPV%20Research%20Notes%20https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fnvidia-nemo-ai-agent-failures-regression-tests%2F%3Fshare%3D20261106a" target="_blank" rel="noreferrer noopener">WhatsApp</a><a href="https://empv.it/en/research-notes/nvidia-nemo-ai-agent-failures-regression-tests/?share=20261106a">Copy link</a></div></div></section><section class="detail-end section-pad"><a href="/en/research-notes/"><span>Research Notes</span></a></section></main></div></div>
+  </body>
+</html>
