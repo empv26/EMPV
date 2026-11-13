@@ -31,9 +31,38 @@ try {
     const layout=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,images:[...document.querySelectorAll('.slide-frame.active img')].map(i=>i.complete&&i.naturalWidth>0)}));
     assert.ok(layout.scroll<=width+3, `${lang}/${width}/${slide+1}: horizontal overflow ${layout.scroll}`);
     assert.ok(layout.images.every(Boolean),`${lang}/${width}/${slide+1}: image failed`);
+    const visibility = await page.locator('.slide-frame.active').evaluate(frame => {
+     const style = getComputedStyle(frame);
+     const walker = document.createTreeWalker(frame, NodeFilter.SHOW_TEXT);
+     const clipped = [];
+     let text;
+     while ((text = walker.nextNode())) {
+      if (!text.textContent.trim() || text.parentElement.closest('svg,script,style')) continue;
+      const range = document.createRange(); range.selectNodeContents(text);
+      for (const rect of range.getClientRects()) {
+       if (rect.width < 1 || rect.height < 1) continue;
+       for (let parent = text.parentElement; parent && frame.contains(parent); parent = parent.parentElement) {
+        const css = getComputedStyle(parent), box = parent.getBoundingClientRect();
+        if (['hidden','clip'].includes(css.overflowY) && (rect.bottom > box.bottom + 3 || rect.top < box.top - 3)) {
+         clipped.push(text.textContent.trim().slice(0,70)); break;
+        }
+       }
+      }
+     }
+     return { dark:frame.classList.contains('bg-navy'), background:style.backgroundColor, clipped:[...new Set(clipped)] };
+    });
+    if (visibility.dark) assert.equal(visibility.background, 'rgb(16, 30, 53)', `${lang}/${width}/${slide+1}: dark slide lost its background`);
+    assert.deepEqual(visibility.clipped, [], `${lang}/${width}/${slide+1}: text clipped vertically`);
    }
    await page.locator('#pageSelect').selectOption('0');
    await page.screenshot({path:join(folder,`${lang}-${width}-cover.png`),fullPage:true});
+   if (width >= 1100) {
+    const cover = await page.locator('.slide-frame.active').evaluate(frame => {
+     const logo=frame.querySelector('svg[aria-label]'), r=logo.getBoundingClientRect(), f=frame.getBoundingClientRect();
+     return {top:r.top-f.top,left:r.left-f.left,height:f.height,width:f.width};
+    });
+    assert.ok(cover.top < cover.height * .18 && cover.left < cover.width * .08, 'Cover logo belongs at top left');
+   }
   }
   await page.reload();
   assert.equal(await page.locator('html').getAttribute('lang'),'fr');

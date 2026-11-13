@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700;800&family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
-    
+
     <style>
         body {
             background-color: #09111E;
@@ -109,7 +109,7 @@
                 break-after: page;
             }
         }
-    
+
 /* Slide 13 only — sourced benchmark reference (third-party data, not EMPV tests). */
 #empv-benchmark-report { min-width: 0; }
 #empv-benchmark-report .bench-top {display:flex;justify-content:space-between;align-items:center;gap:5px;min-height:20px;padding-bottom:6px;color:#50bbc0;font-size:9px;font-weight:800;letter-spacing:.045em;}
@@ -223,6 +223,16 @@
 @media screen and (max-width: 1099px) {
   .slide11-hero-copy { min-height: 190px; }
 }
+
+/* Keep slide theme backgrounds above the generic white frame default. */
+.slide-frame.bg-navy { background-color:#101E35; }
+.slide-frame { print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+/* Move only the cover logo; reserve its old space so copy does not shift. */
+@media screen and (min-width:1100px), print {
+ .slide-frame:first-child .empv-cover-logo-slot { height:132px; }
+ .slide-frame:first-child .empv-cover-logo { position:absolute; top:8%; left:4.2%; }
+}
+
 </style>
 <style id="empv-brochure-layout-v3">
 /* EMPV brochure – v3: fill the 16:9 composition without changing its contents. */
@@ -1023,7 +1033,7 @@
     <!-- SLIDES CONTAINER -->
     <main class="slide-viewport">
 
-        <!-- 
+        <!--
 
         <!-- PAGINA 01 — COPERTINA -->
         <section class="slide-frame active bg-navy text-white relative">
@@ -1042,8 +1052,8 @@
                 </div>
 
                 <div class="max-w-3xl my-auto space-y-6">
-                    <div class="pt-1">
-                        <svg class="h-28 lg:h-32 w-auto" viewBox="0 0 165.61032 46.623398" role="img" aria-label="EMPV — Where humans meet S.I."><use href="#logo-empv-white"></use></svg>
+                    <div class="pt-1 empv-cover-logo-slot">
+                        <svg class="h-28 lg:h-32 w-auto empv-cover-logo" viewBox="0 0 165.61032 46.623398" role="img" aria-label="EMPV — Where humans meet S.I."><use href="#logo-empv-white"></use></svg>
                     </div>
 
                     <p class="font-display font-bold text-2xl lg:text-4xl text-white leading-snug max-w-2xl">
