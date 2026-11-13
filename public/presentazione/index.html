@@ -963,7 +963,8 @@
 /* Slide 05: keep captions in document flow, independently of photo cropping. */
 #empv-crm-example { display:flex; flex-direction:column; height:100%; min-height:0; margin:0; gap:12px; }
 #empv-crm-example .empv-crm-photo { flex:1 1 0; min-height:0; overflow:hidden; border-radius:16px; border:1px solid #cbd5e1; background:#101E35; box-shadow:0 16px 30px -16px rgba(0,0,0,.4); }
-#empv-crm-example img { display:block; width:100%; height:100%; object-fit:cover; object-position:56% center; }
+/* Crop the source photo's blurred side bands (about 8.5%) and thin top edge. */
+#empv-crm-example img { display:block; position:relative; left:-11%; top:-8px; width:122%; max-width:none; height:calc(100% + 16px); object-fit:cover; object-position:56% center; }
 #empv-crm-example .empv-crm-caption { flex:0 0 auto; min-width:0; color:#101E35; font-size:13px; line-height:1.45; overflow-wrap:anywhere; }
 #empv-crm-example .empv-crm-caption strong { display:block; color:#176B70; font-size:13px; font-weight:700; margin-bottom:3px; }
 #empv-crm-example .empv-crm-caption p { margin:0; }
