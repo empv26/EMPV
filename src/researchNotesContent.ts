@@ -2910,7 +2910,138 @@ export const researchNotes: ResearchNote[] = [
       it: "Prima di sostituire un gestionale, separa ciò che è vecchio da ciò che è ancora autorevole.",
       en: "Before replacing an ERP, separate what is old from what is still authoritative.",
     },
+  },,
+
+  {
+    id: "openai-chatgpt-wallet-agentic-payments",
+    index: "022",
+    slugs: {
+      it: "chatgpt-wallet-pagamenti-agenti-ai",
+      en: "chatgpt-wallet-ai-agent-payments",
+    },
+    title: {
+      it: "ChatGPT Wallet: gli agenti AI possono acquistare, ma il pagamento resta sotto il controllo dell'utente",
+      en: "ChatGPT Wallet: AI agents can make purchases, but payments remain under user control",
+    },
+    dek: {
+      it: "OpenAI introduce un sistema di pagamento per gli agenti AI sviluppato con Visa, Mastercard e American Express. Ogni transazione richiede ancora l'autorizzazione dell'utente, mentre le aziende devono adattare siti e sistemi antifrode per accettare acquisti avviati dagli agenti.",
+      en: "OpenAI is introducing an agent payment system developed with Visa, Mastercard and American Express. Every transaction still requires user authorization, while businesses need to make websites and fraud systems ready for purchases initiated by agents.",
+    },
+    category: {
+      it: "NEWS NOTE / AI COMMERCE",
+      en: "NEWS NOTE / AI COMMERCE",
+    },
+    tags: {
+      it: ["OpenAI", "ChatGPT Wallet", "Agentic Commerce", "Pagamenti", "E-commerce"],
+      en: ["OpenAI", "ChatGPT Wallet", "Agentic Commerce", "Payments", "E-commerce"],
+    },
+    published: "2026-11-16",
+    readingTime: {
+      it: "4 min",
+      en: "4 min",
+    },
+    sections: {
+      it: [
+        {
+          label: "01 / Il pagamento",
+          title: "L'agente arriva al checkout, ma non vede i dati della carta",
+          paragraphs: [
+            "Il 13 novembre 2026 [OpenAI ha presentato ChatGPT Wallet](https://openai.com/index/introducing-chatgpt-wallet/), un sistema che consente agli agenti di completare acquisti online per conto dell'utente. Il lancio avviene in collaborazione con American Express, Mastercard e Visa.",
+            "L'utente aggiunge una carta al Wallet una sola volta. Quando l'agente arriva al pagamento, mostra esercente, articoli, importo totale e carta selezionata. Dopo la conferma, l'utente autorizza l'operazione con una verifica di sicurezza, per esempio Face ID o impronta digitale.",
+            "A quel punto il circuito di pagamento genera un token: una credenziale sostitutiva con numero, codice di sicurezza e scadenza, utilizzabile per elaborare la transazione senza esporre i dati effettivi della carta all'agente o all'esercente. Il pagamento viene addebitato sulla carta scelta dall'utente."
+          ],
+        },
+        {
+          label: "02 / Il controllo",
+          title: "Ogni acquisto richiede ancora un'approvazione esplicita",
+          paragraphs: [
+            "Nel lancio iniziale l'agente può arrivare fino al pagamento, ma non può autorizzarlo autonomamente. L'utente controlla i dettagli e conferma ogni singola transazione attraverso la verifica richiesta dal dispositivo.",
+            "OpenAI dichiara che restano validi i programmi di ricompensa della carta e le tutele previste per le contestazioni ammissibili. Il rapporto commerciale rimane diretto tra cliente ed esercente: prezzo, evasione dell'ordine, resi e assistenza continuano a essere gestiti dal venditore.",
+            "L'azienda descrive anche una possibile evoluzione: acquisti delegati entro limiti di spesa, categorie o intervalli temporali predefiniti. Questa modalità è presentata come sviluppo futuro, non come una funzione già disponibile nel rilascio iniziale."
+          ],
+        },
+        {
+          label: "03 / Cosa devono fare le aziende",
+          title: "Il checkout può restare quello esistente, ma accesso e antifrode vanno verificati",
+          paragraphs: [
+            "Secondo il [Commerce Partner Playbook di OpenAI](https://developers.openai.com/commerce/guides/overview), ChatGPT Wallet è progettato per utilizzare i checkout web già esistenti: non è richiesto un sistema di pagamento separato né un'integrazione specifica del Wallet.",
+            "Il primo controllo riguarda l'accesso al sito. CDN, firewall e strumenti di sicurezza possono bloccare involontariamente il browser utilizzato dall'agente. OpenAI indica Web Bot Auth come metodo per riconoscere le richieste verificate e suggerisce di controllare le regole che filtrano il traffico automatizzato.",
+            "Il secondo riguarda i sistemi antifrode. I token di pagamento sono compatibili con i flussi di checkout esistenti, ma i sistemi di risk management possono interpretare una sessione avviata da un agente come attività anomala e rifiutare una transazione legittima. OpenAI sta lavorando con provider antifrode e processori di pagamento per migliorare il riconoscimento di questi acquisti."
+          ],
+        },
+        {
+          label: "04 / Dati e integrazioni",
+          title: "Cataloghi aggiornati e strumenti accessibili agli agenti riducono gli attriti",
+          paragraphs: [
+            "Per aiutare gli agenti a trovare prodotti e condizioni corrette, OpenAI suggerisce alle aziende di mantenere aggiornate le informazioni del profilo e, per il commercio al dettaglio, di fornire feed con prodotti, prezzi e disponibilità.",
+            "Le imprese possono inoltre esporre funzioni attraverso plugin e strumenti WebMCP, per esempio per verificare disponibilità, gestire un carrello o avviare altre operazioni sui sistemi esistenti. Queste integrazioni ampliano ciò che un agente può fare, ma sono distinte dall'utilizzo del checkout web standard.",
+            "La priorità pratica è quindi mantenere coerenti schede prodotto, prezzi, disponibilità e condizioni commerciali, verificando allo stesso tempo che sito, checkout e controlli di rischio non impediscano un acquisto avviato da un agente."
+          ],
+        },
+        {
+          label: "05 / Disponibilità e limiti",
+          title: "Il lancio parte dagli Stati Uniti e non garantisce che ogni ordine vada a buon fine",
+          paragraphs: [
+            "Al momento dell'annuncio, ChatGPT Wallet viene distribuito gradualmente tramite Dots agli utenti ChatGPT Pro di almeno 18 anni negli Stati Uniti, con una carta idonea emessa negli USA e un indirizzo di fatturazione statunitense. La disponibilità non è quindi generale e non risulta estesa all'Italia.",
+            "La documentazione di OpenAI precisa inoltre che alcuni siti potrebbero non supportare gli acquisti effettuati dagli agenti. L'approvazione del pagamento non equivale alla conferma dell'ordine: dopo il checkout occorre verificare la conferma inviata dall'esercente.",
+            "Per le aziende, il Wallet è un primo passo verso acquisti gestiti da agenti, ma l'affidabilità dipende ancora da elementi ordinari dell'e-commerce: accessibilità del sito, correttezza dei dati, compatibilità del checkout e decisioni dei sistemi antifrode."
+          ],
+        },
+      ],
+      en: [
+        {
+          label: "01 / The payment",
+          title: "The agent reaches checkout without seeing the card details",
+          paragraphs: [
+            "On November 13, 2026, [OpenAI introduced ChatGPT Wallet](https://openai.com/index/introducing-chatgpt-wallet/), a system that lets agents complete online purchases on a user's behalf. The launch is being developed with American Express, Mastercard and Visa.",
+            "The user adds a card to Wallet once. When the agent reaches checkout, it presents the merchant, items, total and selected card. The user then authorizes the transaction with a security check, such as Face ID or a fingerprint scan.",
+            "The payment network generates a token: a substitute credential containing a card number, security code and expiration date. It can be used to process the transaction without exposing the user's actual card details to the agent or the merchant. The charge is made to the card selected by the user."
+          ],
+        },
+        {
+          label: "02 / User control",
+          title: "Every purchase still requires explicit approval",
+          paragraphs: [
+            "In the initial release, the agent can reach the payment step but cannot authorize it on its own. The user reviews the details and confirms each individual transaction through the required device security check.",
+            "OpenAI says existing card rewards and protections for eligible disputes remain in place. The commercial relationship stays between the customer and the merchant: pricing, fulfillment, returns and customer service remain the seller's responsibility.",
+            "OpenAI also describes a possible next step: delegated purchases within predefined spending limits, categories or time periods. This is presented as a future capability, not a feature available in the initial release."
+          ],
+        },
+        {
+          label: "03 / Business requirements",
+          title: "Existing checkout flows can remain, but access and fraud controls need attention",
+          paragraphs: [
+            "According to OpenAI's [Commerce Partner Playbook](https://developers.openai.com/commerce/guides/overview), ChatGPT Wallet is designed to work with existing web checkout flows. A separate payment system or Wallet-specific integration is not required.",
+            "The first area to check is website access. CDNs, firewalls and security tools may unintentionally block the browser used by an agent. OpenAI points to Web Bot Auth as a way to recognize verified requests and recommends reviewing rules that filter automated traffic.",
+            "The second area is fraud prevention. Payment tokens work with existing checkout flows, but risk systems may interpret an agent-initiated session as unusual activity and decline a legitimate transaction. OpenAI is working with fraud providers and payment processors to improve recognition of these purchases."
+          ],
+        },
+        {
+          label: "04 / Data and integrations",
+          title: "Accurate catalogs and agent-accessible tools reduce friction",
+          paragraphs: [
+            "To help agents find accurate products and terms, OpenAI recommends keeping business profile information up to date and, for retail businesses, providing feeds containing products, prices and availability.",
+            "Businesses can also expose capabilities through plugins and WebMCP tools, for example to check availability, manage a cart or trigger other actions in existing systems. These integrations expand what an agent can do, but are separate from using a standard web checkout.",
+            "The practical priority is to keep product information, prices, availability and commercial terms consistent, while ensuring that the website, checkout and risk controls do not prevent an agent-initiated purchase."
+          ],
+        },
+        {
+          label: "05 / Availability and limitations",
+          title: "The rollout starts in the US, and approval does not guarantee a completed order",
+          paragraphs: [
+            "At launch, ChatGPT Wallet is gradually rolling out through Dots to ChatGPT Pro users aged 18 or older in the United States, with an eligible US-issued card and a US billing address. It is not generally available and has not been extended to Italy.",
+            "OpenAI's documentation also notes that some websites may not support purchases made by agents. Approving a payment does not confirm that an order has been placed: users should check the merchant's confirmation after checkout.",
+            "For businesses, Wallet is an early step toward agent-led purchases, but reliability still depends on familiar e-commerce requirements: website accessibility, accurate data, checkout compatibility and fraud-system decisions."
+          ],
+        },
+      ],
+    },
+    takeaway: {
+      it: "ChatGPT Wallet porta gli agenti fino al pagamento, ma ogni acquisto richiede ancora l'autorizzazione dell'utente. Per le aziende, la preparazione riguarda soprattutto dati di prodotto, accesso al sito, checkout e sistemi antifrode.",
+      en: "ChatGPT Wallet brings agents to the payment step, but every purchase still requires user authorization. For businesses, readiness is mainly about product data, website access, checkout and fraud systems.",
+    },
   },
+
 ];
 
 export function getResearchNoteById(id: string): ResearchNote | undefined {
