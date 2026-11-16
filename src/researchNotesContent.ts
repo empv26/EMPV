@@ -2910,7 +2910,7 @@ export const researchNotes: ResearchNote[] = [
       it: "Prima di sostituire un gestionale, separa ciò che è vecchio da ciò che è ancora autorevole.",
       en: "Before replacing an ERP, separate what is old from what is still authoritative.",
     },
-  },,
+  },
 
   {
     id: "openai-chatgpt-wallet-agentic-payments",
