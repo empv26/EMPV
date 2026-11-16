@@ -407,6 +407,16 @@
           "title": "Browser Use 1.0: web agents with Python and CDP | EMPV",
           "description": "Browser Use 1.0 rebuilds web agents with persistent Python and direct CDP control. Architecture, benchmarks, costs and limitations."
         }
+      },
+      "openai-chatgpt-wallet-agentic-payments": {
+        "it": {
+          "title": "ChatGPT Wallet: gli agenti AI possono acquistare, ma il pagamento resta sotto il controllo dell'utente | EMPV",
+          "description": "ChatGPT Wallet porta gli agenti AI fino al pagamento, ma ogni acquisto richiede l'autorizzazione dell'utente. Disponibilità iniziale, token di pagamento e implicazioni per le aziende."
+        },
+        "en": {
+          "title": "ChatGPT Wallet: AI agents can make purchases, but payments remain under user control | EMPV",
+          "description": "ChatGPT Wallet brings AI agents to checkout, while every purchase still requires user approval. Initial availability, payment tokens and implications for businesses."
+        }
       }
     }
   }
