@@ -3042,7 +3042,7 @@ export const researchNotes: ResearchNote[] = [
     },
   },
 
-];
+].sort((a, b) => b.published.localeCompare(a.published) || b.index.localeCompare(a.index));
 
 export function getResearchNoteById(id: string): ResearchNote | undefined {
   return researchNotes.find((note) => note.id === id);
