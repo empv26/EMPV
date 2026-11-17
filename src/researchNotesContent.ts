@@ -3042,6 +3042,179 @@ export const researchNotes: ResearchNote[] = [
     },
   },
 
+  {
+    "id": "sme-job-margin-control",
+    "index": "023",
+    "slugs": {
+      "it": "commesse-basso-margine-controllo-costi-variazioni",
+      "en": "low-margin-jobs-track-costs-changes"
+    },
+    "title": {
+      "it": "Commesse a basso margine: come controllare costi e variazioni durante i lavori",
+      "en": "Low-margin jobs: how to track costs and changes during delivery"
+    },
+    "dek": {
+      "it": "Accettare un preventivo non garantisce che il lavoro sarà redditizio. Per le imprese che operano su commessa, collegare preventivi, acquisti, ore lavorate e variazioni permette di individuare gli scostamenti prima della chiusura del lavoro.",
+      "en": "An accepted quotation does not guarantee a profitable job. For Italian SMEs working on individual contracts, connecting estimates, purchases, labour hours and scope changes can reveal cost overruns before work is completed."
+    },
+    "category": {
+      "it": "SYSTEMS NOTE / OPERATIONS",
+      "en": "SYSTEMS NOTE / OPERATIONS"
+    },
+    "tags": {
+      "it": [
+        "PMI italiane",
+        "Controllo commesse",
+        "Margini",
+        "Preventivi",
+        "Costi",
+        "Gestionali"
+      ],
+      "en": [
+        "Italian SMEs",
+        "Job costing",
+        "Margins",
+        "Quotations",
+        "Cost control",
+        "ERP"
+      ]
+    },
+    "published": "2026-11-17",
+    "readingTime": {
+      "it": "5 min",
+      "en": "5 min"
+    },
+    "socialVersion": "20261117a",
+    "sections": {
+      "it": [
+        {
+          "label": "01 / Le imprese italiane",
+          "title": "Le imprese italiane segnalano il problema",
+          "paragraphs": [
+            "Nel gennaio 2026, [Confartigianato Lombardia](https://www.confartigianato-lombardia.it/post/osservatorio-mpi-sondaggio-d-ascolto-bilancio-2025-e-aspettative-2026-delle-mpmi-lombarde) ha pubblicato i risultati di un sondaggio condotto su 1.366 micro e piccole imprese e imprese artigiane associate.",
+            "Il 63% dei partecipanti ha segnalato l'aumento dei costi di produzione tra le difficoltà incontrate nel 2025. Tra le decisioni giudicate peggiori dagli imprenditori figurano l'accettazione di lavori a basso margine o sottocosto e il mancato adeguamento dei prezzi all'aumento dei costi.",
+            "Il contesto è confermato anche dai [dati ISTAT di settembre 2026](https://www.istat.it/comunicato-stampa/prezzi-alla-produzione-dellindustria-e-delle-costruzioni-settembre-2026/): i prezzi alla produzione dell'industria sono aumentati del 13,8% rispetto all'anno precedente, principalmente per l'energia. Al netto della componente energetica, l'incremento sul mercato interno è stato del 3,5%.",
+            "Queste statistiche non descrivono il costo di ogni commessa. Mostrano però perché le stime economiche preparate prima di iniziare un lavoro possano diventare rapidamente meno affidabili."
+          ]
+        },
+        {
+          "label": "02 / Il margine",
+          "title": "Un preventivo approvato non determina il margine finale",
+          "paragraphs": [
+            "Consideriamo una piccola azienda impiantistica che accetta una commessa per 12.000 euro, IVA esclusa.",
+            "Il preventivo prevede 9.000 euro di costi diretti, tra materiali, manodopera e fornitori esterni. Il margine inizialmente stimato è quindi di 3.000 euro, pari al 25% del ricavo.",
+            "Durante l'esecuzione emergono costi aggiuntivi: 800 euro di materiali, 600 euro di manodopera e 200 euro di lavorazioni esterne.",
+            "Se il prezzo concordato con il cliente rimane invariato, il costo diretto della commessa sale a 10.600 euro. Il margine scende a 1.400 euro, pari a circa l'11,7%.",
+            "L'esempio è illustrativo. I valori indicano un margine sui costi diretti, prima delle spese generali e di altre componenti necessarie a determinare il risultato economico complessivo.",
+            "La perdita di marginalità non dipende necessariamente da un errore di preventivazione. Possono intervenire variazioni richieste dal cliente, attività impreviste, ritardi o costi di acquisto diversi da quelli stimati.",
+            "Il problema operativo emerge quando queste informazioni rimangono distribuite tra documenti, email, acquisti e registrazioni delle ore lavorate."
+          ]
+        },
+        {
+          "label": "03 / Controllo in corso",
+          "title": "Il controllo deve iniziare prima del consuntivo",
+          "paragraphs": [
+            "Per seguire economicamente una commessa servono almeno tre riferimenti distinti.",
+            "Il primo è il preventivo accettato, che definisce ricavo, attività comprese, costi stimati e condizioni concordate. Questa versione iniziale deve rimanere consultabile anche dopo eventuali modifiche.",
+            "Il secondo è il costo effettivamente sostenuto, composto da materiali utilizzati, ore lavorate, lavorazioni esterne e altri costi direttamente attribuibili al lavoro. Ogni registrazione deve essere associata alla commessa corretta.",
+            "Il terzo è la stima del costo a completamento. Oltre ai costi già sostenuti, considera gli impegni ancora aperti e ciò che servirà per terminare il lavoro.",
+            "Una commessa può apparire economicamente positiva se si osservano soltanto le fatture dei fornitori già ricevute. Ma potrebbero mancare materiali ordinati, lavorazioni da completare e ore di personale non ancora registrate.",
+            "Per questa ragione, il confronto dovrebbe distinguere il margine previsto all'accettazione, quello risultante dai dati consuntivi disponibili e il margine stimato al completamento."
+          ]
+        },
+        {
+          "label": "04 / Sistemi aziendali",
+          "title": "Come collegare informazioni già presenti in azienda",
+          "paragraphs": [
+            "Una soluzione digitale può partire dai sistemi che l'impresa utilizza già, senza richiederne necessariamente la sostituzione.",
+            "Il gestionale può continuare a gestire anagrafiche, acquisti e documenti fiscali. Il sistema operativo di commessa collega questi dati al lavoro corrispondente, insieme alle ore, agli avanzamenti e alle variazioni concordate con il cliente.",
+            "Per esempio, quando il responsabile registra un acquisto aggiuntivo o modifica la stima delle ore necessarie, il sistema può aggiornare il costo previsto a completamento. Se il margine scende sotto una soglia definita dall'impresa, viene segnalato lo scostamento.",
+            "La segnalazione deve mostrare anche la causa: aumento del costo materiali, ore superiori al previsto, attività aggiuntive non valorizzate oppure modifiche ancora in attesa di approvazione.",
+            "L'eventuale revisione del prezzo, la trattativa con il cliente e l'approvazione di una variante rimangono decisioni delle persone responsabili.",
+            "Per lavori semplici può essere sufficiente un foglio strutturato, purché i dati siano aggiornati. Per aziende con molte commesse contemporanee, più operatori e documenti distribuiti, l'integrazione tra sistemi può ridurre le ricostruzioni manuali.",
+            "È un'estensione del problema affrontato nella nostra [Research Note sull'integrazione dei gestionali](https://empv.it/it/research-notes/integrare-gestionale-senza-sostituirlo/): prima di sostituire un software centrale, è utile capire quali informazioni mancano al processo operativo."
+          ]
+        },
+        {
+          "label": "05 / Verifica",
+          "title": "Che cosa bisogna verificare prima di sviluppare",
+          "paragraphs": [
+            "Il sistema può produrre indicatori affidabili soltanto se le informazioni utilizzate sono coerenti.",
+            "Il costo della manodopera deve seguire criteri condivisi; le spese devono essere attribuite alla commessa corretta; i materiali acquistati ma non ancora utilizzati devono essere distinti dai consumi effettivi. Anche le variazioni richieste dal cliente devono avere uno stato chiaro, soprattutto quando comportano un nuovo prezzo.",
+            "Una prima verifica può essere condotta su un numero limitato di commesse, confrontando i risultati del sistema con quelli ricostruiti dall'amministrazione.",
+            "Le misure utili sono la completezza dei costi registrati, il tempo necessario per aggiornare un consuntivo, il numero di scostamenti individuati durante il lavoro e la differenza fra margine previsto e risultato finale.",
+            "Il controllo dei margini non elimina aumenti dei prezzi, imprevisti o ritardi. Permette di identificarne prima l'effetto economico, a condizione che i dati vengano registrati e che qualcuno abbia la responsabilità di intervenire."
+          ]
+        }
+      ],
+      "en": [
+        {
+          "label": "01 / Italian businesses",
+          "title": "Italian small businesses are reporting margin pressure",
+          "paragraphs": [
+            "In January 2026, [Confartigianato Lombardia](https://www.confartigianato-lombardia.it/post/osservatorio-mpi-sondaggio-d-ascolto-bilancio-2025-e-aspettative-2026-delle-mpmi-lombarde) published a survey involving 1,366 associated micro and small businesses and craft enterprises.",
+            "Some 63% of respondents identified rising production costs among the difficulties they faced in 2025. Business owners also reported that accepting low-margin or below-cost work, and failing to adjust prices as costs increased, were among their poorest decisions.",
+            "[ISTAT's September 2026 data](https://www.istat.it/comunicato-stampa/prezzi-alla-produzione-dellindustria-e-delle-costruzioni-settembre-2026/) provides additional context. Industrial producer prices rose 13.8% year over year, largely driven by energy. Excluding energy, domestic producer prices increased by 3.5%.",
+            "These figures do not describe the economics of individual contracts. They illustrate why estimates prepared before a job begins can become less reliable as conditions change."
+          ]
+        },
+        {
+          "label": "02 / The margin",
+          "title": "The quoted price is not the final margin",
+          "paragraphs": [
+            "Consider a small installation company accepting a contract worth €12,000, excluding VAT.",
+            "Its estimate includes €9,000 in direct costs for materials, labour and subcontractors. The expected margin is €3,000, or 25% of revenue.",
+            "During delivery, the company incurs an additional €800 in materials, €600 in labour and €200 in subcontracted work.",
+            "If the agreed contract price remains unchanged, direct costs rise to €10,600. The remaining margin falls to €1,400, approximately 11.7% of revenue.",
+            "This is an illustrative calculation of margin after direct costs. Overheads and other costs must still be considered when assessing the overall financial result.",
+            "The difference may arise from customer changes, unexpected work, delays or purchasing prices that differ from the original estimate.",
+            "The operational difficulty is keeping those changes connected when the information sits across documents, emails, purchasing records and timesheets."
+          ]
+        },
+        {
+          "label": "03 / During delivery",
+          "title": "Job costing should not end with the final report",
+          "paragraphs": [
+            "Monitoring a contract requires three different financial views.",
+            "The first is the accepted estimate, which establishes the original revenue, scope, expected costs and commercial conditions. The approved baseline should remain available after later revisions.",
+            "The second is the actual cost incurred. Materials consumed, labour time, subcontracted services and other directly attributable expenses must be assigned to the correct job.",
+            "The third is the estimate at completion, which includes expected remaining expenditure and outstanding commitments without counting the same costs twice.",
+            "A job may look profitable when only received supplier invoices are considered. Yet outstanding purchase orders, unfinished work and unrecorded labour time may still change the outcome.",
+            "The useful comparison is therefore between the original expected margin, the margin implied by recorded actuals, and the projected margin at completion."
+          ]
+        },
+        {
+          "label": "04 / Existing systems",
+          "title": "Connecting existing business systems",
+          "paragraphs": [
+            "A digital solution does not necessarily require replacing the company's ERP.",
+            "The existing system can continue to manage customers, suppliers, purchasing and accounting. A job-level operational layer can connect these records to labour time, progress updates and approved changes.",
+            "When a purchasing cost changes or the project manager revises the expected hours, the projected margin can be recalculated.",
+            "If it falls below an agreed threshold, the system can flag the variance and show its cause: higher material costs, additional labour, unpriced work or pending change approvals.",
+            "Negotiating additional revenue, changing commercial terms and authorising scope modifications remain human responsibilities.",
+            "For simple operations, a maintained spreadsheet may be sufficient. Businesses managing multiple concurrent jobs, teams and data sources may benefit from more structured integration.",
+            "This builds on our earlier [Research Note about integrating an ERP rather than replacing it](https://empv.it/en/research-notes/integrating-an-erp-without-replacing-it/)."
+          ]
+        },
+        {
+          "label": "05 / Testing",
+          "title": "What needs to be tested",
+          "paragraphs": [
+            "A margin dashboard is only as reliable as the records behind it.",
+            "Labour cost rates must be defined consistently. Expenses must be assigned to the right contracts. Purchased materials should not automatically be treated as consumed materials. Customer-requested changes need clear ownership and approval status.",
+            "An initial pilot can compare a small sample of jobs against financial results reconstructed by the company's administrative team.",
+            "Useful measures include cost-record completeness, time spent preparing job reports, variances detected before completion and differences between projected and final margins.",
+            "Software cannot eliminate price increases or unexpected work. Its value depends on making the financial impact visible early enough for the business to respond."
+          ]
+        }
+      ]
+    },
+    "takeaway": {
+      "it": "Una commessa va seguita dal preventivo al costo stimato a completamento: dati attribuiti correttamente e variazioni approvate aiutano a rilevare prima l'erosione del margine.",
+      "en": "Track a job from the accepted estimate through projected cost at completion. Accurate cost attribution and approved changes make margin erosion visible earlier."
+    }
+  },
+
 ].sort((a, b) => b.published.localeCompare(a.published) || b.index.localeCompare(a.index));
 
 export function getResearchNoteById(id: string): ResearchNote | undefined {
