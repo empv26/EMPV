@@ -417,6 +417,16 @@
           "title": "ChatGPT Wallet: AI agents can make purchases, but payments remain under user control | EMPV",
           "description": "ChatGPT Wallet brings AI agents to checkout, while every purchase still requires user approval. Initial availability, payment tokens and implications for businesses."
         }
+      },
+      "sme-job-margin-control": {
+        "it": {
+          "title": "Commesse a basso margine: controllo dei costi e delle variazioni | EMPV",
+          "description": "Come monitorare il margine delle commesse nelle PMI: preventivi, costi diretti, variazioni approvate e costo previsto a completamento."
+        },
+        "en": {
+          "title": "Low-margin jobs: tracking costs and scope changes | EMPV",
+          "description": "How SMEs can track job margins through accepted quotations, direct costs, approved changes and the projected cost at completion."
+        }
       }
     }
   }
