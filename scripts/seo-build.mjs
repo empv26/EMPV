@@ -75,9 +75,32 @@ function wrapCardTitle(title, maxChars = 27, maxLines = 4) {
   return lines.slice(0, maxLines);
 }
 
-function cardVisual(noteId) {
+function cardVisual(noteId, lang = "it") {
   const orange = "#ff5a24";
   const faint = "#d8d6cf";
+
+  if (noteId === "sme-job-margin-control") {
+    // Illustrative job cost breakdown; 25% and 11.7% are not survey findings.
+    const copy = lang === "it"
+      ? { kicker: "ESEMPIO / COSTI DIRETTI", initial: "MARGINE PREVISTO", actual: "MARGINE AGGIORNATO", caption: "RICAVO INVARIATO / €12.000" }
+      : { kicker: "EXAMPLE / DIRECT COSTS", initial: "PLANNED MARGIN", actual: "UPDATED MARGIN", caption: "REVENUE UNCHANGED / €12,000" };
+    return `
+      <g transform="translate(808 169)" font-family="Arial, Helvetica, sans-serif">
+        <text x="0" y="0" font-size="14" font-weight="700" letter-spacing="1.4" fill="#77746e">${xml(copy.kicker)}</text>
+        <path d="M0 18 H307" stroke="#d8d6cf" stroke-width="1.5"/>
+        <rect x="0" y="42" width="308" height="294" rx="14" fill="#f7f4ed" stroke="#d8d6cf" stroke-width="1.5"/>
+        <text x="18" y="78" font-size="13" font-weight="700" letter-spacing="0.6" fill="#696862">${xml(copy.initial)}</text>
+        <rect x="18" y="96" width="272" height="32" rx="5" fill="#dfdcd4"/>
+        <path d="M221 96 H285 Q290 96 290 101 V123 Q290 128 285 128 H221Z" fill="#ff5a24"/>
+        <text x="18" y="149" font-size="32" font-weight="700" fill="#171715">25%</text>
+        <path d="M18 167 H290" stroke="#dedbd4"/>
+        <text x="18" y="201" font-size="13" font-weight="700" letter-spacing="0.6" fill="#696862">${xml(copy.actual)}</text>
+        <rect x="18" y="219" width="272" height="32" rx="5" fill="#dfdcd4"/>
+        <path d="M258 219 H285 Q290 219 290 224 V246 Q290 251 285 251 H258Z" fill="#ff5a24"/>
+        <text x="18" y="272" font-size="32" font-weight="700" fill="#ff5a24">11.7%</text>
+        <text x="18" y="314" font-size="12" font-weight="700" letter-spacing="0.6" fill="#77746e">${xml(copy.caption)}</text>
+      </g>`;
+  }
 
   if (noteId === "google-workspace-mcp-oauth-agents") {
     // Technical schematic: agent client -> OAuth identity -> Workspace MCP.
@@ -559,10 +582,14 @@ function approvedDotsSocialCardSvg(note, lang) {
 function socialCardSvg(note, lang) {
   if (note.id === "openai-dots") return approvedDotsSocialCardSvg(note, lang);
   const title = note.title[lang];
-  const lines = note.id === "google-workspace-mcp-oauth-agents"
-    ? (lang === "it" ? ["Google Workspace MCP:", "nuove regole OAuth", "per gli agenti AI"] : ["Google Workspace MCP:", "new OAuth rules", "for AI agents"])
-    : wrapCardTitle(title);
-  const titleSize = lines.length >= 4 ? 49 : lines.length === 3 ? 54 : 60;
+  const lines = note.id === "sme-job-margin-control"
+    ? (lang === "it"
+      ? ["Commesse a basso margine:", "come controllare costi", "e variazioni durante i lavori"]
+      : ["Low-margin jobs:", "how to track costs and", "changes during delivery"])
+    : note.id === "google-workspace-mcp-oauth-agents"
+      ? (lang === "it" ? ["Google Workspace MCP:", "nuove regole OAuth", "per gli agenti AI"] : ["Google Workspace MCP:", "new OAuth rules", "for AI agents"])
+      : wrapCardTitle(title);
+  const titleSize = note.id === "sme-job-margin-control" ? 47 : lines.length >= 4 ? 49 : lines.length === 3 ? 54 : 60;
   const lineHeight = Math.round(titleSize * 1.04);
   const titleY = 230;
   const titleMarkup = lines.map((line, i) =>
@@ -580,7 +607,7 @@ function socialCardSvg(note, lang) {
     ${titleMarkup}
     <text x="70" y="566" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#171715">empv.it</text>
     <text x="1130" y="566" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="500" fill="#696862">${xml(note.published)}</text>
-    ${cardVisual(note.id)}
+    ${cardVisual(note.id, lang)}
   </svg>`;
 }
 
