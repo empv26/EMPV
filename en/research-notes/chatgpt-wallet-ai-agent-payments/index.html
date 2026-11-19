@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const validBackgrounds = new Set([
+          "none", "particles", "aero", "beams", "threads", "waves", "galaxy",
+          "orb", "silk", "sliced-waves", "side-rays", "light-tunnel",
+          "scanner", "prism", "dither"
+        ]);
+        const validPalettes = new Set([
+          "mist", "zinc", "mauve", "olive", "taupe", "amber", "blue", "indigo"
+        ]);
+        const aliases = { steel: "mist", sage: "olive" };
+
+        let stored = {};
+        try {
+          stored = JSON.parse(localStorage.getItem("empv-visual-preferences") || "{}") || {};
+        } catch {}
+
+        const params = new URLSearchParams(location.search);
+        const requestedBackground = params.get("bg");
+        const requestedPalette = params.get("palette");
+        const aliasedPalette = requestedPalette && aliases[requestedPalette]
+          ? aliases[requestedPalette]
+          : requestedPalette;
+
+        const background = validBackgrounds.has(requestedBackground)
+          ? requestedBackground
+          : validBackgrounds.has(stored.background)
+            ? stored.background
+            : "scanner";
+
+        const palette = validPalettes.has(aliasedPalette)
+          ? aliasedPalette
+          : validPalettes.has(stored.palette)
+            ? stored.palette
+            : "blue";
+
+        root.dataset.visualTheme = background === "none" ? "default" : "galaxy";
+        root.dataset.galaxyPalette = palette;
+
+        try {
+          const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+          const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (finePointer && !reducedMotion) {
+            root.classList.add("empv-custom-cursor-enabled");
+          }
+        } catch {}
+      })();
+    </script>
+    <meta name="theme-color" content="#ecebe5" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <meta name="google-site-verification" content="UnScA5DO68Suf6LYORZ-bKoSW_KV0KH6diJ9HCuVAqg" />
+    <meta name="description" content="ChatGPT Wallet brings AI agents to checkout, while every purchase still requires user approval. Initial availability, payment tokens and implications for businesses." />
+    <title>ChatGPT Wallet: AI agents can make purchases, but payments remain under user control | EMPV</title>
+    <script type="module" crossorigin src="/assets/index-BwC6sGjJ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cqsd0oq4.css">
+      <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://empv.it/en/research-notes/chatgpt-wallet-ai-agent-payments/" />
+    <link rel="alternate" hreflang="it" href="https://empv.it/it/research-notes/chatgpt-wallet-pagamenti-agenti-ai/" />
+    <link rel="alternate" hreflang="en" href="https://empv.it/en/research-notes/chatgpt-wallet-ai-agent-payments/" />
+    <link rel="alternate" hreflang="x-default" href="https://empv.it/it/research-notes/chatgpt-wallet-pagamenti-agenti-ai/" />
+    <link rel="describedby" href="https://empv.it/llms.txt" type="text/markdown" />
+    <meta property="og:title" content="ChatGPT Wallet: AI agents can make purchases, but payments remain under user control | EMPV" />
+    <meta property="og:description" content="ChatGPT Wallet brings AI agents to checkout, while every purchase still requires user approval. Initial availability, payment tokens and implications for businesses." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://empv.it/en/research-notes/chatgpt-wallet-ai-agent-payments/" />
+    <meta property="og:site_name" content="EMPV" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://empv.it/social/research-notes/openai-chatgpt-wallet-agentic-payments-en-20261116.png" />
+    <meta property="og:image:url" content="https://empv.it/social/research-notes/openai-chatgpt-wallet-agentic-payments-en-20261116.png" />
+    <meta property="og:image:secure_url" content="https://empv.it/social/research-notes/openai-chatgpt-wallet-agentic-payments-en-20261116.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ChatGPT Wallet: AI agents can make purchases, but payments remain under user control" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@EMPV26" />
+    <meta name="twitter:title" content="ChatGPT Wallet: AI agents can make purchases, but payments remain under user control | EMPV" />
+    <meta name="twitter:description" content="ChatGPT Wallet brings AI agents to checkout, while every purchase still requires user approval. Initial availability, payment tokens and implications for businesses." />
+    <meta name="twitter:image" content="https://empv.it/social/research-notes/openai-chatgpt-wallet-agentic-payments-en-20261116.png" />
+    <meta name="twitter:image:alt" content="ChatGPT Wallet: AI agents can make purchases, but payments remain under user control" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://empv.it/#organization","name":"EMPV","url":"https://empv.it","email":"hello@empv.it","telephone":"+39 379 243 8705","logo":{"@type":"ImageObject","@id":"https://empv.it/#logo","url":"https://empv.it/empv-logo-192.png","contentUrl":"https://empv.it/empv-logo-192.png","width":192,"height":192},"image":{"@id":"https://empv.it/#logo"},"sameAs":["https://www.linkedin.com/company/emp26/","https://x.com/EMPV26","https://github.com/empv26"],"address":{"@type":"PostalAddress","addressLocality":"Bergamo","addressCountry":"IT"},"member":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}]},{"@type":"Person","@id":"https://empv.it/#enrico-peruffo","name":"Enrico Peruffo","jobTitle":"AI Systems & Architecture","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"Person","@id":"https://empv.it/#michele-valleri","name":"Michele Valleri","jobTitle":"AI Product & Process Design","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"WebSite","@id":"https://empv.it/#website","name":"EMPV","url":"https://empv.it","inLanguage":["it","en"],"publisher":{"@id":"https://empv.it/#organization"}},{"@type":"WebPage","@id":"https://empv.it/en/research-notes/chatgpt-wallet-ai-agent-payments/#webpage","url":"https://empv.it/en/research-notes/chatgpt-wallet-ai-agent-payments/","name":"ChatGPT Wallet: AI agents can make purchases, but payments remain under user control | EMPV","description":"ChatGPT Wallet brings AI agents to checkout, while every purchase still requires user approval. Initial availability, payment tokens and implications for businesses.","inLanguage":"en","isPartOf":{"@id":"https://empv.it/#website"},"about":{"@id":"https://empv.it/#organization"}},{"@type":"Article","@id":"https://empv.it/en/research-notes/chatgpt-wallet-ai-agent-payments/#article","headline":"ChatGPT Wallet: AI agents can make purchases, but payments remain under user control","description":"OpenAI is introducing an agent payment system developed with Visa, Mastercard and American Express. Every transaction still requires user authorization, while businesses need to make websites and fraud systems ready for purchases initiated by agents.","datePublished":"2026-11-16","dateModified":"2026-11-16","inLanguage":"en","keywords":["OpenAI","ChatGPT Wallet","Agentic Commerce","Payments","E-commerce"],"image":{"@type":"ImageObject","url":"https://empv.it/social/research-notes/openai-chatgpt-wallet-agentic-payments-en-20261116.png","width":1200,"height":630},"mainEntityOfPage":{"@id":"https://empv.it/en/research-notes/chatgpt-wallet-ai-agent-payments/#webpage"},"author":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}],"publisher":{"@id":"https://empv.it/#organization"}}]}</script>
+  </head>
+  <body>
+    <div id="root"><div class="detail-shell notes-shell" data-prerendered="true"><header class="topbar detail-topbar"><a class="wordmark" href="/en/" aria-label="EMPV home">EMPV</a><a class="detail-nav-back" href="/en/research-notes/">Research Notes</a><a class="lang-switch" href="/it/research-notes/chatgpt-wallet-pagamenti-agenti-ai/" hreflang="it">IT</a></header><main><section class="detail-hero research-note-hero"><div class="detail-hero-inner"><div class="detail-kicker-row"><span class="eyebrow">EMPV / RESEARCH NOTES</span><span class="detail-index">NOTE / 022</span></div><div class="detail-title-wrap detail-title-project research-note-title"><p class="detail-kicker">NEWS NOTE / AI COMMERCE</p><h1>ChatGPT Wallet: AI agents can make purchases, but payments remain under user control</h1></div><div class="detail-hero-bottom"><p class="detail-lead">OpenAI is introducing an agent payment system developed with Visa, Mastercard and American Express. Every transaction still requires user authorization, while businesses need to make websites and fraud systems ready for purchases initiated by agents.</p><div class="detail-status"><span>Published</span><strong>2026-11-16 · 4 min</strong></div></div><div class="tags detail-tags"><span>OpenAI</span><span>ChatGPT Wallet</span><span>Agentic Commerce</span><span>Payments</span><span>E-commerce</span></div></div></section><section class="detail-blocks section-pad research-note-blocks"><article class="detail-block research-note-block"><div class="eyebrow">01 / The payment</div><div class="detail-block-main"><h2>The agent reaches checkout without seeing the card details</h2><div class="research-note-copy"><p>On November 13, 2026, <a href="https://openai.com/index/introducing-chatgpt-wallet/" target="_blank" rel="noreferrer noopener">OpenAI introduced ChatGPT Wallet</a>, a system that lets agents complete online purchases on a user's behalf. The launch is being developed with American Express, Mastercard and Visa.</p><p>The user adds a card to Wallet once. When the agent reaches checkout, it presents the merchant, items, total and selected card. The user then authorizes the transaction with a security check, such as Face ID or a fingerprint scan.</p><p>The payment network generates a token: a substitute credential containing a card number, security code and expiration date. It can be used to process the transaction without exposing the user's actual card details to the agent or the merchant. The charge is made to the card selected by the user.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">02 / User control</div><div class="detail-block-main"><h2>Every purchase still requires explicit approval</h2><div class="research-note-copy"><p>In the initial release, the agent can reach the payment step but cannot authorize it on its own. The user reviews the details and confirms each individual transaction through the required device security check.</p><p>OpenAI says existing card rewards and protections for eligible disputes remain in place. The commercial relationship stays between the customer and the merchant: pricing, fulfillment, returns and customer service remain the seller's responsibility.</p><p>OpenAI also describes a possible next step: delegated purchases within predefined spending limits, categories or time periods. This is presented as a future capability, not a feature available in the initial release.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">03 / Business requirements</div><div class="detail-block-main"><h2>Existing checkout flows can remain, but access and fraud controls need attention</h2><div class="research-note-copy"><p>According to OpenAI's <a href="https://developers.openai.com/commerce/guides/overview" target="_blank" rel="noreferrer noopener">Commerce Partner Playbook</a>, ChatGPT Wallet is designed to work with existing web checkout flows. A separate payment system or Wallet-specific integration is not required.</p><p>The first area to check is website access. CDNs, firewalls and security tools may unintentionally block the browser used by an agent. OpenAI points to Web Bot Auth as a way to recognize verified requests and recommends reviewing rules that filter automated traffic.</p><p>The second area is fraud prevention. Payment tokens work with existing checkout flows, but risk systems may interpret an agent-initiated session as unusual activity and decline a legitimate transaction. OpenAI is working with fraud providers and payment processors to improve recognition of these purchases.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">04 / Data and integrations</div><div class="detail-block-main"><h2>Accurate catalogs and agent-accessible tools reduce friction</h2><div class="research-note-copy"><p>To help agents find accurate products and terms, OpenAI recommends keeping business profile information up to date and, for retail businesses, providing feeds containing products, prices and availability.</p><p>Businesses can also expose capabilities through plugins and WebMCP tools, for example to check availability, manage a cart or trigger other actions in existing systems. These integrations expand what an agent can do, but are separate from using a standard web checkout.</p><p>The practical priority is to keep product information, prices, availability and commercial terms consistent, while ensuring that the website, checkout and risk controls do not prevent an agent-initiated purchase.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">05 / Availability and limitations</div><div class="detail-block-main"><h2>The rollout starts in the US, and approval does not guarantee a completed order</h2><div class="research-note-copy"><p>At launch, ChatGPT Wallet is gradually rolling out through Dots to ChatGPT Pro users aged 18 or older in the United States, with an eligible US-issued card and a US billing address. It is not generally available and has not been extended to Italy.</p><p>OpenAI's documentation also notes that some websites may not support purchases made by agents. Approving a payment does not confirm that an order has been placed: users should check the merchant's confirmation after checkout.</p><p>For businesses, Wallet is an early step toward agent-led purchases, but reliability still depends on familiar e-commerce requirements: website accessibility, accurate data, checkout compatibility and fraud-system decisions.</p></div></div></article></section><section class="detail-boundary section-pad research-note-takeaway"><div class="section-code">EMPV / TAKEAWAY</div><p>ChatGPT Wallet brings agents to the payment step, but every purchase still requires user authorization. For businesses, readiness is mainly about product data, website access, checkout and fraud systems.</p></section><section class="research-note-share section-pad" aria-label="Share this Research Note"><div class="section-code">EMPV / SHARE</div><div class="research-note-share-inner"><p>Share this Research Note.</p><div class="research-note-share-actions"><a class="research-note-share-primary" href="https://empv.it/en/research-notes/chatgpt-wallet-ai-agent-payments/?share=20261116">Share</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fchatgpt-wallet-ai-agent-payments%2F%3Fshare%3D20261116" target="_blank" rel="noreferrer noopener">LinkedIn</a><a href="https://twitter.com/intent/tweet?text=ChatGPT%20Wallet%3A%20AI%20agents%20can%20make%20purchases%2C%20but%20payments%20remain%20under%20user%20control%20%E2%80%94%20EMPV%20Research%20Notes&amp;url=https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fchatgpt-wallet-ai-agent-payments%2F%3Fshare%3D20261116" target="_blank" rel="noreferrer noopener">X</a><a href="https://wa.me/?text=ChatGPT%20Wallet%3A%20AI%20agents%20can%20make%20purchases%2C%20but%20payments%20remain%20under%20user%20control%20%E2%80%94%20EMPV%20Research%20Notes%20https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Fchatgpt-wallet-ai-agent-payments%2F%3Fshare%3D20261116" target="_blank" rel="noreferrer noopener">WhatsApp</a><a href="https://empv.it/en/research-notes/chatgpt-wallet-ai-agent-payments/?share=20261116">Copy link</a></div></div></section><section class="detail-end section-pad"><a href="/en/research-notes/"><span>Research Notes</span></a></section></main></div></div>
+  </body>
+</html>
