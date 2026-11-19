@@ -271,3 +271,36 @@ La query `empv` aggregata per tutto il sito registra **132 impressioni e 8 clic*
 5. **Nessuna nuova landing o modifica Hero/homepage/SEO manifest** sulla base dei soli dati attuali. Eventuali test on-page richiedono ipotesi specifica, baseline e verifica di non duplicazione con pagine esistenti.
 
 **Stato dell'aggiornamento:** sola documentazione sulla branch della **PR #49 (draft)**; non modifica il sito pubblico.
+
+## 14. Audit architettura commerciale e verifica release — 19/11/2026
+
+**Scopo:** valutazione delle route commerciali esistenti, dopo il merge della PR #60, senza nuove modifiche al sito. Fonti: `main` GitHub (AGENTS.md, README.md, `src/App.tsx`, `src/ServicesPage.tsx`, `src/servicesContent.ts`, `src/processPageContent.ts`, `src/seo-manifest.json`, `src/seo.ts`, `scripts/seo-build.mjs`, `.github/workflows/pages.yml`); GSC via Windsor.ai, 22/10–18/11/2026.
+
+### Stato pubblicazione della PR #60
+
+- **MERGIATA su `main`** con commit `29b7bf5bc9e5428c3cf8fbe20152c62f02ab56df`; confermata presenza dei testi IT/EN nel sorgente `main`.
+- **CI della PR superata**, comprese build, controllo crawler readiness e responsive servizi.
+- La pipeline `pages.yml` viene avviata dai push a `main`, compila con `VITE_SITE_ORIGIN=https://empv.it` e `VITE_SITE_BASE_PATH=` e carica l'artefatto su GitHub Pages.
+- **DEPLOYATO/VERIFICATO LIVE: non confermato direttamente**: l'accesso HTTP al dominio ha restituito errori degli strumenti e la lettura GitHub disponibile non ha restituito un risultato del job di deployment del commit di merge. Gli snippet indicizzati da motori possono essere precedenti alla modifica e non attestano il copy nuovo.
+
+### Audit delle pagine e priorità
+
+| Route | GSC impressioni / clic | Stato tecnico/editoriale osservato | Decisione |
+| --- | --- | --- | --- |
+| `/it/cosa-facciamo/` | **1 / 0** | Hub servizi con 5 aree, 4 progetti collegati, link alla pagina Processo, CTA e copy IT/EN aggiornato PR #60; title locale già specifico | Attendere indicizzazione/risultati successivi; nessun altro rewrite immediato |
+| `/it/automazione-processi-aziendali/` | **23 / 1** | Esempi email/ERP/commesse e link a due note e due progetti; copy rafforzato nella PR #43 | Il clic esposto è brand `empv`; non attribuire ROI SEO alla recente modifica |
+| `/it/progetti/` | **31 / 0** | Portfolio distinto dalla pagina servizi; fra le query esposte 22 impressioni per `empv` | Non riscrivere il portfolio in forma di landing commerciale |
+| `/it/progetti/richieste-preventivi/` | **14 / 0** | Caso d'uso pertinente al cluster preventivi; 8 impressioni esposte per `empv` | Conservare case study e verificarne l'intento non-brand in finestra più ampia |
+| `/it/progetti/commesse-posa/` | **8 / 0** | Caso pertinente alle commesse; una query esposta non-brand, `commesse multi-componente officina`, posizione media 40 | Non inferire domanda significativa da una sola impressione |
+| `/it/research-notes/integrare-gestionale-senza-sostituirlo/` | **1 / 0** | Contenuto editoriale di supporto, da non duplicare con una guida commerciale gemella | Monitorare collegamenti contestuali esistenti |
+
+**Copertura:** le impressioni di pagina non sono stime del volume del mercato. GSC anonimizza query, perciò assenza di termini nel report per una pagina non dimostra assenza di ricerche. Le route EN servizi/processo non hanno righe nella finestra selezionata: non significa che siano deindicizzate. L'accesso trial Windsor.ai non consente richieste antecedenti agli ultimi 30 giorni.
+
+### Decisione operativa
+
+1. **P0:** confermare una volta lo stato della distribuzione Pages sul commit `29b7bf5` e recuperare l'HTML live IT/EN con canonical/hreflang e copia aggiornata; non attestare il live da un merge o da uno snippet.
+2. **P1:** monitorare separatamente query brand e non-brand sulla pagina Processo e sull'hub Servizi per un intervallo completo successivo al 19/11 (lag GSC 2–3 giorni); distinguere `contact_click` da richieste reali/lead qualificati.
+3. **P2:** sulla base di query e domanda commerciale raccolte, valutare **un solo** miglioramento contestuale su URL già esistenti; scegliere tra integrazione ERP e software su misura Bergamo, senza moltiplicare landing o aggiungere elementi alla homepage.
+4. **Invarianti:** nessun tocco alla Hero, layout approvato, Team, Glass Cards, Optical Glass, Customize, CSS, navigazione, analytics o nuove promesse commerciali.
+
+**Stato:** audit documentale in PR #49 draft; **nessuna modifica tecnica al sito** in questa operazione.
