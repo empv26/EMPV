@@ -233,3 +233,41 @@ Sorgente: screenshot del proprietario `Site Explorer > Organic keywords` su `emp
 **Implicazione per le 36 keyword:** la sezione Organic keywords descrive le query **per cui Ahrefs vede già un ranking di empv.it**; non è lo strumento per misurare domanda globale delle 36 query ancora non presidiate. La misurazione del volume/KD dei 36 seed richiede `Keywords Explorer` con diritti del piano oppure Keyword Planner; l'accesso MCP Ahrefs resta bloccato con `Insufficient plan`.
 
 **Prossimo step UI:** provare `Keywords Explorer` e verificare se il piano Free consente qualche analisi di keyword con target Italia; nessuna richiesta di upgrade o pagamento senza consenso. Se non disponibile, proseguire su Search Console e audit SERP qualitativo, registrando la limitazione.
+
+
+## 13. Aggiornamento baseline GSC — 19/11/2026
+
+**Fonte:** Google Search Console, proprietà `https://empv.it/`, interrogata tramite Windsor.ai il **19 novembre 2026**. Finestra **22/10/2026–18/11/2026**; le ultime giornate possono essere incomplete per il ritardo fisiologico di elaborazione GSC. Questo intervallo **si sovrappone** alla baseline 1/10–2/11 riportata sopra: non usarlo per dichiarare una crescita percentuale prima/dopo la PR #43.
+
+### Dati complessivi e pagine prioritarie
+
+| Ambito | Impressioni | Clic | Posizione media | Nota |
+| --- | ---: | ---: | ---: | --- |
+| Proprietà EMPV (totale) | 276 | 13 | 8,45 | CTR aggregato 4,71% |
+| Homepage IT `/it/` | 40 | 10 | 1,63 | Prevalenza di query sul marchio tra quelle visibili |
+| Homepage EN `/en/` | 136 | 1 | 3,67 | 109 impressioni visibili per «empv», zero clic su quella query |
+| Indice Progetti IT `/it/progetti/` | 31 | 0 | 3,23 | 22 impressioni visibili per «empv», zero clic |
+| Pagina Processo IT `/it/automazione-processi-aziendali/` | 23 | 1 | 9,87 | L'unico clic della pagina è attribuito alla query «empv» |
+| Hub Servizi IT `/it/cosa-facciamo/` | 1 | 0 | 4,00 | Campione insufficiente per inferire domanda o ranking |
+
+### Query della pagina Processo: distinzione brand/non-brand
+
+| Query esposta da GSC | Impressioni | Clic | Posizione media |
+| --- | ---: | ---: | ---: |
+| `empv` | 11 | 1 | 4,73 |
+| `automazione dei processi interni aziendali` | 1 | 0 | 44 |
+| `automazione dei processi produttivi` | 1 | 0 | 94 |
+
+GSC aggrega **23 impressioni** sulla pagina, ma la dimensione query ne espone solo **13**: le altre non possono essere attribuite in modo affidabile a parole chiave specifiche. Tuttavia, l'unico clic della pagina è attribuito a «empv». **Nessun clic non-brand dimostrato su questa landing** nel periodo. La presenza in SERP per due query non-brand non equivale a una domanda commerciale già acquisita.
+
+La query `empv` aggregata per tutto il sito registra **132 impressioni e 8 clic** tra le query esposte. Non sottrarre meccanicamente questi numeri al totale di proprietà per ottenere un «traffico non-brand»: Search Console anonimizza parte delle query e le aggregazioni per dimensione possono differire.
+
+### Decisione e prossime verifiche
+
+1. **Non modificare di nuovo il copy della pagina Processo per ora**: la PR #43 è stata mergiata il 4/11/2026 e ha già rafforzato esempi, metadati IT/EN e collegamenti. La nuova finestra GSC non è un confronto indipendente post-modifica.
+2. **Priorità operativa all'intento non-brand**, con due gruppi da monitorare distintamente: (a) automazione/integrazione ERP e gestionali; (b) software su misura a Bergamo. Evitare che impressioni su «empv» siano lette come acquisizione organica commerciale.
+3. **Confrontare un intervallo omogeneo successivo** (es. 20/11–17/12 contro 23/10–19/11, tenendo conto del lag GSC) e registrare query/landing/clic, insieme ai `contact_click` GA4 *solo se* tracciabili correttamente per canale e pagina.
+4. **Esportare volumi e concorrenza** dei 36 seed quando disponibili da Keyword Planner/Ahrefs. Il tentativo Ahrefs del 19/11 su keyword italiane ha restituito di nuovo `Insufficient plan`: nessun volume o KD acquisito; non inventare né assumere che sia zero.
+5. **Nessuna nuova landing o modifica Hero/homepage/SEO manifest** sulla base dei soli dati attuali. Eventuali test on-page richiedono ipotesi specifica, baseline e verifica di non duplicazione con pagine esistenti.
+
+**Stato dell'aggiornamento:** sola documentazione sulla branch della **PR #49 (draft)**; non modifica il sito pubblico.
