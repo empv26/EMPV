@@ -18,6 +18,7 @@ export type ProcessPageContent = {
   relatedLabel: string;
   relatedTitle: string;
   relatedIntro: string;
+  servicesLinkLabel: string;
   resources: { kind: "note" | "project"; id: string; title: string; description: string }[];
   contactLabel: string;
   contactTitle: string;
@@ -87,6 +88,7 @@ export const processPageContent: Record<SiteLang, ProcessPageContent> = {
     relatedLabel: "Approfondimenti e progetti",
     relatedTitle: "Quattro percorsi per entrare nel dettaglio.",
     relatedIntro: "Nelle Research Notes affrontiamo le scelte tecniche. Nei progetti mostriamo come un problema operativo può essere ricostruito e affrontato.",
+    servicesLinkLabel: "Vedi anche i servizi software e automazioni EMPV.",
     resources: [
       { kind: "note", id: "quote-intake", title: "Richieste di preventivo", description: "Raccogliere informazioni senza automatizzare la decisione." },
       { kind: "project", id: "richieste-preventivi", title: "Qualificazione richieste e preventivi", description: "Un progetto che struttura i dati prima della valutazione." },
@@ -159,6 +161,7 @@ export const processPageContent: Record<SiteLang, ProcessPageContent> = {
     relatedLabel: "Further reading and projects",
     relatedTitle: "Four ways to explore the details.",
     relatedIntro: "Our Research Notes cover technical decisions. Our project pages show how real operational problems can be understood and addressed.",
+    servicesLinkLabel: "See also EMPV software and automation services.",
     resources: [
       { kind: "note", id: "quote-intake", title: "Quote requests", description: "Collect information without automating commercial judgment." },
       { kind: "project", id: "richieste-preventivi", title: "Request and quote qualification", description: "A project structuring data before review." },

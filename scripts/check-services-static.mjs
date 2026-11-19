@@ -11,13 +11,15 @@ const slugs = [
   "ai-locale-privata",
 ];
 
-const [itHome, enHome, itServices, enServices, itLab, enLab, sitemap, llms] = await Promise.all([
+const [itHome, enHome, itServices, enServices, itLab, enLab, itProcess, enProcess, sitemap, llms] = await Promise.all([
   read("it/index.html"),
   read("en/index.html"),
   read("it/cosa-facciamo/index.html"),
   read("en/what-we-do/index.html"),
   read("it/lab/index.html"),
   read("en/lab/index.html"),
+  read("it/automazione-processi-aziendali/index.html"),
+  read("en/business-process-automation/index.html"),
   read("sitemap.xml"),
   read("llms.txt"),
 ]);
@@ -65,6 +67,10 @@ assert.match(itHome, /EMPV Discovery/, "IT Discovery card missing");
 assert.match(enHome, /Custom software/, "EN software card missing");
 assert.match(itServices, /href="[^"]+\/it\/automazione-processi-aziendali\/"/, "IT related process link missing");
 assert.match(enServices, /href="[^"]+\/en\/business-process-automation\/"/, "EN related process link missing");
+assert.match(itProcess, /href="[^"]+\/it\/cosa-facciamo\/"/, "IT reciprocal services link missing");
+assert.match(enProcess, /href="[^"]+\/en\/what-we-do\/"/, "EN reciprocal services link missing");
+assert.match(itProcess, /Vedi anche i servizi software e automazioni EMPV\./, "IT process link copy missing");
+assert.match(enProcess, /See also EMPV software and automation services\./, "EN process link copy missing");
 assert.match(sitemap, /\/it\/cosa-facciamo\//, "Italian services missing from sitemap");
 assert.match(sitemap, /\/en\/what-we-do\//, "English services missing from sitemap");
 assert.match(llms, /EMPV Discovery/, "Services missing from llms.txt");

@@ -10,6 +10,7 @@ export default function ProcessPage({ lang }: { lang: SiteLang }) {
   const copy = processPageContent[lang];
   const homeHref = siteHref({ kind: "home", lang });
   const notesHref = siteHref({ kind: "notesIndex", lang });
+  const servicesHref = siteHref({ kind: "servicesPage", lang });
   const alternateLang = lang === "it" ? "en" : "it";
   const emailSubject = lang === "it" ? "EMPV — Parliamo di un processo aziendale" : "EMPV — Let's discuss a business workflow";
   const emailHref = "mailto:hello@empv.it?subject=" + encodeURIComponent(emailSubject);
@@ -71,7 +72,7 @@ export default function ProcessPage({ lang }: { lang: SiteLang }) {
         <section className="process-related section-pad" aria-labelledby="process-related-title">
           <div className="section-code">EMPV / {copy.relatedLabel}</div>
           <h2 id="process-related-title">{copy.relatedTitle}</h2>
-          <p className="process-related-intro">{copy.relatedIntro}</p>
+          <p className="process-related-intro">{copy.relatedIntro} <a href={servicesHref}>{copy.servicesLinkLabel}</a></p>
           <div className="process-related-list">
             {copy.resources.map(resource => {
               const href = resource.kind === "note"
