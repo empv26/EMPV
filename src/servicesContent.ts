@@ -133,7 +133,7 @@ export const servicesPageCopy = {
   it: {
     kicker: "EMPV / Cosa facciamo",
     title: "Dall'analisi dei processi ai sistemi che li supportano.",
-    intro: "Analizziamo il lavoro, sviluppiamo software su misura, colleghiamo strumenti esistenti e valutiamo dove l'intelligenza artificiale può essere utile. Non tutto deve essere ricostruito da zero.",
+    intro: "Da Bergamo sviluppiamo software su misura per aziende e integrazioni tra gestionali, documenti e strumenti già in uso. Partiamo dai processi reali per capire quando serve un'applicazione, un'automazione o una funzione AI, e quando è meglio conservare ciò che funziona.",
     evidenceLabel: "Dai servizi ai progetti",
     evidenceTitle: "Quattro situazioni, quattro sistemi diversi.",
     evidenceIntro: "I progetti mostrano come affrontiamo problemi operativi differenti. Non sono soluzioni preconfezionate né risultati garantiti per altre aziende.",
@@ -151,7 +151,7 @@ export const servicesPageCopy = {
   en: {
     kicker: "EMPV / What we do",
     title: "From understanding workflows to building the systems that support them.",
-    intro: "We analyze how work gets done, build custom software, connect existing tools and assess where AI can add value. Not everything needs to be rebuilt from scratch.",
+    intro: "Based in Bergamo, we build custom business software and integrations between ERPs, documents and existing tools. We start from real workflows to determine when an application, automation or AI capability is useful—and when the systems already in place should remain.",
     evidenceLabel: "From services to projects",
     evidenceTitle: "Four different workflows, four different systems.",
     evidenceIntro: "These projects show how we approach different operating problems. They are not off-the-shelf solutions or guaranteed outcomes for other businesses.",
