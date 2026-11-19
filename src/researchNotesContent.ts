@@ -26,6 +26,189 @@ export type ResearchNote = {
 
 export const researchNotes: ResearchNote[] = [
   {
+    "id": "qwen4-max-agent-efficiency",
+    "index": "024",
+    "slugs": {
+      "it": "qwen4-max-alibaba-agenti-ai-architettura-costi",
+      "en": "qwen4-max-alibaba-ai-agents-architecture-pricing"
+    },
+    "title": {
+      "it": "Qwen4-Max: Alibaba punta su agenti AI più efficienti con 71 miliardi di parametri attivi",
+      "en": "Qwen4-Max: Alibaba targets more efficient AI agents with 71 billion active parameters"
+    },
+    "dek": {
+      "it": "Il nuovo modello combina 2,4 trilioni di parametri totali, un contesto da un milione di token e strumenti per attività complesse. Alibaba dichiara un costo per attività inferiore del 58% rispetto a Qwen3.8-Max, ma il risultato proviene da benchmark proprietari. Il modello resta accessibile attraverso il cloud.",
+      "en": "The new model combines 2.4 trillion total parameters, a one-million-token context window and capabilities for complex workflows. Alibaba reports a 58% reduction in average task cost compared with Qwen3.8-Max, based on its proprietary benchmarks. The model remains cloud-hosted."
+    },
+    "category": {
+      "it": "NEWS NOTE / AI MODELS",
+      "en": "NEWS NOTE / AI MODELS"
+    },
+    "tags": {
+      "it": [
+        "Qwen4-Max",
+        "Alibaba",
+        "Agenti AI",
+        "Mixture of Experts",
+        "API AI",
+        "Sicurezza AI"
+      ],
+      "en": [
+        "Qwen4-Max",
+        "Alibaba",
+        "AI agents",
+        "Mixture of Experts",
+        "AI APIs",
+        "AI safety"
+      ]
+    },
+    "published": "2026-11-19",
+    "readingTime": {
+      "it": "5 min",
+      "en": "5 min"
+    },
+    "socialVersion": "20261119a",
+    "sections": {
+      "it": [
+        {
+          "label": "01 / Architettura",
+          "title": "Un'architettura da 2,4 trilioni di parametri",
+          "paragraphs": [
+            "Il 16 novembre 2026 [Alibaba ha presentato Qwen4-Max](https://www.alibabacloud.com/blog/alibaba-cloud-brings-qwen4-max-to-the-enterprise-a-new-ai-colleague-that-plans-builds-and-delivers-finished-work_603786), il nuovo modello di punta della famiglia Qwen.",
+            "L'aggiornamento riguarda soprattutto l'efficienza del ragionamento e l'utilizzo di strumenti esterni. Qwen4-Max è progettato per affrontare attività composte da più passaggi, nelle quali un agente deve consultare informazioni, utilizzare software e produrre un risultato.",
+            "Alibaba riporta miglioramenti nelle valutazioni di programmazione, lavoro professionale e utilizzo di strumenti. Alcune dimostrazioni riguardano processi industriali e documentali. Rimane però necessario distinguere le prestazioni dichiarate dal produttore dai risultati riproducibili nelle aziende.",
+            "Qwen4-Max utilizza un'architettura *Mixture-of-Experts* (MoE), con 2,4 trilioni di parametri complessivi, ma ne attiva circa 71 miliardi per ogni token elaborato.",
+            "Questa distinzione è importante: il numero totale di parametri descrive la capacità complessiva del modello, mentre i parametri attivati indicano quanta parte della rete viene utilizzata durante ciascun passaggio di generazione.",
+            "Rispetto a Qwen3.8-Max, Alibaba dichiara una riduzione del 25% dei parametri attivati, mantenendo invariata la dimensione complessiva del modello.",
+            "La nuova architettura combina Gated DeltaNet, Qwen Sparse Attention, connessioni residuali con gating ed embedding N-gram. Sono tecniche pensate per migliorare l'efficienza dell'elaborazione, soprattutto nei contesti lunghi.",
+            "Il modello supporta una finestra di contesto fino a un milione di token, con input testuali, immagini e video e output testuale.",
+            "Una finestra così ampia permette di fornire grandi quantità di informazioni in una singola richiesta. Non garantisce, da sola, che il modello riesca a recuperare e utilizzare correttamente ogni dettaglio contenuto nel materiale."
+          ]
+        },
+        {
+          "label": "02 / Benchmark",
+          "title": "Work360: risultati migliori e meno token utilizzati",
+          "paragraphs": [
+            "Nella [valutazione Work360 pubblicata da Alibaba Cloud](https://www.alibabacloud.com/blog/alibaba-cloud-brings-qwen4-max-to-the-enterprise-a-new-ai-colleague-that-plans-builds-and-delivers-finished-work_603786), Qwen4-Max raggiunge 52,69 punti, rispetto ai 47,74 di Qwen3.8-Max.",
+            "Work360 è un benchmark proprietario che comprende 26 domini principali, 182 sottodomini e 721 categorie specializzate di lavoro professionale.",
+            "Alibaba dichiara inoltre una riduzione del 35% dei token utilizzati con il livello di ragionamento *High* e un costo medio per attività inferiore del 58%.",
+            "Quest'ultimo dato non significa che ogni richiesta API costi il 58% in meno. Il costo di un'attività dipende sia dalle tariffe per token sia dalla quantità di elaborazione necessaria per completarla.",
+            "Il produttore riporta anche un sesto posto nella classifica Code Arena dedicata allo sviluppo web al momento del lancio.",
+            "Sono indicatori utili per individuare le capacità da approfondire, ma non costituiscono una misura universale dell'affidabilità di un agente. I risultati dipendono dal tipo di attività, dagli strumenti utilizzati e dalle condizioni della valutazione."
+          ]
+        },
+        {
+          "label": "03 / Industria",
+          "title": "Dalle dimostrazioni ai processi industriali",
+          "paragraphs": [
+            "Alibaba ha accompagnato il lancio con dimostrazioni in ambiti manifatturieri, scientifici, legali e finanziari.",
+            "In un esempio industriale, Qwen4-Max ha utilizzato informazioni progettuali per costruire rappresentazioni tridimensionali di linee produttive, generare percorsi CAM e individuare problemi di lavorazione attraverso simulazioni.",
+            "Nel caso mostrato, il tempo di programmazione manuale per componente è passato da circa 475 a 24 minuti, una riduzione di circa il 95%.",
+            "In un'altra dimostrazione, il modello ha utilizzato 90 strumenti collegati tramite Model Context Protocol (MCP) per raccogliere e confrontare dati finanziari, producendo un foglio Excel e una presentazione modificabile con riferimenti alle fonti.",
+            "Questi esempi mostrano la direzione dello sviluppo: collegare il modello a strumenti specializzati e organizzare attività articolate in più fasi.",
+            "I risultati appartengono tuttavia a dimostrazioni selezionate. Non dimostrano che gli stessi risparmi siano raggiungibili in modo sistematico negli stabilimenti produttivi o negli uffici amministrativi."
+          ]
+        },
+        {
+          "label": "04 / API e prezzi",
+          "title": "API, prezzi e disponibilità",
+          "paragraphs": [
+            "Qwen4-Max è disponibile tramite [QwenCloud](https://www.qwencloud.com/) e [Alibaba Cloud Model Studio](https://www.alibabacloud.com/help/en/model-studio/qwen4-max), utilizzando l'identificativo API `qwen4-max`.",
+            "Il modello supporta function calling, chiamate parallele agli strumenti, ricerca web, output strutturati e interfacce compatibili con i protocolli OpenAI e Anthropic.",
+            "Secondo la documentazione Model Studio aggiornata al 18 novembre 2026, nella regione Francoforte il prezzo standard indicato è di 1,413 dollari per milione di token in ingresso e 4,24 dollari per milione di token in uscita.",
+            "Le condizioni variano per regione, utilizzo della cache e modalità di elaborazione. Il costo effettivo di un agente comprende anche le chiamate ripetute, gli strumenti esterni, l'infrastruttura e le eventuali verifiche umane.",
+            "**Qwen4-Max non è un modello con pesi pubblicamente scaricabili.** Alibaba ha annunciato l'intenzione di rilasciare modelli Qwen4 più piccoli con pesi aperti, senza una data definitiva.",
+            "Il [Qwen-Live-Delivery-Plugin](https://github.com/QwenLM/Qwen-Live-Delivery-Plugin), pubblicato su GitHub, è invece uno strumento open source separato che consente agli agenti di consegnare versioni intermedie e ricevere correzioni durante attività prolungate.",
+            "Per le aziende che trattano dati sensibili, la presenza di un endpoint nella regione Francoforte non basta a garantire che l'intero trattamento dei dati avvenga esclusivamente nell'Unione europea. Devono essere verificate le condizioni contrattuali, la residenza dei dati e le politiche di conservazione applicabili."
+          ]
+        },
+        {
+          "label": "05 / Sicurezza",
+          "title": "Sicurezza e integrazione con i sistemi aziendali",
+          "paragraphs": [
+            "Alibaba dichiara miglioramenti anche nella generazione di codice sicuro. Nel benchmark Last Secure Code Bench, la percentuale di risultati che soddisfano contemporaneamente verifiche di sicurezza a livello di funzione, file e repository passa dall'8% di Qwen3.8-Max al 14,7% di Qwen4-Max.",
+            "[Reuters precisa](https://www.reuters.com/business/retail-consumer/alibaba-unveils-new-flagship-ai-model-with-safety-upgrades-2026-11-16/) che le nuove affermazioni di sicurezza non sono state verificate indipendentemente dall'agenzia.",
+            "Per un'azienda, la sicurezza del modello e quella dell'intero sistema sono questioni distinte.",
+            "Un agente che riceve un ordine da un messaggio e deve inserirlo in un gestionale, per esempio, deve identificare il cliente, verificare prodotti e quantità, rispettare le condizioni commerciali, gestire eventuali errori e impedire operazioni non autorizzate.",
+            "La capacità del modello di comprendere il messaggio è soltanto una parte del processo. Servono controlli sulle autorizzazioni, validazione dei dati, tracciamento delle operazioni e procedure di recupero quando qualcosa non funziona.",
+            "Qwen4-Max amplia le opzioni disponibili per progettare questi sistemi. Per stabilire se sia adatto a un processo aziendale servono però prove su attività rappresentative, misurando errori, costo complessivo, interventi umani e affidabilità del risultato finale."
+          ]
+        }
+      ],
+      "en": [
+        {
+          "label": "01 / Architecture",
+          "title": "A 2.4-trillion-parameter architecture",
+          "paragraphs": [
+            "On November 16, 2026, [Alibaba introduced Qwen4-Max](https://www.alibabacloud.com/blog/alibaba-cloud-brings-qwen4-max-to-the-enterprise-a-new-ai-colleague-that-plans-builds-and-delivers-finished-work_603786), the new flagship model in the Qwen family.",
+            "The release focuses on reasoning efficiency and the use of external tools. Qwen4-Max is designed for multi-step tasks where an agent must retrieve information, interact with software and produce a usable result.",
+            "Alibaba reports improvements across coding, professional work and tool-use evaluations. Its launch demonstrations include industrial and document-intensive workflows. Those results still need to be distinguished from independently reproducible performance in production environments.",
+            "Qwen4-Max uses a Mixture-of-Experts (MoE) architecture with 2.4 trillion total parameters, activating approximately 71 billion parameters per token.",
+            "The distinction matters. Total parameters describe the model's overall capacity, while active parameters indicate how much of the network is involved in each generation step.",
+            "Compared with Qwen3.8-Max, Alibaba reports 25% fewer active parameters while retaining the same overall model scale.",
+            "The updated architecture combines Gated DeltaNet, Qwen Sparse Attention, gated residual connections and N-gram embeddings. These mechanisms are intended to improve processing efficiency, particularly for long contexts.",
+            "Qwen4-Max supports a context window of up to one million tokens, accepting text, images and video as input and generating text as output.",
+            "A large context window allows more information to be provided in a single request. It does not, by itself, guarantee accurate retrieval or use of every detail within that context."
+          ]
+        },
+        {
+          "label": "02 / Benchmark",
+          "title": "Work360: stronger results with fewer tokens",
+          "paragraphs": [
+            "According to [Alibaba Cloud's Work360 evaluation](https://www.alibabacloud.com/blog/alibaba-cloud-brings-qwen4-max-to-the-enterprise-a-new-ai-colleague-that-plans-builds-and-delivers-finished-work_603786), Qwen4-Max scores 52.69, compared with 47.74 for Qwen3.8-Max.",
+            "Work360 is a proprietary benchmark covering 26 primary domains, 182 subdomains and 721 specialized categories of professional work.",
+            "Alibaba also reports 35% fewer tokens used at the High reasoning-effort setting and a 58% reduction in average cost per task.",
+            "That reduction should not be interpreted as a universal 58% discount on API calls. Task cost depends on token pricing and the amount of computation required to complete the work.",
+            "At launch, Alibaba also reported a sixth-place ranking on Code Arena's web development leaderboard.",
+            "These figures help identify capabilities worth evaluating, but they do not establish universal agent reliability. Performance depends on the task, the available tools and the evaluation conditions."
+          ]
+        },
+        {
+          "label": "03 / Industry",
+          "title": "From demonstrations to industrial workflows",
+          "paragraphs": [
+            "Alibaba accompanied the release with demonstrations across manufacturing, scientific research, legal work and financial analysis.",
+            "In one manufacturing example, Qwen4-Max used engineering information to build three-dimensional production-line representations, generate CAM toolpaths and identify machining issues through simulation.",
+            "In the case shown, manual programming time per part fell from approximately 475 minutes to 24 minutes, a reduction of about 95%.",
+            "Another demonstration connected the model to 90 tools through the Model Context Protocol (MCP). The agent collected and cross-checked financial information, producing an Excel workbook and an editable presentation with references to its sources.",
+            "These examples illustrate a broader engineering direction: connecting language models to specialized tools and coordinating work across multiple stages.",
+            "They remain selected demonstrations. They do not establish that similar savings can be consistently reproduced across factories or administrative departments."
+          ]
+        },
+        {
+          "label": "04 / APIs and pricing",
+          "title": "APIs, pricing and availability",
+          "paragraphs": [
+            "Qwen4-Max is available through [QwenCloud](https://www.qwencloud.com/) and [Alibaba Cloud Model Studio](https://www.alibabacloud.com/help/en/model-studio/qwen4-max), using the `qwen4-max` API identifier.",
+            "It supports function calling, parallel tool calls, web search, structured outputs and interfaces compatible with OpenAI and Anthropic API protocols.",
+            "According to Model Studio documentation updated on November 18, 2026, standard pricing in the Frankfurt region is listed at $1.413 per million input tokens and $4.24 per million output tokens.",
+            "Terms vary by region, caching and processing mode. The actual cost of an agent also includes repeated model calls, external tools, infrastructure and any required human verification.",
+            "**Qwen4-Max is not distributed with publicly downloadable model weights.** Alibaba has announced plans to release smaller open-weight Qwen4 models, without a confirmed date.",
+            "The separately released [Qwen-Live-Delivery-Plugin](https://github.com/QwenLM/Qwen-Live-Delivery-Plugin) is open-source tooling for iterative agent workflows. It supports intermediate deliveries and user feedback during long-running tasks, but does not make Qwen4-Max an open-weight model.",
+            "For companies processing sensitive information, the availability of a Frankfurt endpoint does not by itself establish that all data processing remains within the European Union. Applicable data residency, retention and contractual conditions still need to be reviewed."
+          ]
+        },
+        {
+          "label": "05 / Security",
+          "title": "Security and enterprise integration",
+          "paragraphs": [
+            "Alibaba also reports improvements in secure code generation. On Last Secure Code Bench, the proportion of outputs meeting security checks simultaneously at function, file and repository level increased from 8% for Qwen3.8-Max to 14.7% for Qwen4-Max.",
+            "[Reuters notes](https://www.reuters.com/business/retail-consumer/alibaba-unveils-new-flagship-ai-model-with-safety-upgrades-2026-11-16/) that the company's new safety claims have not been independently verified by the agency.",
+            "For businesses, model-level security and end-to-end system security are separate concerns.",
+            "Consider an agent that receives a customer order through a message and must enter it into an existing ERP. It needs to identify the customer, validate products and quantities, respect commercial conditions, handle failures and prevent unauthorized operations.",
+            "Understanding the message is only one part of the workflow. Reliable execution also requires access controls, data validation, operational logs and recovery procedures.",
+            "Qwen4-Max expands the options available to engineers building such systems. Whether it is suitable for a particular business process still needs to be established through representative tests measuring errors, total cost, human intervention and the reliability of the final outcome."
+          ]
+        }
+      ]
+    },
+    "takeaway": {
+      "it": "Qwen4-Max aumenta le opzioni per gli agenti AI collegati ai sistemi aziendali. Le prestazioni dichiarate nei benchmark vanno confrontate con errori, costi e controlli misurati su processi reali.",
+      "en": "Qwen4-Max offers new options for AI agents integrated with business systems. Vendor benchmark results should be compared with errors, costs and controls measured on real workflows."
+    }
+  },
+
+  {
     "id": "openai-businesses-chatgpt-business-agents",
     "index": "021",
     "slugs": {

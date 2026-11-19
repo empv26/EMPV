@@ -79,6 +79,30 @@ function cardVisual(noteId, lang = "it") {
   const orange = "#ff5a24";
   const faint = "#d8d6cf";
 
+  if (noteId === "qwen4-max-agent-efficiency") {
+    // Editorial schematic: selective expert activation, not a literal Qwen4 layer diagram.
+    const expertTiles = Array.from({length: 5}, (_, r) =>
+      Array.from({length: 8}, (_, c) => {
+        const active = (r === 1 && [0, 3, 6].includes(c)) || (r === 3 && [1, 4, 7].includes(c));
+        return '<rect x="' + (c * 31) + '" y="' + (r * 30) + '" width="22" height="22" rx="4" fill="' +
+          (active ? orange : "#eeece6") + '" stroke="' + (active ? orange : faint) + '" stroke-width="1.5"/>';
+      }).join("")
+    ).join("");
+    return `
+      <g transform="translate(824 155)" font-family="Arial, Helvetica, sans-serif">
+        <text x="0" y="0" fill="#171715" font-size="23" font-weight="700" letter-spacing="1.8">QWEN / 4</text>
+        <text x="0" y="32" fill="#6c6a64" font-size="13" letter-spacing="1.3">MIXTURE OF EXPERTS</text>
+        <path d="M0 53 H285" stroke="#d8d6cf" stroke-width="1"/>
+        <g transform="translate(2 76)">${expertTiles}</g>
+        <path d="M0 248 H285" stroke="#d8d6cf" stroke-width="1"/>
+        <text x="0" y="297" fill="#171715" font-size="34" font-weight="700">2.4T</text>
+        <text x="0" y="319" fill="#77746e" font-size="12" font-weight="700" letter-spacing="1.1">TOTAL</text>
+        <text x="176" y="297" fill="#ff5a24" font-size="34" font-weight="700">71B</text>
+        <text x="176" y="319" fill="#77746e" font-size="12" font-weight="700" letter-spacing="1.1">ACTIVE</text>
+        <text x="0" y="358" fill="#77746e" font-size="11" letter-spacing="0.8">SCHEMATIC / NOT TO SCALE</text>
+      </g>`;
+  }
+
   if (noteId === "sme-job-margin-control") {
     // Illustrative job cost breakdown; 25% and 11.7% are not survey findings.
     const copy = lang === "it"
