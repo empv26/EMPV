@@ -427,6 +427,16 @@
           "title": "Low-margin jobs: tracking costs and scope changes | EMPV",
           "description": "How SMEs can track job margins through accepted quotations, direct costs, approved changes and the projected cost at completion."
         }
+      },
+      "qwen4-max-agent-efficiency": {
+        "it": {
+          "title": "Qwen4-Max: Alibaba punta su agenti AI più efficienti | EMPV",
+          "description": "Qwen4-Max: architettura MoE da 2,4T, 71 miliardi attivi, Work360, prezzi API, disponibilità cloud e limiti degli agenti AI per le aziende."
+        },
+        "en": {
+          "title": "Qwen4-Max: Alibaba targets more efficient AI agents | EMPV",
+          "description": "Qwen4-Max: 2.4T MoE architecture, 71B active parameters, Work360, API pricing, cloud availability and limits of enterprise AI agents."
+        }
       }
     }
   }
