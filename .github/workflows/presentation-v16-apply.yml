@@ -1,0 +1,44 @@
+name: Apply V16 brochure typography (temporary)
+on:
+  push:
+    branches: [feat/presentazione-legibility-20261123]
+    paths:
+      - ".github/workflows/presentation-v16-apply.yml"
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/presentazione-legibility-20261123
+          persist-credentials: true
+      - name: Replace the V15 readability layer with the V16 slide-specific layer
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import base64,gzip,hashlib,re
+          from pathlib import Path
+          css=gzip.decompress(base64.b64decode("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"))
+          assert hashlib.sha256(css).hexdigest()=="3193e3ca7a4552ee52d924223c26fd0056549e81f63991a5db6ccda812157123", "CSS integrity mismatch"
+          source=Path("public/presentazione/index.html")
+          html=source.read_text(encoding="utf-8")
+          pattern=r'<style id="empv-presentation-readability-v15">[\s\S]*?</style>'
+          assert len(re.findall(pattern,html))==1, "Expected exactly one V15 layer"
+          updated=re.sub(pattern,lambda m:'<style id="empv-presentation-readability-v16">\n'+css.decode("utf-8")+'\n</style>',html,count=1)
+          assert updated.count('<section class="slide-frame')==15
+          assert '14 — Team EMPV' in updated and '15 — Contatti e collaborazione' in updated
+          assert 'data-empv-language' in updated
+          source.write_text(updated,encoding="utf-8")
+          print("Applied V16, CSS SHA256 verified")
+          PY
+      - name: Commit only the presentation HTML to development branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/presentazione/index.html
+          git commit -m "Brochure V16: larger typography and balanced slide composition"
+          git push origin HEAD:feat/presentazione-legibility-20261123
