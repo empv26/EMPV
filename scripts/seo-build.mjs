@@ -28,6 +28,8 @@ const detailContent = await loadTypeScriptModule("../src/detailContent.ts");
 const researchContent = await loadTypeScriptModule("../src/researchNotesContent.ts");
 const processContent = await loadTypeScriptModule("../src/processPageContent.ts");
 const servicesContent = await loadTypeScriptModule("../src/servicesContent.ts");
+const commercialContent = await loadTypeScriptModule("../src/commercialContent.ts");
+const commercialCopy = commercialContent.commercialCopy;
 const businessCardContent = await loadTypeScriptModule("../src/businessCardData.ts");
 const copy = homeContent.copy;
 const selected = homeContent.selected;
@@ -708,6 +710,7 @@ function routePath(route) {
   }
   if (route.kind === "notesIndex") return "/" + route.lang + "/research-notes/";
   if (route.kind === "processPage") return route.lang === "it" ? "/it/automazione-processi-aziendali/" : "/en/business-process-automation/";
+  if (route.kind === "commercial") return route.slug === "software" ? (route.lang === "it" ? "/it/sviluppo-software-su-misura/" : "/en/custom-software-development/") : (route.lang === "it" ? "/it/intelligenza-artificiale-locale-aziende/" : "/en/on-premise-ai-business/");
   if (route.kind === "servicesPage") return route.lang === "it" ? "/it/cosa-facciamo/" : "/en/what-we-do/";
   if (route.kind === "note") {
     const note = getResearchNoteById(route.noteId);
@@ -745,6 +748,8 @@ const copyFor = route => route.kind === "home"
       ? manifest.researchNotes.index[route.lang]
       : route.kind === "processPage"
         ? manifest.processPage[route.lang]
+      : route.kind === "commercial"
+        ? manifest.commercial[route.slug][route.lang]
       : route.kind === "servicesPage"
         ? manifest.servicesPage[route.lang]
       : route.kind === "note"
@@ -1250,6 +1255,19 @@ function processPageMarkup(route) {
   ].join("");
 }
 
+function commercialPageMarkup(route) {
+ const lang=route.lang, c=commercialCopy[lang][route.slug], other=lang==="it"?"en":"it";
+ const home=hrefFor({kind:"home",lang}), back=hrefFor({kind:"servicesPage",lang});
+ const email="mailto:hello@empv.it?subject="+encodeURIComponent(lang==="it"?"EMPV — Richiesta consulenza":"EMPV — Consultation request");
+ return ['<div class="detail-shell services-page"><header class="topbar detail-topbar"><a class="wordmark" href="',esc(home),'">EMPV</a>',
+ '<a class="detail-nav-back" href="',esc(back),'">',lang==="it"?"Cosa facciamo":"What we do",'</a>',
+ '<a class="lang-switch" hreflang="',other,'" href="',esc(hrefFor({kind:"commercial",lang:other,slug:route.slug})),'">',other.toUpperCase(),'</a></header><main>',
+ '<section class="notes-index-hero"><div class="notes-index-hero-inner"><div class="eyebrow">EMPV / ',route.slug==="software"?"SOFTWARE":"LOCAL AI",'</div><h1>',esc(c.title),'</h1><p>',esc(c.intro),'</p></div></section>',
+ '<section class="detail-blocks section-pad">',c.sections.map((item,i)=>'<article class="detail-block"><div class="eyebrow">0'+(i+1)+'</div><div class="detail-block-main"><h2>'+esc(item.title)+'</h2><p>'+esc(item.text)+'</p></div></article>').join(""),'</section>',
+ '<section class="process-related section-pad"><div class="process-related-list"><a class="process-related-item" href="',esc(hrefFor({kind:"processPage",lang})),'"><span><strong>',esc(c.related),'</strong></span>↗</a></div></section>',
+ '<section class="process-contact section-pad"><div class="process-contact-main"><h2>',esc(c.cta),'</h2><div class="process-contact-actions"><a data-contact-placement="commercial_page" href="',esc(email),'">',lang==="it"?"Scrivici":"Email us",' ↗</a><a data-contact-placement="commercial_page" href="https://wa.me/393792438705">WhatsApp ↗</a></div></div></section></main></div>'].join("");
+}
+
 function servicesPageMarkup(route) {
   const lang = route.lang;
   const isIt = lang === "it";
@@ -1288,6 +1306,9 @@ function servicesPageMarkup(route) {
     '</p></div></section>',
     '<section class="detail-blocks section-pad" aria-label="', isIt ? "Servizi EMPV" : "EMPV services", '">',
     sections, '</section>',
+    '<section class="process-related section-pad"><div class="process-related-list">',
+    ["software","local-ai"].map(slug=>'<a class="process-related-item" href="'+esc(hrefFor({kind:"commercial",lang,slug}))+'"><span><strong>'+esc(slug==="software"?(isIt?"Sviluppo software su misura":"Custom software development"):(isIt?"Intelligenza artificiale locale":"On-premise AI"))+'</strong></span>↗</a>').join(""),
+    '</div></section>',
     '<section class="process-related section-pad" aria-labelledby="services-evidence-title">',
     '<div class="section-code">EMPV / ', esc(c.evidenceLabel), '</div>',
     '<h2 id="services-evidence-title">', esc(c.evidenceTitle), '</h2>',
@@ -1347,6 +1368,7 @@ function staticMarkup(route) {
   if (route.kind === "sectionIndex") return sectionIndexMarkup(route);
   if (route.kind === "notesIndex") return notesIndexMarkup(route.lang);
   if (route.kind === "processPage") return processPageMarkup(route);
+  if (route.kind === "commercial") return commercialPageMarkup(route);
   if (route.kind === "servicesPage") return servicesPageMarkup(route);
   if (route.kind === "note") return noteMarkup(route);
   return legalMarkup(route);
@@ -1703,6 +1725,7 @@ for (const lang of ["it", "en"]) {
   routes.push({ kind: "notesIndex", lang });
   routes.push({ kind: "processPage", lang });
   routes.push({ kind: "servicesPage", lang });
+  for (const slug of ["software","local-ai"]) routes.push({kind:"commercial",lang,slug});
 }
 for (const note of researchNotes) {
   for (const lang of ["it", "en"]) routes.push({ kind: "note", lang, noteId: note.id });

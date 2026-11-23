@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import manifest from "./seo-manifest.json";
+import type { CommercialSlug } from "./commercialContent";
 import type { SiteLang } from "./detailContent";
 import { businessCards, type BusinessPerson } from "./businessCardData";
 import { getResearchNoteById, getResearchNoteBySlug } from "./researchNotesContent";
@@ -16,6 +17,7 @@ export type SiteRoute =
   | { kind: "notesIndex"; lang: SiteLang }
   | { kind: "processPage"; lang: SiteLang }
   | { kind: "servicesPage"; lang: SiteLang }
+  | { kind: "commercial"; lang: SiteLang; slug: CommercialSlug }
   | { kind: "note"; lang: SiteLang; noteId: string }
   | { kind: "legal"; lang: SiteLang; slug: LegalSlug };
 
@@ -39,6 +41,7 @@ export function routePath(route: SiteRoute): string {
   }
   if (route.kind === "notesIndex") return `/${route.lang}/research-notes/`;
   if (route.kind === "processPage") return route.lang === "it" ? "/it/automazione-processi-aziendali/" : "/en/business-process-automation/";
+  if (route.kind === "commercial") return route.slug === "software" ? (route.lang === "it" ? "/it/sviluppo-software-su-misura/" : "/en/custom-software-development/") : (route.lang === "it" ? "/it/intelligenza-artificiale-locale-aziende/" : "/en/on-premise-ai-business/");
   if (route.kind === "servicesPage") return route.lang === "it" ? "/it/cosa-facciamo/" : "/en/what-we-do/";
   if (route.kind === "note") {
     const note = getResearchNoteById(route.noteId);
@@ -105,6 +108,8 @@ export function parseCurrentRoute(): SiteRoute {
     if ((lang === "it" && parts[0] === "automazione-processi-aziendali") || (lang === "en" && parts[0] === "business-process-automation")) {
       if (!parts[1]) return { kind: "processPage", lang };
     }
+    if ((lang === "it" && parts[0] === "sviluppo-software-su-misura") || (lang === "en" && parts[0] === "custom-software-development")) return {kind:"commercial",lang,slug:"software"};
+    if ((lang === "it" && parts[0] === "intelligenza-artificiale-locale-aziende") || (lang === "en" && parts[0] === "on-premise-ai-business")) return {kind:"commercial",lang,slug:"local-ai"};
     if (parts[0] === "research-notes" && parts[1]) {
       const note = getResearchNoteBySlug(lang, parts[1]);
       if (note) return { kind: "note", lang, noteId: note.id };
@@ -144,6 +149,7 @@ function copyFor(route: SiteRoute): { title: string; description: string } {
   if (route.kind === "notesIndex") return manifest.researchNotes.index[route.lang];
   if (route.kind === "processPage") return manifest.processPage[route.lang];
   if (route.kind === "servicesPage") return manifest.servicesPage[route.lang];
+  if (route.kind === "commercial") return manifest.commercial[route.slug][route.lang];
   if (route.kind === "note") {
     const item = manifest.researchNotes.notes[route.noteId as keyof typeof manifest.researchNotes.notes];
     return item?.[route.lang] ?? manifest.researchNotes.index[route.lang];

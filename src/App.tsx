@@ -23,6 +23,7 @@ import ProjectDetail from "./ProjectDetail";
 import ProjectGlassCard from "./ProjectGlassCard";
 import ProcessPage from "./processPage";
 import ServicesPage from "./ServicesPage";
+import CommercialPage from "./CommercialPage";
 import LegalPage from "./LegalPage";
 import ResearchNotes from "./ResearchNotes";
 import SectionIndex from "./SectionIndex";
@@ -842,6 +843,8 @@ function App() {
     page = <ProjectDetail slug={route.slug} initialLang={initialLang} />;
   } else if (route.kind === "processPage") {
     page = <ProcessPage lang={route.lang} />;
+  } else if (route.kind === "commercial") {
+    page = <CommercialPage lang={route.lang} slug={route.slug} />;
   } else if (route.kind === "servicesPage") {
     page = <ServicesPage lang={route.lang} />;
   } else if (route.kind === "sectionIndex") {

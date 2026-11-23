@@ -449,5 +449,27 @@
         }
       }
     }
+  },
+  "commercial": {
+    "software": {
+      "it": {
+        "title": "Sviluppo software su misura a Bergamo | EMPV",
+        "description": "Software aziendali su misura, dashboard e integrazioni. EMPV parte dai processi e dalle esigenze reali della tua impresa."
+      },
+      "en": {
+        "title": "Custom software development in Bergamo | EMPV",
+        "description": "Tailored business software, dashboards and integrations designed around real operational workflows."
+      }
+    },
+    "local-ai": {
+      "it": {
+        "title": "Intelligenza artificiale locale per aziende | EMPV",
+        "description": "Valuta AI on-premise, hardware, privacy e integrazione con i sistemi aziendali. EMPV parte da uno studio di fattibilità."
+      },
+      "en": {
+        "title": "On-premise AI for businesses | EMPV",
+        "description": "Assess local AI, infrastructure, data controls and business integrations with a feasibility-first approach."
+      }
+    }
   }
 }

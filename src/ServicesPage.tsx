@@ -87,6 +87,7 @@ export default function ServicesPage({ lang }: { lang: SiteLang }) {
           ))}
         </section>
 
+        <section className="process-related section-pad" aria-label={lang === "it" ? "Approfondimenti sui servizi" : "Explore our services"}><div className="process-related-list">{(["software","local-ai"] as const).map(slug => <a key={slug} className="process-related-item" href={siteHref({kind:"commercial",lang,slug})}><span><strong>{slug === "software" ? (lang === "it" ? "Sviluppo software su misura" : "Custom software development") : (lang === "it" ? "Intelligenza artificiale locale" : "On-premise AI")}</strong></span><ArrowUpRight size={20}/></a>)}</div></section>
         <section className="process-related section-pad" aria-labelledby="services-evidence-title">
           <div className="section-code">EMPV / {c.evidenceLabel}</div>
           <h2 id="services-evidence-title">{c.evidenceTitle}</h2>
