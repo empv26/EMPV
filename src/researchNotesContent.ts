@@ -26,6 +26,184 @@ export type ResearchNote = {
 
 export const researchNotes: ResearchNote[] = [
   {
+    "id": "inkling-2-mini-looped-transformer",
+    "index": "025",
+    "slugs": {
+      "it": "inkling-2-mini-modello-ai-locale-looped-transformer",
+      "en": "inkling-2-mini-local-ai-looped-transformer"
+    },
+    "title": {
+      "it": "Inkling 2 Mini: il modello AI locale che ripete i propri livelli",
+      "en": "Inkling 2 Mini: the local AI model that loops its own layers"
+    },
+    "dek": {
+      "it": "Thinking Machines Lab pubblica un modello open-weight da 26,4 miliardi di parametri. La sua architettura riutilizza gli stessi livelli neurali per aumentare il calcolo interno, con un checkpoint da circa 20 GB pensato anche per l'esecuzione locale.",
+      "en": "Thinking Machines Lab has released a 26.4-billion-parameter open-weight model that reuses neural layers to increase internal computation. Its approximately 20 GB checkpoint is designed to make local inference possible on compatible hardware."
+    },
+    "category": {
+      "it": "TECH NOTE / LOCAL AI",
+      "en": "TECH NOTE / LOCAL AI"
+    },
+    "tags": {
+      "it": [
+        "Inkling 2 Mini",
+        "Thinking Machines Lab",
+        "AI locale",
+        "Looped Transformer",
+        "Open Weight",
+        "Agenti AI"
+      ],
+      "en": [
+        "Inkling 2 Mini",
+        "Thinking Machines Lab",
+        "Local AI",
+        "Looped Transformer",
+        "Open Weights",
+        "AI Agents"
+      ]
+    },
+    "published": "2026-11-23",
+    "readingTime": {
+      "it": "5 min",
+      "en": "5 min"
+    },
+    "socialVersion": "20261123a",
+    "sections": {
+      "it": [
+        {
+          "label": "01 / Rilascio",
+          "title": "Un nuovo modello per l'AI locale",
+          "paragraphs": [
+            "Il 20 novembre 2026 [Thinking Machines Lab](https://thinkingmachines.ai/news/inkling-2-mini/) ha rilasciato Inkling 2 Mini, un modello AI multimodale che può elaborare testo e immagini e generare risposte testuali.",
+            "I pesi sono disponibili su [Hugging Face](https://huggingface.co/thinkingmachines/Inkling-2-Mini) con licenza Apache 2.0. Il modello occupa circa 20 GB nella configurazione distribuita dal produttore e può essere eseguito su hardware locale compatibile.",
+            "Inkling 2 Mini nasce dalla stessa famiglia di [Inkling 2 Small](https://thinkingmachines.ai/news/inkling-2-small/), il modello da 594 miliardi di parametri presentato il 5 novembre. La versione Mini è molto più contenuta e utilizza un'architettura differente per aumentare la quantità di elaborazione effettuata prima di generare ogni token."
+          ]
+        },
+        {
+          "label": "02 / Architettura",
+          "title": "Come funziona: 24 livelli utilizzati 48 volte",
+          "paragraphs": [
+            "Un modello linguistico basato su Transformer elabora le informazioni attraverso una successione di livelli neurali. Normalmente, ogni token attraversa questi livelli una volta.",
+            "Inkling 2 Mini utilizza invece un looped transformer: possiede 24 livelli, suddivisi in quattro blocchi da sei. Il primo e l'ultimo blocco vengono eseguiti una volta, mentre i 12 livelli centrali vengono attraversati tre volte.",
+            "Il risultato è un percorso di 48 applicazioni di livello, pur conservando i pesi di soli 24 livelli distinti.",
+            "L'architettura combina questa tecnica con una struttura Mixture-of-Experts (MoE), nella quale soltanto una parte della rete viene attivata per elaborare ciascun token. Il modello contiene 26,4 miliardi di parametri complessivi, di cui 3,4 miliardi attivi. Considerando i passaggi ripetuti, [Thinking Machines](https://thinkingmachines.ai/news/inkling-2-mini/) indica circa 5,4 miliardi di attivazioni effettive di pesi per token.",
+            "Riutilizzare i livelli permette di dedicare più calcolo all'elaborazione interna senza memorizzare nuovi pesi per ogni passaggio. Questo non significa che il calcolo sia gratuito: ogni ripetizione richiede ulteriori operazioni.",
+            "Un'[analisi pubblicata da Goodfire](https://www.goodfire.com/research/interpreting-inkling-2-mini/) descrive anche come il modello trasferisce le informazioni tra un passaggio e il successivo, attraverso meccanismi di attenzione che utilizzano le rappresentazioni prodotte in precedenza."
+          ]
+        },
+        {
+          "label": "03 / Valutazioni",
+          "title": "I risultati nei benchmark e i limiti",
+          "paragraphs": [
+            "Secondo le [valutazioni pubblicate da Thinking Machines](https://thinkingmachines.ai/model-card/inkling-2-mini/), Inkling 2 Mini ottiene il 48,2% su DeepSWE v1.1, un test relativo alla risoluzione di attività di sviluppo software. Nella stessa tabella Qwen3.8-27B raggiunge il 42,2%.",
+            "Su MCP Atlas, dedicato all'utilizzo di strumenti esterni da parte degli agenti, Inkling 2 Mini registra l'82,7%, contro il 77,3% di Qwen3.8-27B.",
+            "Il confronto non è però uniforme. Su Terminal Bench v2.1, il modello raggiunge il 71,6%, mentre Qwen3.8-27B ottiene il 73%. Thinking Machines riconosce inoltre risultati inferiori su alcune prove di conversazione prolungata e rispetto di istruzioni complesse.",
+            "Queste percentuali descrivono specifiche configurazioni di test, spesso con software agentici differenti. Non dimostrano che Inkling 2 Mini sia più affidabile di altri modelli in ogni applicazione aziendale."
+          ]
+        },
+        {
+          "label": "04 / Infrastruttura",
+          "title": "Esecuzione locale: cosa serve",
+          "paragraphs": [
+            "Il produttore distribuisce il modello in un checkpoint di circa 20 GB, con pesi nelle precisioni numeriche NVFP4 e MXFP8.",
+            "La [documentazione ufficiale](https://huggingface.co/thinkingmachines/Inkling-2-Mini) indica il supporto per dispositivi Apple Silicon con almeno 32 GB di memoria unificata e per NVIDIA DGX Spark. Per altre piattaforme GPU vengono raccomandati almeno 32 GB di VRAM.",
+            "Sono documentate integrazioni con framework come Transformers, vLLM, SGLang e, tramite versioni compatibili o quantizzate, Ollama e llama.cpp.",
+            "Il modello supporta una finestra di contesto dichiarata fino a un milione di token. Questo valore non significa però che un computer con 32 GB possa gestire sempre l'intero contesto: memoria necessaria, velocità e numero di richieste simultanee dipendono anche dal runtime, dalla cache e dalla configurazione hardware.",
+            "La possibilità di eseguire un modello localmente offre maggiore controllo sull'infrastruttura e sui dati elaborati. Non sostituisce la necessità di verificare quali componenti software comunicano con servizi esterni, come vengono conservati i dati e quali autorizzazioni possiede l'applicazione."
+          ]
+        },
+        {
+          "label": "05 / Ricerca",
+          "title": "Più calcolo interno, nuove domande sul monitoraggio",
+          "paragraphs": [
+            "Il looping introduce anche un problema di osservabilità. Se un modello può effettuare più elaborazioni interne prima di produrre una risposta, una parte del ragionamento potrebbe non comparire nel testo generato. Questo rende necessario studiare quanto sia possibile comprenderne il comportamento osservando soltanto la chain of thought, cioè i passaggi di ragionamento espressi in testo.",
+            "Thinking Machines ha esaminato il problema con una [variante sperimentale distinta](https://thinkingmachines.ai/news/inkling-2-mini/), chiamata TML-d24-varloop-research, che permette di variare il numero di ripetizioni. In una prova su GPQA Diamond, il ragionamento testuale medio è passato da 3.703 token con un passaggio a 1.661 con cinque passaggi, mantenendo una leggibilità simile secondo le misure utilizzate dai ricercatori.",
+            "Non si tratta di una dimostrazione che Inkling 2 Mini sia più sicuro o che il suo comportamento possa essere ricostruito completamente dal testo prodotto. Gli esperimenti riguardano condizioni specifiche e una variante addestrata separatamente.",
+            "[Goodfire](https://www.goodfire.com/research/interpreting-inkling-2-mini/) ha avviato un'analisi dei meccanismi interni per osservare come le informazioni attraversano livelli e loop. I risultati iniziali mostrano che queste strutture possono essere studiate con tecniche di interpretabilità, ma la ricerca è ancora in corso."
+          ]
+        },
+        {
+          "label": "06 / Impieghi",
+          "title": "Quali applicazioni aziendali valutare",
+          "paragraphs": [
+            "Per le aziende interessate all'AI locale, Inkling 2 Mini offre una nuova opzione da provare in attività come assistenza alla programmazione, consultazione documentale e agenti che utilizzano strumenti software.",
+            "La [model card](https://thinkingmachines.ai/model-card/inkling-2-mini/) segnala però rischi operativi precisi: il modello può produrre informazioni errate, perdere affidabilità in conversazioni lunghe ed eseguire operazioni distruttive sui file senza richiedere conferma.",
+            "Prima di impiegarlo su sistemi aziendali, una valutazione dovrebbe quindi misurare accuratezza sui dati del proprio settore, latenza sull'hardware disponibile e comportamento nelle attività composte da più passaggi. Per agenti che modificano dati o utilizzano strumenti sono necessari ambienti isolati, autorizzazioni limitate e conferme umane per le operazioni irreversibili.",
+            "Inkling 2 Mini rende accessibile una particolare architettura di calcolo a chi sviluppa sistemi AI locali. La sua utilità concreta dipenderà soprattutto dai risultati ottenuti nei processi in cui verrà effettivamente impiegato."
+          ]
+        }
+      ],
+      "en": [
+        {
+          "label": "01 / Release",
+          "title": "A new model for local AI",
+          "paragraphs": [
+            "On November 20, 2026, [Thinking Machines Lab](https://thinkingmachines.ai/news/inkling-2-mini/) released Inkling 2 Mini, a multimodal AI model that accepts text and image inputs and generates text.",
+            "Its weights are available on [Hugging Face](https://huggingface.co/thinkingmachines/Inkling-2-Mini) under the Apache 2.0 license. The official checkpoint occupies approximately 20 GB and can run on supported local hardware.",
+            "Inkling 2 Mini belongs to the same model family as [Inkling 2 Small](https://thinkingmachines.ai/news/inkling-2-small/), the 594-billion-parameter model announced on November 5. Mini is substantially smaller and uses a different architecture to increase the computation performed before generating each token."
+          ]
+        },
+        {
+          "label": "02 / Architecture",
+          "title": "How it works: 24 layers, 48 applications",
+          "paragraphs": [
+            "Transformer-based language models process information through a sequence of neural network layers. In a conventional architecture, each token passes through those layers once.",
+            "Inkling 2 Mini uses a looped transformer. It has 24 layers divided into four blocks of six. The first and final blocks run once, while the middle 12 layers run three times.",
+            "This produces 48 layer applications while storing the weights of only 24 distinct layers.",
+            "The architecture also uses a Mixture-of-Experts (MoE) structure, activating only part of the network for each token. The model contains 26.4 billion total parameters, with 3.4 billion active. Accounting for repeated passes, [Thinking Machines](https://thinkingmachines.ai/news/inkling-2-mini/) reports approximately 5.4 billion effective weight activations per token.",
+            "Reusing layers allows the model to perform additional internal computation without storing separate weights for every pass. However, those repeated operations still require computing resources.",
+            "A [technical analysis by Goodfire](https://www.goodfire.com/research/interpreting-inkling-2-mini/) describes how the architecture passes information between loops through attention mechanisms that can access representations produced during earlier passes."
+          ]
+        },
+        {
+          "label": "03 / Evaluation",
+          "title": "Benchmark performance and limitations",
+          "paragraphs": [
+            "According to the [evaluations published by Thinking Machines](https://thinkingmachines.ai/model-card/inkling-2-mini/), Inkling 2 Mini scores 48.2% on DeepSWE v1.1, a benchmark for software engineering tasks. Qwen3.8-27B scores 42.2% in the same comparison.",
+            "On MCP Atlas, which evaluates AI agents using external tools, Inkling 2 Mini achieves 82.7%, compared with 77.3% for Qwen3.8-27B.",
+            "The results are not uniformly better. On Terminal Bench v2.1, Inkling 2 Mini scores 71.6%, while Qwen3.8-27B reaches 73%. Thinking Machines also acknowledges weaker results in some evaluations of extended conversations and complex instruction-following.",
+            "These figures reflect particular benchmark configurations, sometimes using different agent frameworks. They do not establish that Inkling 2 Mini will be more reliable in every enterprise application."
+          ]
+        },
+        {
+          "label": "04 / Infrastructure",
+          "title": "Running locally: hardware requirements",
+          "paragraphs": [
+            "The official model checkpoint is approximately 20 GB, with weights stored in NVFP4 and MXFP8 numerical formats.",
+            "According to the [model documentation](https://huggingface.co/thinkingmachines/Inkling-2-Mini), supported hardware includes Apple Silicon devices with at least 32 GB of unified memory and NVIDIA DGX Spark. For other GPU platforms, at least 32 GB of VRAM is recommended.",
+            "The model supports inference frameworks including Transformers, vLLM and SGLang, as well as compatible or quantized configurations through Ollama and llama.cpp.",
+            "Inkling 2 Mini advertises a context window of up to one million tokens. However, this does not mean that every 32 GB computer can process the entire context. Actual memory requirements, inference speed and concurrency depend on the runtime, cache allocation and hardware configuration.",
+            "Local execution can provide greater control over infrastructure and data processing. Developers still need to verify whether supporting components communicate with external services, how data is retained and which permissions are granted to the application."
+          ]
+        },
+        {
+          "label": "05 / Research",
+          "title": "More internal computation raises monitoring questions",
+          "paragraphs": [
+            "Looping also introduces questions about observability. When a model performs additional internal computation before generating text, some of the reasoning involved may not appear in its written output. This raises questions about how much of its behaviour can be understood by inspecting its chain of thought.",
+            "Thinking Machines investigated this issue using a [separate research model](https://thinkingmachines.ai/news/inkling-2-mini/), TML-d24-varloop-research, which supports different numbers of looping passes. In an experiment using GPQA Diamond, average written reasoning decreased from 3,703 tokens with one pass to 1,661 with five passes. The researchers reported similar readability according to their measurements.",
+            "This does not establish that Inkling 2 Mini is safer or that its internal behaviour can be fully reconstructed from generated text. The experiments were conducted under specific conditions using a separately trained research variant.",
+            "[Goodfire](https://www.goodfire.com/research/interpreting-inkling-2-mini/) has also examined the model's internal information flow, studying how representations move across layers and loops. Its early findings suggest that these mechanisms can be investigated with interpretability techniques, although further research is needed."
+          ]
+        },
+        {
+          "label": "06 / Applications",
+          "title": "What businesses should evaluate",
+          "paragraphs": [
+            "For organizations considering local AI, Inkling 2 Mini offers another option for tasks such as coding assistance, document retrieval and agents interacting with software tools.",
+            "The [official model card](https://thinkingmachines.ai/model-card/inkling-2-mini/) identifies several operational risks. The model may generate incorrect information, become less reliable during long conversations and perform destructive file operations without asking for confirmation.",
+            "Before using it with enterprise systems, developers should evaluate accuracy on domain-specific data, latency on their actual hardware and performance across multi-step workflows. Agents capable of modifying data or operating software should run in isolated environments, with restricted permissions and human confirmation for irreversible actions.",
+            "Inkling 2 Mini makes a different approach to model computation available to developers building local AI systems. Its practical value will depend on how well it performs in the specific processes where it is deployed."
+          ]
+        }
+      ]
+    },
+    "takeaway": {
+      "it": "Inkling 2 Mini riutilizza 12 livelli per tre passaggi e distribuisce un checkpoint da circa 20 GB: una nuova opzione per l'AI locale da valutare su hardware, compiti e rischi operativi concreti.",
+      "en": "Inkling 2 Mini repeats its middle 12 layers three times and ships an approximately 20 GB checkpoint: a local AI option to evaluate against real hardware, tasks and operational risks."
+    }
+  },
+  {
     "id": "qwen4-max-agent-efficiency",
     "index": "024",
     "slugs": {
