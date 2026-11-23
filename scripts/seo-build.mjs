@@ -79,6 +79,38 @@ function cardVisual(noteId, lang = "it") {
   const orange = "#ff5a24";
   const faint = "#d8d6cf";
 
+  if (noteId === "inkling-2-mini-looped-transformer") {
+    // Explanatory diagram: the middle 12 transformer layers are reused in three passes.
+    // It illustrates the published architecture, not the model's actual attention weights.
+    const labels = lang === "it"
+      ? ["INGRESSO", "BLOCCO A", "BLOCCO B", "USCITA"]
+      : ["INPUT", "BLOCK A", "BLOCK B", "OUTPUT"];
+    const blocks = labels.map((label, index) => {
+      const y = 40 + index * 66;
+      const loop = index === 1 || index === 2;
+      return '<g><rect x="0" y="' + y + '" width="253" height="48" rx="10" fill="' + (loop ? "#fff0e8" : "#f7f5ef") + '" stroke="' + (loop ? "#ff5a24" : "#d0cec7") +
+        '" stroke-width="' + (loop ? 2 : 1.5) + '"/>' +
+        '<text x="16" y="' + (y + 29) + '" fill="#22211e" font-size="15" font-weight="700" letter-spacing="0.7">' + xml(label) +
+        ' <tspan fill="#77746e" font-weight="500">/ 6</tspan></text>' +
+        '<g transform="translate(139 ' + (y + 15) + ')">' +
+        Array.from({length: 6}, (_, col) => '<rect x="' + (col*15) + '" width="9" height="18" rx="2" fill="' + (loop ? "#ff5a24" : "#adaaa2") + '" opacity="' + (loop ? "0.85" : "0.6") + '"/>').join("") +
+        '</g></g>';
+    }).join("");
+    return `
+      <g transform="translate(838 145)" font-family="Arial, Helvetica, sans-serif">
+        <text x="0" y="6" font-size="13" font-weight="700" letter-spacing="1.8" fill="#6b6963">LOOPED TRANSFORMER</text>
+        <path d="M0 20 H258" stroke="#d5d2cb"/>
+        ${blocks}
+        <path d="M265 106 C310 106 310 252 265 252" fill="none" stroke="#ff5a24" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5"/>
+        <path d="M267 252 l10 -5 l-1 11 z" fill="#ff5a24"/>
+        <rect x="228" y="161" width="55" height="26" rx="13" fill="#ff5a24"/>
+        <text x="255" y="179" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">×3</text>
+        <text x="0" y="328" font-size="13" font-weight="700" letter-spacing="1.0" fill="#77746e">24 DISTINCT LAYERS</text>
+        <text x="0" y="350" font-size="13" font-weight="600" letter-spacing="0.8" fill="#ff5a24">48 LAYER APPLICATIONS</text>
+        <text x="0" y="367" font-size="11" fill="#8d8981">SCHEMATIC / NOT TO SCALE</text>
+      </g>`;
+  }
+
   if (noteId === "qwen4-max-agent-efficiency") {
     // Editorial schematic: selective expert activation, not a literal Qwen4 layer diagram.
     const expertTiles = Array.from({length: 5}, (_, r) =>
@@ -606,7 +638,11 @@ function approvedDotsSocialCardSvg(note, lang) {
 function socialCardSvg(note, lang) {
   if (note.id === "openai-dots") return approvedDotsSocialCardSvg(note, lang);
   const title = note.title[lang];
-  const lines = note.id === "sme-job-margin-control"
+  const lines = note.id === "inkling-2-mini-looped-transformer"
+    ? (lang === "it"
+      ? ["Inkling 2 Mini:", "il modello AI locale", "che ripete i propri livelli"]
+      : ["Inkling 2 Mini:", "the local AI model", "that loops its own layers"])
+    : note.id === "sme-job-margin-control"
     ? (lang === "it"
       ? ["Commesse a basso margine:", "come controllare costi", "e variazioni durante i lavori"]
       : ["Low-margin jobs:", "how to track costs and", "changes during delivery"])

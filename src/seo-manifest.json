@@ -437,6 +437,16 @@
           "title": "Qwen4-Max: Alibaba targets more efficient AI agents | EMPV",
           "description": "Qwen4-Max: 2.4T MoE architecture, 71B active parameters, Work360, API pricing, cloud availability and limits of enterprise AI agents."
         }
+      },
+      "inkling-2-mini-looped-transformer": {
+        "it": {
+          "title": "Inkling 2 Mini: il modello AI locale che ripete i propri livelli | EMPV",
+          "description": "Inkling 2 Mini di Thinking Machines: 26,4 miliardi di parametri, livelli neurali ripetuti, checkpoint locale da 20 GB, benchmark e limiti operativi."
+        },
+        "en": {
+          "title": "Inkling 2 Mini: the local AI model that loops its own layers | EMPV",
+          "description": "Thinking Machines' Inkling 2 Mini: 26.4B parameters, looped transformer layers, a 20 GB local checkpoint, benchmarks and practical limitations."
+        }
       }
     }
   }
