@@ -1199,6 +1199,19 @@
 </style>
 
 <style id="empv-slide-theme-override">.slide-frame.bg-navy{background-color:#101E35!important;}</style>
+<style id="empv-slide15-mobile-grid-fix">
+@media screen and (max-width: 600px) {
+  .slide-frame:nth-child(15) .safe-area { width:100%; min-width:0; }
+  .slide-frame:nth-child(15) .safe-area > :first-child { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; min-width:0; }
+  .slide-frame:nth-child(15) .safe-area > :first-child > * { min-width:0; max-width:100%; }
+  .slide-frame:nth-child(15) .safe-area > :nth-child(2) { display:grid; grid-template-columns:minmax(0,1fr); min-width:0; width:100%; gap:22px; }
+  .slide-frame:nth-child(15) .safe-area > :nth-child(2) > div { grid-column:1/-1; width:100%; min-width:0; max-width:100%; }
+  .slide-frame:nth-child(15) .safe-area > :nth-child(2) > .col-span-7 > .grid { display:grid; grid-template-columns:minmax(0,1fr)!important; }
+  .slide-frame:nth-child(15) .safe-area > :nth-child(2) > .col-span-7 > .grid > div { grid-column:1/-1; min-width:0; }
+  .slide-frame:nth-child(15) .safe-area .bg-white { min-width:0; max-width:100%; overflow-wrap:anywhere; }
+  .slide-frame:nth-child(15) .safe-area :is(a,span,p,h2) { max-width:100%; overflow-wrap:anywhere; }
+}
+</style>
 </head>
 <body class="font-sans antialiased">
 
