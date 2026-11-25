@@ -49,12 +49,23 @@ for (const [lang, home, page, segment, lab] of [
   assert.ok(page.includes('name="description" content="' + seo.description + '"'), lang + ": commercial description not prerendered");
 
   assert.match(page, /"@type":"CollectionPage"/, lang + ": services CollectionPage missing");
-  assert.equal((page.match(/"@type":"Service"/g) || []).length, 5, lang + ": expected five structured services");
+  assert.equal((page.match(/"@type":"Service"/g) || []).length, 6, lang + ": expected six structured services");
 
   for (const slug of slugs) {
     assert.ok(home.includes("/" + lang + "/" + segment + "/#" + slug), lang + ": missing card link " + slug);
     assert.ok(page.includes('id="' + slug + '"'), lang + ": missing service anchor " + slug);
   }
+  const aiPath = lang === "it" ? "it/consulenza-ai-act/" : "en/ai-act-consulting/";
+  const aiPage = await read(aiPath + "index.html");
+  assert.ok(home.includes("/" + aiPath), lang + ": AI Act card link missing");
+  assert.ok(page.includes('id="consulenza-ai-act"'), lang + ": AI Act service anchor missing");
+  assert.ok(page.includes("/" + aiPath), lang + ": AI Act contextual link missing");
+  assert.match(aiPage, /data-prerendered="true"/);
+  assert.match(aiPage, /id="ai-act-steps"/);
+  assert.match(aiPage, /id="ai-act-faq"/);
+  assert.match(aiPage, /"@type":"Service"/);
+  assert.ok(sitemap.includes("/" + aiPath));
+  assert.ok(llms.includes("/" + aiPath));
   const portfolioPath = lang === "it" ? "progetti" : "projects";
   for (const slug of ["commesse-posa", "psicologia-operations", "pet-resort-operations", "richieste-preventivi"]) {
     assert.ok(page.includes("/" + lang + "/" + portfolioPath + "/" + slug + "/"), lang + ": missing contextual project link " + slug);

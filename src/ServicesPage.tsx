@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowUpRight, Languages } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import type { SiteLang } from "./detailContent";
 import { services, servicesPageCopy } from "./servicesContent";
+import { aiActContent } from "./aiActContent";
 import { siteHref } from "./seo";
 import SiteFooter from "./SiteFooter";
 import { selected } from "./homeContent";
@@ -82,6 +83,7 @@ export default function ServicesPage({ lang }: { lang: SiteLang }) {
                   <li><strong>{service.whenLabel}:</strong> {service.when}</li>
                   <li><strong>{service.whatLabel}:</strong> {service.what}</li>
                 </ul>
+                {service.slug === "consulenza-ai-act" && <p><a href={siteHref({ kind: "aiActPage", lang })}>{aiActContent[lang].learn} <ArrowUpRight size={15} aria-hidden="true" /></a></p>}
               </div>
             </motion.article>
           ))}

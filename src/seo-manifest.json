@@ -31,6 +31,16 @@
       "description": "Custom software and integrations for businesses in Bergamo. EMPV maps workflows and evaluates automation, applied AI and local AI when useful."
     }
   },
+  "aiActPage": {
+    "it": {
+      "title": "Consulenza AI Act per aziende a Bergamo | EMPV",
+      "description": "Consulenza AI Act per aziende. Analisi dei rischi, piano di adeguamento, documentazione, formazione e assistenza continuativa."
+    },
+    "en": {
+      "title": "AI Act consulting for businesses in Bergamo | EMPV",
+      "description": "AI Act consulting for businesses. Risk assessment, compliance action plans, documentation, training and ongoing support."
+    }
+  },
   "sections": {
     "projects": {
       "it": {

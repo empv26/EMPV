@@ -34,6 +34,7 @@ const sitemap = await read("sitemap.xml");
 const pairs = [
   ["/it/", "/en/"],
   ["/it/cosa-facciamo/", "/en/what-we-do/"],
+  ["/it/consulenza-ai-act/", "/en/ai-act-consulting/"],
   ["/it/automazione-processi-aziendali/", "/en/business-process-automation/"],
   ["/it/progetti/", "/en/projects/"],
   ["/it/lab/", "/en/lab/"],
@@ -72,7 +73,7 @@ for (const [it, en] of pairs) {
 const itServices = await read("it/cosa-facciamo/index.html");
 const enServices = await read("en/what-we-do/index.html");
 for (const [lang, html] of [["it", itServices], ["en", enServices]]) {
-  for (const term of ["empv-discovery", "software-su-misura", "automazioni-integrazioni", "ai-per-le-aziende", "ai-locale-privata"]) {
+  for (const term of ["empv-discovery", "software-su-misura", "automazioni-integrazioni", "ai-per-le-aziende", "ai-locale-privata", "consulenza-ai-act"]) {
     assert.ok(html.includes('id="' + term + '"'), lang + ": service content absent in prerender");
   }
   assert.ok(html.includes('id="services-evidence-title"'), lang + ": project evidence absent");

@@ -69,6 +69,17 @@ export const services: Record<SiteLang, ServiceCard[]> = {
       whatLabel: "Cosa valutiamo",
       what: "Modelli, infrastruttura, sicurezza, prestazioni e costi.",
     },
+    {
+      slug: "consulenza-ai-act",
+      index: "06",
+      kind: "Conformità normativa",
+      name: "Consulenza e adeguamento AI Act",
+      description: "Affianchiamo le aziende nell'intero percorso di adeguamento all'AI Act, dall'analisi degli strumenti di intelligenza artificiale utilizzati all'applicazione delle misure necessarie per rispettare la normativa.",
+      whenLabel: "Quando serve",
+      when: "Quando l'azienda utilizza o intende introdurre l'intelligenza artificiale nei propri processi.",
+      whatLabel: "Cosa facciamo",
+      what: "Analisi, valutazione dei rischi, documentazione, formazione e assistenza continuativa."
+    },
   ],
   en: [
     {
@@ -125,6 +136,17 @@ export const services: Record<SiteLang, ServiceCard[]> = {
       when: "When privacy, control or operational requirements call for a different deployment approach.",
       whatLabel: "What we assess",
       what: "Models, infrastructure, security, performance and costs.",
+    },
+    {
+      slug: "consulenza-ai-act",
+      index: "06",
+      kind: "Regulatory compliance",
+      name: "AI Act consulting and compliance",
+      description: "We support businesses throughout the process of adapting to the AI Act, from assessing the artificial intelligence tools they use to implementing the measures needed to comply with the regulation.",
+      whenLabel: "When it helps",
+      when: "When a business uses or plans to introduce artificial intelligence into its workflows.",
+      whatLabel: "What we do",
+      what: "Assessment, risk evaluation, documentation, training and ongoing support."
     },
   ],
 };
