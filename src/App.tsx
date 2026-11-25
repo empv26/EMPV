@@ -23,6 +23,7 @@ import ProjectDetail from "./ProjectDetail";
 import ProjectGlassCard from "./ProjectGlassCard";
 import ProcessPage from "./processPage";
 import ServicesPage from "./ServicesPage";
+import AiActPage from "./AiActPage";
 import LegalPage from "./LegalPage";
 import ResearchNotes from "./ResearchNotes";
 import SectionIndex from "./SectionIndex";
@@ -709,7 +710,7 @@ function PortfolioApp({
                 key={service.slug}
                 service={service}
                 lang={lang}
-                href={siteHref({ kind: "servicesPage", lang }) + "#" + service.slug}
+                href={service.slug === "consulenza-ai-act" ? siteHref({ kind: "aiActPage", lang }) : siteHref({ kind: "servicesPage", lang }) + "#" + service.slug}
               />
             ))}
           </div>
@@ -842,6 +843,8 @@ function App() {
     page = <ProjectDetail slug={route.slug} initialLang={initialLang} />;
   } else if (route.kind === "processPage") {
     page = <ProcessPage lang={route.lang} />;
+  } else if (route.kind === "aiActPage") {
+    page = <AiActPage lang={route.lang} />;
   } else if (route.kind === "servicesPage") {
     page = <ServicesPage lang={route.lang} />;
   } else if (route.kind === "sectionIndex") {

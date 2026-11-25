@@ -8,13 +8,14 @@ Bilingual editorial portfolio by **Enrico Peruffo** and **Michele Valleri**, bas
 
 ## What we do
 
-The website presents five areas of work, with **EMPV Discovery** as the initial process-mapping method:
+The website presents six areas of work, with **EMPV Discovery** as the initial process-mapping method:
 
 1. **EMPV Discovery** — understand workflows, tools, responsibilities and priorities before designing solutions.
 2. **Custom software** — build applications and operating systems around specific needs.
 3. **Automation & integrations** — connect existing software, data and workflows.
 4. **AI for business** — assess and build AI-enabled capabilities where appropriate.
 5. **Private & on-premise AI** — evaluate controlled infrastructure and local-model deployments.
+6. **AI Act consulting and compliance** — assessment, risk evaluation, documentation, training, implementation and ongoing support. [Italiano](https://empv.it/it/consulenza-ai-act/) · [English](https://empv.it/en/ai-act-consulting/).
 
 [What we do (EN)](https://empv.it/en/what-we-do/) · [Cosa facciamo (IT)](https://empv.it/it/cosa-facciamo/)
 

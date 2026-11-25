@@ -57,13 +57,15 @@ try {
       const home = await page.goto(base + "/" + lang + "/", { waitUntil: "networkidle" });
       assert.equal(home.status(), 200);
       await page.evaluate(() => document.fonts.ready);
-      assert.equal(await page.locator("#services a.empv-glass-card").count(), 5, lang + "/" + width + ": services count");
+      assert.equal(await page.locator("#services a.empv-glass-card").count(), 6, lang + "/" + width + ": services count");
       assert.equal(await page.locator("#work a.empv-glass-card").count(), 4, lang + "/" + width + ": project count");
       assert.equal(await page.locator("#services .empv-card-title").first().innerText(), "EMPV Discovery");
       assert.ok(await page.locator(".desktop-nav a[href$='/lab/']").count(), lang + "/" + width + ": AI Lab header");
-      assert.equal(await page.locator("#services .empv-glass-card--lab").count(), 5, lang + "/" + width + ": retained Glass layout");
-      assert.equal(await page.locator("#services .empv-card-meta").count(), 5, lang + "/" + width + ": service details");
+      assert.equal(await page.locator("#services .empv-glass-card--lab").count(), 6, lang + "/" + width + ": retained Glass layout");
+      assert.equal(await page.locator("#services .empv-card-meta").count(), 6, lang + "/" + width + ": service details");
       assert.equal(await page.locator("#services a[href*='" + servicePath + "#']").count(), 5, lang + "/" + width + ": real service links");
+      const aiPath = lang === "it" ? "/it/consulenza-ai-act/" : "/en/ai-act-consulting/";
+      assert.equal(await page.locator("#services a[href$='" + aiPath + "']").count(), 1, lang + ": AI Act card link");
       const layout = await page.evaluate(() => ({
         viewport: window.innerWidth,
         html: document.documentElement.scrollWidth,
@@ -82,11 +84,19 @@ try {
 
       const detail = await page.goto(base + servicePath, { waitUntil: "networkidle" });
       assert.equal(detail.status(), 200);
-      assert.equal(await page.locator("main article.detail-block[id]").count(), 5, lang + "/" + width + ": detail sections");
+      assert.equal(await page.locator("main article.detail-block[id]").count(), 6, lang + "/" + width + ": detail sections");
       assert.equal(await page.locator("main h1").count(), 1, lang + "/" + width + ": detail H1");
       const detailLayout = await page.evaluate(() => ({ viewport: window.innerWidth, html: document.documentElement.scrollWidth, body: document.body.scrollWidth }));
       assert.ok(detailLayout.html <= width + 3 && detailLayout.body <= width + 3, lang + "/" + width + ": detail overflow " + JSON.stringify(detailLayout));
       await page.screenshot({ path: join(folder, lang + "-" + width + "-services-detail.png") });
+      assert.equal(await page.locator("main a[href$='" + aiPath + "']").count(), 1);
+      const ai = await page.goto(base + aiPath, { waitUntil: "networkidle" });
+      assert.equal(ai.status(), 200);
+      assert.equal(await page.locator("main h1").count(), 1);
+      assert.equal(await page.locator("section[aria-labelledby='ai-act-steps'] article").count(), 7);
+      assert.equal(await page.locator("section[aria-labelledby='ai-act-faq'] article").count(), 4);
+      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 3 && document.body.scrollWidth <= innerWidth + 3), lang + "/" + width + ": AI Act overflow");
+      await page.screenshot({path: join(folder, lang + "-" + width + "-ai-act.png")});
       assert.deepEqual(errors, [], lang + "/" + width + ": runtime errors");
       await page.close();
       checks += 1;

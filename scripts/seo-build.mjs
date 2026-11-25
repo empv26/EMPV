@@ -35,6 +35,7 @@ const faqs = homeContent.faqs;
 const labs = homeContent.labs;
 const services = servicesContent.services;
 const servicesPageCopy = servicesContent.servicesPageCopy;
+const { aiActContent } = await loadTypeScriptModule("../src/aiActContent.ts");
 const getDetail = detailContent.getDetail;
 const researchNotes = researchContent.researchNotes;
 const processPageContent = processContent.processPageContent;
@@ -708,6 +709,7 @@ function routePath(route) {
   }
   if (route.kind === "notesIndex") return "/" + route.lang + "/research-notes/";
   if (route.kind === "processPage") return route.lang === "it" ? "/it/automazione-processi-aziendali/" : "/en/business-process-automation/";
+  if (route.kind === "aiActPage") return route.lang === "it" ? "/it/consulenza-ai-act/" : "/en/ai-act-consulting/";
   if (route.kind === "servicesPage") return route.lang === "it" ? "/it/cosa-facciamo/" : "/en/what-we-do/";
   if (route.kind === "note") {
     const note = getResearchNoteById(route.noteId);
@@ -745,6 +747,8 @@ const copyFor = route => route.kind === "home"
       ? manifest.researchNotes.index[route.lang]
       : route.kind === "processPage"
         ? manifest.processPage[route.lang]
+      : route.kind === "aiActPage"
+        ? manifest.aiActPage[route.lang]
       : route.kind === "servicesPage"
         ? manifest.servicesPage[route.lang]
       : route.kind === "note"
@@ -859,7 +863,7 @@ function glassCardMarkup(item, lang, kind) {
     nodes: '<path d="M7 8.5 16 6l9 9-10 11-9-9z"/><circle cx="7" cy="8.5" r="2.5"/><circle cx="16" cy="6" r="2.5"/><circle cx="25" cy="15" r="2.5"/><circle cx="15" cy="26" r="2.5"/><circle cx="6" cy="17" r="2.5"/>'
   };
   const href = service
-    ? hrefFor({ kind: "servicesPage", lang }) + "#" + item.slug
+    ? (item.slug === "consulenza-ai-act" ? hrefFor({ kind: "aiActPage", lang }) : hrefFor({ kind: "servicesPage", lang }) + "#" + item.slug)
     : hrefFor({ kind: "detail", lang, detailKind: lab ? "lab" : "project", slug: item.slug });
   const label = service
     ? (lang === "it" ? "Scopri il servizio" : "Explore the service")
@@ -1273,7 +1277,7 @@ function servicesPageMarkup(route) {
     '<p>', esc(item.description), '</p><ul>',
     '<li><strong>', esc(item.whenLabel), ':</strong> ', esc(item.when), '</li>',
     '<li><strong>', esc(item.whatLabel), ':</strong> ', esc(item.what), '</li>',
-    '</ul></div></article>'
+    '</ul>', item.slug === 'consulenza-ai-act' ? '<p><a href="' + esc(hrefFor({ kind: 'aiActPage', lang })) + '">' + esc(aiActContent[lang].learn) + ' ↗</a></p>' : '', '</div></article>'
   ].join("")).join("");
 
   return [
@@ -1340,6 +1344,33 @@ function legalMarkup(route) {
     esc(pageCopy.description) + '</p></main></div>';
 }
 
+
+function aiActPageMarkup(route) {
+  const lang = route.lang;
+  const c = aiActContent[lang];
+  const other = lang === "it" ? "en" : "it";
+  const back = hrefFor({ kind: "servicesPage", lang }) + "#consulenza-ai-act";
+  const paragraphs = items => items.map(p => "<p>" + esc(p) + "</p>").join("");
+  const block = (label, heading, body, level = 2) => '<article class="detail-block"><div class="eyebrow">' + esc(label) + '</div><div class="detail-block-main"><h' + level + '>' + esc(heading) + '</h' + level + '>' + body + '</div></article>';
+  const heading = (id, title) => '<div class="section-head"><h2 id="' + id + '">' + esc(title) + '</h2></div>';
+  return [
+    '<div class="detail-shell services-page" data-prerendered="true"><header class="topbar detail-topbar">',
+    '<a class="wordmark" href="', esc(hrefFor({kind:"home",lang})), '" aria-label="EMPV home">EMPV</a>',
+    '<a class="detail-nav-back" href="', esc(back), '">', esc(c.back), '</a>',
+    '<a class="lang-switch" href="', esc(hrefFor({kind:"aiActPage",lang:other})), '" hreflang="', other, '">', other.toUpperCase(), '</a></header><main>',
+    '<section class="notes-index-hero"><div class="notes-index-hero-inner"><div class="eyebrow">EMPV / AI ACT</div><h1>', esc(c.title), '</h1>', paragraphs(c.intro), '</div></section>',
+    '<section class="detail-blocks section-pad">', block("EMPV / AI ACT", c.startTitle, paragraphs(c.start) + '<p><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj">' + esc(c.source) + '</a></p>'), '</section>',
+    '<section class="detail-blocks section-pad" aria-labelledby="ai-act-steps">', heading("ai-act-steps", c.stepsTitle),
+    c.steps.map(([title,body],index) => block(String(index+1).padStart(2,"0"),title,paragraphs([body]),3)).join(""),
+    block("EMPV / AI ACT",c.supportTitle,paragraphs([...c.support,c.scope])), '</section>',
+    '<section class="detail-blocks section-pad" aria-labelledby="ai-act-faq">', heading("ai-act-faq", c.faqTitle),
+    c.faq.map(([q,a]) => block("FAQ",q,paragraphs([a]),3)).join(""), '</section>',
+    '<section class="process-contact section-pad" aria-labelledby="ai-act-contact"><div class="section-code">EMPV / AI ACT</div><div class="process-contact-main"><h2 id="ai-act-contact">', esc(c.contactTitle), '</h2><p>', esc(c.contact), '</p><div class="process-contact-actions">',
+    '<a href="mailto:hello@empv.it?subject=', esc(encodeURIComponent("EMPV — AI Act")), '" data-contact-placement="services_page">', esc(c.contactLabel), ' ↗</a>',
+    '<a href="https://wa.me/393792438705" data-contact-placement="services_page">', esc(c.whatsapp), ' ↗</a></div></div></section></main>', footerMarkup(lang), '</div>'
+  ].join("");
+}
+
 function staticMarkup(route) {
   if (route.kind === "home") return homeMarkup(route.lang);
   if (route.kind === "businessCard") return businessCardMarkup(route);
@@ -1348,6 +1379,7 @@ function staticMarkup(route) {
   if (route.kind === "notesIndex") return notesIndexMarkup(route.lang);
   if (route.kind === "processPage") return processPageMarkup(route);
   if (route.kind === "servicesPage") return servicesPageMarkup(route);
+  if (route.kind === "aiActPage") return aiActPageMarkup(route);
   if (route.kind === "note") return noteMarkup(route);
   return legalMarkup(route);
 }
@@ -1520,6 +1552,11 @@ function structuredData(route) {
         }))
       }
     });
+  }
+
+  if (route.kind === "aiActPage") {
+    const c = aiActContent[route.lang];
+    graph.push({ "@type": "Service", "@id": url + "#service", name: c.title, description: pageCopy.description, serviceType: "AI Act consulting", url, provider: { "@id": orgId } });
   }
 
   if (route.kind === "servicesPage") {
@@ -1703,6 +1740,7 @@ for (const lang of ["it", "en"]) {
   routes.push({ kind: "notesIndex", lang });
   routes.push({ kind: "processPage", lang });
   routes.push({ kind: "servicesPage", lang });
+  routes.push({ kind: "aiActPage", lang });
 }
 for (const note of researchNotes) {
   for (const lang of ["it", "en"]) routes.push({ kind: "note", lang, noteId: note.id });
@@ -1883,7 +1921,8 @@ llmsLines.push("", "## Services and processes", "");
 for (const lang of ["it", "en"]) {
   llmsLines.push("- [" + manifest.servicesPage[lang].title + "](" + siteUrl + routePath({ kind: "servicesPage", lang }) + "): " + manifest.servicesPage[lang].description);
   for (const service of services[lang]) {
-    llmsLines.push("- [" + service.name + " — " + lang.toUpperCase() + "](" + siteUrl + routePath({ kind: "servicesPage", lang }) + "#" + service.slug + "): " + service.description);
+    const servicePath = service.slug === "consulenza-ai-act" ? routePath({ kind: "aiActPage", lang }) : routePath({ kind: "servicesPage", lang }) + "#" + service.slug;
+    llmsLines.push("- [" + service.name + " — " + lang.toUpperCase() + "](" + siteUrl + servicePath + "): " + service.description);
   }
   llmsLines.push("- [" + manifest.processPage[lang].title + "](" + siteUrl + routePath({ kind: "processPage", lang }) + "): " + manifest.processPage[lang].description);
 }
