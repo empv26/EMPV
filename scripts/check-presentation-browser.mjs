@@ -22,11 +22,11 @@ try {
   const errors=[]; page.on('pageerror',e=>errors.push(e.message));
   assert.equal((await page.goto(url)).status(),200);
   await page.evaluate(()=>document.fonts.ready);
-  assert.equal(await page.locator('.slide-frame').count(),15);
+  assert.equal(await page.locator('.slide-frame').count(),16);
   for (const lang of ['it','en','fr']) {
    await page.locator(`[data-empv-language="${lang}"]`).click();
    assert.equal(await page.locator('html').getAttribute('lang'),lang);
-   for (let slide=0;slide<15;slide++) {
+   for (let slide=0;slide<16;slide++) {
     await page.locator('#pageSelect').selectOption(String(slide));
     const layout=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,images:[...document.querySelectorAll('.slide-frame.active img')].map(i=>i.complete&&i.naturalWidth>0)}));
     assert.ok(layout.scroll<=width+3, `${lang}/${width}/${slide+1}: horizontal overflow ${layout.scroll}`);
@@ -53,6 +53,18 @@ try {
     });
     if (visibility.dark) assert.equal(visibility.background, 'rgb(16, 30, 53)', `${lang}/${width}/${slide+1}: dark slide lost its background`);
     assert.deepEqual(visibility.clipped, [], `${lang}/${width}/${slide+1}: text clipped vertically`);
+    if (slide === 2) {
+     const band=page.locator('#empv-solutions-slide .empv-ai-act-band');
+     assert.equal(await band.count(),1);
+     assert.ok(await band.isVisible());
+    }
+    if (slide === 13) {
+     const ai=page.locator('#empv-ai-act-slide');
+     assert.equal(await ai.locator('.ai-act-step').count(),6);
+     const title={it:"AI Act. Dall'analisi all'adeguamento aziendale.",en:"AI Act. From assessment to business compliance.",fr:"AI Act. De l’analyse à la mise en conformité de l’entreprise."}[lang];
+     assert.equal(await ai.locator('h2').innerText(),title);
+     await page.screenshot({path:join(folder,`${lang}-${width}-ai-act.png`),fullPage:true});
+    }
     if (slide === 4) {
      const caption = await page.locator('#empv-crm-example').evaluate(figure => {
       const photo=figure.querySelector('.empv-crm-photo').getBoundingClientRect();
@@ -80,5 +92,5 @@ try {
   assert.deepEqual(errors,[]);
   await page.close();
  }
- console.log('Presentation browser checks PASS: 15 slides × 3 languages × 5 widths, loaded images, no horizontal overflow, persisted language.');
+ console.log('Presentation browser checks PASS: 16 slides × 3 languages × 5 widths, loaded images, no horizontal overflow, persisted language.');
 } finally { await browser.close(); await new Promise(done=>server.close(done)); }
