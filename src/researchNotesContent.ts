@@ -26,6 +26,126 @@ export type ResearchNote = {
 
 export const researchNotes: ResearchNote[] = [
   {
+    "id": "sakana-namazu-small",
+    "index": "026",
+    "slugs": {
+      "it": "sakana-namazu-small-ai-locale",
+      "en": "sakana-namazu-small-local-ai"
+    },
+    "title": {
+      "it": "Sakana Namazu Small: quando 30 miliardi di parametri competono con 120",
+      "en": "Sakana Namazu Small: when 30 billion parameters compete with 120"
+    },
+    "dek": {
+      "it": "Il nuovo modello di Sakana AI supera mediamente NVIDIA Nemotron 3 Super nei benchmark pubblicati dall'azienda, con risultati particolarmente interessanti nella ricerca e nell'analisi documentale.",
+      "en": "Sakana AI's new model outperforms NVIDIA Nemotron 3 Super on average in the company's published benchmarks, showing particular strengths in research and document analysis."
+    },
+    "category": {
+      "it": "NEWS NOTE / AI MODELS",
+      "en": "NEWS NOTE / AI MODELS"
+    },
+    "tags": {
+      "it": [
+        "Sakana AI",
+        "Namazu Small",
+        "AI locale",
+        "Nemotron",
+        "LLM 30B",
+        "AI on-premise"
+      ],
+      "en": [
+        "Sakana AI",
+        "Namazu Small",
+        "Local AI",
+        "Nemotron",
+        "30B LLM",
+        "On-premise AI"
+      ]
+    },
+    "published": "2026-11-26",
+    "readingTime": {
+      "it": "2 min",
+      "en": "2 min"
+    },
+    "socialVersion": "20261126a",
+    "sections": {
+      "it": [
+        {
+          "label": "01 / Rilascio",
+          "title": "Namazu Small",
+          "paragraphs": [
+            "Il 25 novembre 2026, la giapponese [Sakana AI](https://sakana.ai/namazu-small/) ha presentato Namazu Small, un modello di ragionamento da 30 miliardi di parametri sviluppato a partire da NVIDIA Nemotron 3 Nano.",
+            "Attraverso ulteriori fasi di addestramento, Sakana ha concentrato lo sviluppo sulle capacità necessarie per attività di ricerca, comprensione dei documenti e rispetto delle istruzioni."
+          ]
+        },
+        {
+          "label": "02 / Prestazioni",
+          "title": "Le prestazioni",
+          "paragraphs": [
+            "Nei 25 benchmark pubblicati dall'azienda, Namazu Small ottiene un punteggio medio superiore a Nemotron 3 Super, un modello con quattro volte il numero complessivo di parametri.",
+            "Su BrowseComp, dedicato alla ricerca di informazioni sul web, raggiunge 73,5 punti contro i 36,1 di Nemotron 3 Super.",
+            "Il vantaggio non è universale. Nei test basati esclusivamente sulle conoscenze interne del modello, Namazu Small mostra risultati meno competitivi."
+          ]
+        },
+        {
+          "label": "03 / Applicazioni",
+          "title": "Le applicazioni aziendali",
+          "paragraphs": [
+            "Un sistema AI destinato a consultare documentazione tecnica, procedure interne o specifiche di prodotto deve soprattutto saper individuare le informazioni pertinenti e formulare risposte coerenti con le fonti.",
+            "In questi contesti, un modello specializzato potrebbe offrire un rapporto più favorevole tra prestazioni e risorse hardware rispetto a un modello generalista di dimensioni maggiori."
+          ]
+        },
+        {
+          "label": "04 / Infrastruttura",
+          "title": "L'esecuzione on-premise",
+          "paragraphs": [
+            "Sakana AI prevede di rendere disponibile Namazu Small anche per l'esecuzione sull'infrastruttura dei clienti.",
+            "I dettagli saranno comunicati nella prima metà di dicembre 2026. Requisiti hardware, condizioni di licenza e prestazioni su configurazioni locali rimangono quindi aspetti da verificare."
+          ]
+        }
+      ],
+      "en": [
+        {
+          "label": "01 / Release",
+          "title": "Namazu Small",
+          "paragraphs": [
+            "On November 25, 2026, Japanese AI laboratory [Sakana AI](https://sakana.ai/namazu-small/) introduced Namazu Small, a 30-billion-parameter reasoning model built on NVIDIA Nemotron 3 Nano.",
+            "Through additional training stages, Sakana focused on capabilities required for research, document comprehension and instruction following."
+          ]
+        },
+        {
+          "label": "02 / Performance",
+          "title": "Performance",
+          "paragraphs": [
+            "Across the 25 benchmarks published by the company, Namazu Small achieves a higher average score than Nemotron 3 Super, a model with four times as many total parameters.",
+            "On BrowseComp, a benchmark designed to evaluate web research capabilities, it scores 73.5 compared with Nemotron 3 Super's 36.1.",
+            "The advantage is not universal. Namazu Small is less competitive on tasks that rely exclusively on the model's internal knowledge."
+          ]
+        },
+        {
+          "label": "03 / Applications",
+          "title": "Enterprise applications",
+          "paragraphs": [
+            "An AI system designed to work with technical documentation, internal procedures or product specifications primarily needs to retrieve relevant information and produce answers grounded in its sources.",
+            "For these applications, a specialized model could offer a better balance between performance and hardware requirements than a larger general-purpose model."
+          ]
+        },
+        {
+          "label": "04 / Infrastructure",
+          "title": "On-premises deployment",
+          "paragraphs": [
+            "Sakana AI plans to make Namazu Small available for deployment on customers' own infrastructure.",
+            "Further details are expected in the first half of December 2026. Hardware requirements, licensing terms and performance on local configurations remain to be established."
+          ]
+        }
+      ]
+    },
+    "takeaway": {
+      "it": "I risultati pubblicati suggeriscono che la dimensione del modello, da sola, non è un criterio sufficiente per scegliere un sistema AI aziendale. La valutazione deve partire dalle attività che il modello dovrà effettivamente svolgere.",
+      "en": "The published results suggest that model size alone is insufficient when selecting an enterprise AI system. Evaluation should start with the tasks the model is expected to perform."
+    }
+  },
+  {
     "id": "inkling-2-mini-looped-transformer",
     "index": "025",
     "slugs": {

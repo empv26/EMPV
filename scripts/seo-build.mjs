@@ -80,6 +80,25 @@ function cardVisual(noteId, lang = "it") {
   const orange = "#ff5a24";
   const faint = "#d8d6cf";
 
+  if (noteId === "sakana-namazu-small") {
+    // Editorial catfish silhouette and published BrowseComp scores; not an official logo.
+    return `
+      <g transform="translate(835 158)" font-family="Arial, Helvetica, sans-serif">
+        <path d="M37 94 C78 31 163 39 210 88 L268 49 L256 111 L274 155 L208 125 C148 180 72 169 37 119 Q8 106 37 94Z" fill="#22211e"/>
+        <path d="M45 110 Q8 135 -8 167 M48 119 Q22 158 28 185 M39 101 Q4 99 -14 112" fill="none" stroke="#22211e" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="67" cy="93" r="5" fill="#f0efe9"/>
+        <path d="M102 57 Q136 12 162 62" fill="#ff5a24"/>
+        <text x="0" y="218" font-size="13" font-weight="700" letter-spacing="1.5" fill="#696862">BROWSECOMP</text>
+        <rect x="0" y="234" width="270" height="13" rx="4" fill="#ddd9d0"/>
+        <rect x="0" y="234" width="198.45" height="13" rx="4" fill="#ff5a24"/>
+        <text x="0" y="271" font-size="16" font-weight="700" fill="#22211e">NAMAZU / 30B</text><text x="270" y="271" text-anchor="end" font-size="19" font-weight="700" fill="#ff5a24">73.5</text>
+        <rect x="0" y="287" width="270" height="13" rx="4" fill="#ddd9d0"/>
+        <rect x="0" y="287" width="97.47" height="13" rx="4" fill="#8d8981"/>
+        <text x="0" y="324" font-size="16" font-weight="700" fill="#22211e">NEMOTRON / 120B</text><text x="270" y="324" text-anchor="end" font-size="19" fill="#696862">36.1</text>
+        <text x="0" y="350" font-size="11" fill="#696862">SOURCE: SAKANA AI</text>
+      </g>`;
+  }
+
   if (noteId === "inkling-2-mini-looped-transformer") {
     // Explanatory diagram: the middle 12 transformer layers are reused in three passes.
     // It illustrates the published architecture, not the model's actual attention weights.
@@ -639,7 +658,11 @@ function approvedDotsSocialCardSvg(note, lang) {
 function socialCardSvg(note, lang) {
   if (note.id === "openai-dots") return approvedDotsSocialCardSvg(note, lang);
   const title = note.title[lang];
-  const lines = note.id === "inkling-2-mini-looped-transformer"
+  const lines = note.id === "sakana-namazu-small"
+    ? (lang === "it"
+      ? ["Sakana Namazu Small:", "quando 30 miliardi", "di parametri competono", "con 120"]
+      : ["Sakana Namazu Small:", "when 30 billion", "parameters compete", "with 120"])
+    : note.id === "inkling-2-mini-looped-transformer"
     ? (lang === "it"
       ? ["Inkling 2 Mini:", "il modello AI locale", "che ripete i propri livelli"]
       : ["Inkling 2 Mini:", "the local AI model", "that loops its own layers"])
