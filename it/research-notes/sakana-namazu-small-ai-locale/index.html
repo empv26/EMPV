@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const validBackgrounds = new Set([
+          "none", "particles", "aero", "beams", "threads", "waves", "galaxy",
+          "orb", "silk", "sliced-waves", "side-rays", "light-tunnel",
+          "scanner", "prism", "dither"
+        ]);
+        const validPalettes = new Set([
+          "mist", "zinc", "mauve", "olive", "taupe", "amber", "blue", "indigo"
+        ]);
+        const aliases = { steel: "mist", sage: "olive" };
+
+        let stored = {};
+        try {
+          stored = JSON.parse(localStorage.getItem("empv-visual-preferences") || "{}") || {};
+        } catch {}
+
+        const params = new URLSearchParams(location.search);
+        const requestedBackground = params.get("bg");
+        const requestedPalette = params.get("palette");
+        const aliasedPalette = requestedPalette && aliases[requestedPalette]
+          ? aliases[requestedPalette]
+          : requestedPalette;
+
+        const background = validBackgrounds.has(requestedBackground)
+          ? requestedBackground
+          : validBackgrounds.has(stored.background)
+            ? stored.background
+            : "scanner";
+
+        const palette = validPalettes.has(aliasedPalette)
+          ? aliasedPalette
+          : validPalettes.has(stored.palette)
+            ? stored.palette
+            : "blue";
+
+        root.dataset.visualTheme = background === "none" ? "default" : "galaxy";
+        root.dataset.galaxyPalette = palette;
+
+        try {
+          const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+          const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (finePointer && !reducedMotion) {
+            root.classList.add("empv-custom-cursor-enabled");
+          }
+        } catch {}
+      })();
+    </script>
+    <meta name="theme-color" content="#ecebe5" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <meta name="google-site-verification" content="UnScA5DO68Suf6LYORZ-bKoSW_KV0KH6diJ9HCuVAqg" />
+    <meta name="description" content="Namazu Small: benchmark, ricerca documentale e prospettive di esecuzione on-premise del modello Sakana AI da 30 miliardi di parametri." />
+    <title>Sakana Namazu Small: quando 30 miliardi di parametri competono con 120 | EMPV</title>
+    <script type="module" crossorigin src="/assets/index-inmafuWN.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cqsd0oq4.css">
+      <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://empv.it/it/research-notes/sakana-namazu-small-ai-locale/" />
+    <link rel="alternate" hreflang="it" href="https://empv.it/it/research-notes/sakana-namazu-small-ai-locale/" />
+    <link rel="alternate" hreflang="en" href="https://empv.it/en/research-notes/sakana-namazu-small-local-ai/" />
+    <link rel="alternate" hreflang="x-default" href="https://empv.it/it/research-notes/sakana-namazu-small-ai-locale/" />
+    <link rel="describedby" href="https://empv.it/llms.txt" type="text/markdown" />
+    <meta property="og:title" content="Sakana Namazu Small: quando 30 miliardi di parametri competono con 120 | EMPV" />
+    <meta property="og:description" content="Namazu Small: benchmark, ricerca documentale e prospettive di esecuzione on-premise del modello Sakana AI da 30 miliardi di parametri." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://empv.it/it/research-notes/sakana-namazu-small-ai-locale/" />
+    <meta property="og:site_name" content="EMPV" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:image" content="https://empv.it/social/research-notes/sakana-namazu-small-it-20261126a.png" />
+    <meta property="og:image:url" content="https://empv.it/social/research-notes/sakana-namazu-small-it-20261126a.png" />
+    <meta property="og:image:secure_url" content="https://empv.it/social/research-notes/sakana-namazu-small-it-20261126a.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sakana Namazu Small: quando 30 miliardi di parametri competono con 120" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@EMPV26" />
+    <meta name="twitter:title" content="Sakana Namazu Small: quando 30 miliardi di parametri competono con 120 | EMPV" />
+    <meta name="twitter:description" content="Namazu Small: benchmark, ricerca documentale e prospettive di esecuzione on-premise del modello Sakana AI da 30 miliardi di parametri." />
+    <meta name="twitter:image" content="https://empv.it/social/research-notes/sakana-namazu-small-it-20261126a.png" />
+    <meta name="twitter:image:alt" content="Sakana Namazu Small: quando 30 miliardi di parametri competono con 120" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://empv.it/#organization","name":"EMPV","url":"https://empv.it","email":"hello@empv.it","telephone":"+39 379 243 8705","logo":{"@type":"ImageObject","@id":"https://empv.it/#logo","url":"https://empv.it/empv-logo-192.png","contentUrl":"https://empv.it/empv-logo-192.png","width":192,"height":192},"image":{"@id":"https://empv.it/#logo"},"sameAs":["https://www.linkedin.com/company/emp26/","https://x.com/EMPV26","https://github.com/empv26"],"address":{"@type":"PostalAddress","addressLocality":"Bergamo","addressCountry":"IT"},"member":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}]},{"@type":"Person","@id":"https://empv.it/#enrico-peruffo","name":"Enrico Peruffo","jobTitle":"AI Systems & Architecture","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"Person","@id":"https://empv.it/#michele-valleri","name":"Michele Valleri","jobTitle":"AI Product & Process Design","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"WebSite","@id":"https://empv.it/#website","name":"EMPV","url":"https://empv.it","inLanguage":["it","en"],"publisher":{"@id":"https://empv.it/#organization"}},{"@type":"WebPage","@id":"https://empv.it/it/research-notes/sakana-namazu-small-ai-locale/#webpage","url":"https://empv.it/it/research-notes/sakana-namazu-small-ai-locale/","name":"Sakana Namazu Small: quando 30 miliardi di parametri competono con 120 | EMPV","description":"Namazu Small: benchmark, ricerca documentale e prospettive di esecuzione on-premise del modello Sakana AI da 30 miliardi di parametri.","inLanguage":"it","isPartOf":{"@id":"https://empv.it/#website"},"about":{"@id":"https://empv.it/#organization"}},{"@type":"Article","@id":"https://empv.it/it/research-notes/sakana-namazu-small-ai-locale/#article","headline":"Sakana Namazu Small: quando 30 miliardi di parametri competono con 120","description":"Il nuovo modello di Sakana AI supera mediamente NVIDIA Nemotron 3 Super nei benchmark pubblicati dall'azienda, con risultati particolarmente interessanti nella ricerca e nell'analisi documentale.","datePublished":"2026-11-26","dateModified":"2026-11-26","inLanguage":"it","keywords":["Sakana AI","Namazu Small","AI locale","Nemotron","LLM 30B","AI on-premise"],"image":{"@type":"ImageObject","url":"https://empv.it/social/research-notes/sakana-namazu-small-it-20261126a.png","width":1200,"height":630},"mainEntityOfPage":{"@id":"https://empv.it/it/research-notes/sakana-namazu-small-ai-locale/#webpage"},"author":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}],"publisher":{"@id":"https://empv.it/#organization"}}]}</script>
+  </head>
+  <body>
+    <div id="root"><div class="detail-shell notes-shell" data-prerendered="true"><header class="topbar detail-topbar"><a class="wordmark" href="/it/" aria-label="EMPV home">EMPV</a><a class="detail-nav-back" href="/it/research-notes/">Research Notes</a><a class="lang-switch" href="/en/research-notes/sakana-namazu-small-local-ai/" hreflang="en">EN</a></header><main><section class="detail-hero research-note-hero"><div class="detail-hero-inner"><div class="detail-kicker-row"><span class="eyebrow">EMPV / RESEARCH NOTES</span><span class="detail-index">NOTE / 026</span></div><div class="detail-title-wrap detail-title-project research-note-title"><p class="detail-kicker">NEWS NOTE / AI MODELS</p><h1>Sakana Namazu Small: quando 30 miliardi di parametri competono con 120</h1></div><div class="detail-hero-bottom"><p class="detail-lead">Il nuovo modello di Sakana AI supera mediamente NVIDIA Nemotron 3 Super nei benchmark pubblicati dall'azienda, con risultati particolarmente interessanti nella ricerca e nell'analisi documentale.</p><div class="detail-status"><span>Pubblicata</span><strong>2026-11-26 · 2 min</strong></div></div><div class="tags detail-tags"><span>Sakana AI</span><span>Namazu Small</span><span>AI locale</span><span>Nemotron</span><span>LLM 30B</span><span>AI on-premise</span></div></div></section><section class="detail-blocks section-pad research-note-blocks"><article class="detail-block research-note-block"><div class="eyebrow">01 / Rilascio</div><div class="detail-block-main"><h2>Namazu Small</h2><div class="research-note-copy"><p>Il 25 novembre 2026, la giapponese <a href="https://sakana.ai/namazu-small/" target="_blank" rel="noreferrer noopener">Sakana AI</a> ha presentato Namazu Small, un modello di ragionamento da 30 miliardi di parametri sviluppato a partire da NVIDIA Nemotron 3 Nano.</p><p>Attraverso ulteriori fasi di addestramento, Sakana ha concentrato lo sviluppo sulle capacità necessarie per attività di ricerca, comprensione dei documenti e rispetto delle istruzioni.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">02 / Prestazioni</div><div class="detail-block-main"><h2>Le prestazioni</h2><div class="research-note-copy"><p>Nei 25 benchmark pubblicati dall'azienda, Namazu Small ottiene un punteggio medio superiore a Nemotron 3 Super, un modello con quattro volte il numero complessivo di parametri.</p><p>Su BrowseComp, dedicato alla ricerca di informazioni sul web, raggiunge 73,5 punti contro i 36,1 di Nemotron 3 Super.</p><p>Il vantaggio non è universale. Nei test basati esclusivamente sulle conoscenze interne del modello, Namazu Small mostra risultati meno competitivi.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">03 / Applicazioni</div><div class="detail-block-main"><h2>Le applicazioni aziendali</h2><div class="research-note-copy"><p>Un sistema AI destinato a consultare documentazione tecnica, procedure interne o specifiche di prodotto deve soprattutto saper individuare le informazioni pertinenti e formulare risposte coerenti con le fonti.</p><p>In questi contesti, un modello specializzato potrebbe offrire un rapporto più favorevole tra prestazioni e risorse hardware rispetto a un modello generalista di dimensioni maggiori.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">04 / Infrastruttura</div><div class="detail-block-main"><h2>L'esecuzione on-premise</h2><div class="research-note-copy"><p>Sakana AI prevede di rendere disponibile Namazu Small anche per l'esecuzione sull'infrastruttura dei clienti.</p><p>I dettagli saranno comunicati nella prima metà di dicembre 2026. Requisiti hardware, condizioni di licenza e prestazioni su configurazioni locali rimangono quindi aspetti da verificare.</p></div></div></article></section><section class="detail-boundary section-pad research-note-takeaway"><div class="section-code">EMPV / TAKEAWAY</div><p>I risultati pubblicati suggeriscono che la dimensione del modello, da sola, non è un criterio sufficiente per scegliere un sistema AI aziendale. La valutazione deve partire dalle attività che il modello dovrà effettivamente svolgere.</p></section><section class="research-note-share section-pad" aria-label="Condividi questa Research Note"><div class="section-code">EMPV / CONDIVIDI</div><div class="research-note-share-inner"><p>Condividi questa Research Note.</p><div class="research-note-share-actions"><a class="research-note-share-primary" href="https://empv.it/it/research-notes/sakana-namazu-small-ai-locale/?share=20261126a">Condividi</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fempv.it%2Fit%2Fresearch-notes%2Fsakana-namazu-small-ai-locale%2F%3Fshare%3D20261126a" target="_blank" rel="noreferrer noopener">LinkedIn</a><a href="https://twitter.com/intent/tweet?text=Sakana%20Namazu%20Small%3A%20quando%2030%20miliardi%20di%20parametri%20competono%20con%20120%20%E2%80%94%20EMPV%20Research%20Notes&amp;url=https%3A%2F%2Fempv.it%2Fit%2Fresearch-notes%2Fsakana-namazu-small-ai-locale%2F%3Fshare%3D20261126a" target="_blank" rel="noreferrer noopener">X</a><a href="https://wa.me/?text=Sakana%20Namazu%20Small%3A%20quando%2030%20miliardi%20di%20parametri%20competono%20con%20120%20%E2%80%94%20EMPV%20Research%20Notes%20https%3A%2F%2Fempv.it%2Fit%2Fresearch-notes%2Fsakana-namazu-small-ai-locale%2F%3Fshare%3D20261126a" target="_blank" rel="noreferrer noopener">WhatsApp</a><a href="https://empv.it/it/research-notes/sakana-namazu-small-ai-locale/?share=20261126a">Copia link</a></div></div></section><section class="detail-end section-pad"><a href="/it/research-notes/"><span>Research Notes</span></a></section></main></div></div>
+  </body>
+</html>

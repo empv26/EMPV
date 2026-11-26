@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const validBackgrounds = new Set([
+          "none", "particles", "aero", "beams", "threads", "waves", "galaxy",
+          "orb", "silk", "sliced-waves", "side-rays", "light-tunnel",
+          "scanner", "prism", "dither"
+        ]);
+        const validPalettes = new Set([
+          "mist", "zinc", "mauve", "olive", "taupe", "amber", "blue", "indigo"
+        ]);
+        const aliases = { steel: "mist", sage: "olive" };
+
+        let stored = {};
+        try {
+          stored = JSON.parse(localStorage.getItem("empv-visual-preferences") || "{}") || {};
+        } catch {}
+
+        const params = new URLSearchParams(location.search);
+        const requestedBackground = params.get("bg");
+        const requestedPalette = params.get("palette");
+        const aliasedPalette = requestedPalette && aliases[requestedPalette]
+          ? aliases[requestedPalette]
+          : requestedPalette;
+
+        const background = validBackgrounds.has(requestedBackground)
+          ? requestedBackground
+          : validBackgrounds.has(stored.background)
+            ? stored.background
+            : "scanner";
+
+        const palette = validPalettes.has(aliasedPalette)
+          ? aliasedPalette
+          : validPalettes.has(stored.palette)
+            ? stored.palette
+            : "blue";
+
+        root.dataset.visualTheme = background === "none" ? "default" : "galaxy";
+        root.dataset.galaxyPalette = palette;
+
+        try {
+          const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+          const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (finePointer && !reducedMotion) {
+            root.classList.add("empv-custom-cursor-enabled");
+          }
+        } catch {}
+      })();
+    </script>
+    <meta name="theme-color" content="#ecebe5" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <meta name="google-site-verification" content="UnScA5DO68Suf6LYORZ-bKoSW_KV0KH6diJ9HCuVAqg" />
+    <meta name="description" content="How SMEs can track job margins through accepted quotations, direct costs, approved changes and the projected cost at completion." />
+    <title>Low-margin jobs: tracking costs and scope changes | EMPV</title>
+    <script type="module" crossorigin src="/assets/index-inmafuWN.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cqsd0oq4.css">
+      <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://empv.it/en/research-notes/low-margin-jobs-track-costs-changes/" />
+    <link rel="alternate" hreflang="it" href="https://empv.it/it/research-notes/commesse-basso-margine-controllo-costi-variazioni/" />
+    <link rel="alternate" hreflang="en" href="https://empv.it/en/research-notes/low-margin-jobs-track-costs-changes/" />
+    <link rel="alternate" hreflang="x-default" href="https://empv.it/it/research-notes/commesse-basso-margine-controllo-costi-variazioni/" />
+    <link rel="describedby" href="https://empv.it/llms.txt" type="text/markdown" />
+    <meta property="og:title" content="Low-margin jobs: tracking costs and scope changes | EMPV" />
+    <meta property="og:description" content="How SMEs can track job margins through accepted quotations, direct costs, approved changes and the projected cost at completion." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://empv.it/en/research-notes/low-margin-jobs-track-costs-changes/" />
+    <meta property="og:site_name" content="EMPV" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://empv.it/social/research-notes/sme-job-margin-control-en-20261117a.png" />
+    <meta property="og:image:url" content="https://empv.it/social/research-notes/sme-job-margin-control-en-20261117a.png" />
+    <meta property="og:image:secure_url" content="https://empv.it/social/research-notes/sme-job-margin-control-en-20261117a.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Low-margin jobs: how to track costs and changes during delivery" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@EMPV26" />
+    <meta name="twitter:title" content="Low-margin jobs: tracking costs and scope changes | EMPV" />
+    <meta name="twitter:description" content="How SMEs can track job margins through accepted quotations, direct costs, approved changes and the projected cost at completion." />
+    <meta name="twitter:image" content="https://empv.it/social/research-notes/sme-job-margin-control-en-20261117a.png" />
+    <meta name="twitter:image:alt" content="Low-margin jobs: how to track costs and changes during delivery" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://empv.it/#organization","name":"EMPV","url":"https://empv.it","email":"hello@empv.it","telephone":"+39 379 243 8705","logo":{"@type":"ImageObject","@id":"https://empv.it/#logo","url":"https://empv.it/empv-logo-192.png","contentUrl":"https://empv.it/empv-logo-192.png","width":192,"height":192},"image":{"@id":"https://empv.it/#logo"},"sameAs":["https://www.linkedin.com/company/emp26/","https://x.com/EMPV26","https://github.com/empv26"],"address":{"@type":"PostalAddress","addressLocality":"Bergamo","addressCountry":"IT"},"member":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}]},{"@type":"Person","@id":"https://empv.it/#enrico-peruffo","name":"Enrico Peruffo","jobTitle":"AI Systems & Architecture","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"Person","@id":"https://empv.it/#michele-valleri","name":"Michele Valleri","jobTitle":"AI Product & Process Design","memberOf":{"@id":"https://empv.it/#organization"}},{"@type":"WebSite","@id":"https://empv.it/#website","name":"EMPV","url":"https://empv.it","inLanguage":["it","en"],"publisher":{"@id":"https://empv.it/#organization"}},{"@type":"WebPage","@id":"https://empv.it/en/research-notes/low-margin-jobs-track-costs-changes/#webpage","url":"https://empv.it/en/research-notes/low-margin-jobs-track-costs-changes/","name":"Low-margin jobs: tracking costs and scope changes | EMPV","description":"How SMEs can track job margins through accepted quotations, direct costs, approved changes and the projected cost at completion.","inLanguage":"en","isPartOf":{"@id":"https://empv.it/#website"},"about":{"@id":"https://empv.it/#organization"}},{"@type":"Article","@id":"https://empv.it/en/research-notes/low-margin-jobs-track-costs-changes/#article","headline":"Low-margin jobs: how to track costs and changes during delivery","description":"An accepted quotation does not guarantee a profitable job. For Italian SMEs working on individual contracts, connecting estimates, purchases, labour hours and scope changes can reveal cost overruns before work is completed.","datePublished":"2026-11-17","dateModified":"2026-11-17","inLanguage":"en","keywords":["Italian SMEs","Job costing","Margins","Quotations","Cost control","ERP"],"image":{"@type":"ImageObject","url":"https://empv.it/social/research-notes/sme-job-margin-control-en-20261117a.png","width":1200,"height":630},"mainEntityOfPage":{"@id":"https://empv.it/en/research-notes/low-margin-jobs-track-costs-changes/#webpage"},"author":[{"@id":"https://empv.it/#enrico-peruffo"},{"@id":"https://empv.it/#michele-valleri"}],"publisher":{"@id":"https://empv.it/#organization"}}]}</script>
+  </head>
+  <body>
+    <div id="root"><div class="detail-shell notes-shell" data-prerendered="true"><header class="topbar detail-topbar"><a class="wordmark" href="/en/" aria-label="EMPV home">EMPV</a><a class="detail-nav-back" href="/en/research-notes/">Research Notes</a><a class="lang-switch" href="/it/research-notes/commesse-basso-margine-controllo-costi-variazioni/" hreflang="it">IT</a></header><main><section class="detail-hero research-note-hero"><div class="detail-hero-inner"><div class="detail-kicker-row"><span class="eyebrow">EMPV / RESEARCH NOTES</span><span class="detail-index">NOTE / 023</span></div><div class="detail-title-wrap detail-title-project research-note-title"><p class="detail-kicker">SYSTEMS NOTE / OPERATIONS</p><h1>Low-margin jobs: how to track costs and changes during delivery</h1></div><div class="detail-hero-bottom"><p class="detail-lead">An accepted quotation does not guarantee a profitable job. For Italian SMEs working on individual contracts, connecting estimates, purchases, labour hours and scope changes can reveal cost overruns before work is completed.</p><div class="detail-status"><span>Published</span><strong>2026-11-17 · 5 min</strong></div></div><div class="tags detail-tags"><span>Italian SMEs</span><span>Job costing</span><span>Margins</span><span>Quotations</span><span>Cost control</span><span>ERP</span></div></div></section><section class="detail-blocks section-pad research-note-blocks"><article class="detail-block research-note-block"><div class="eyebrow">01 / Italian businesses</div><div class="detail-block-main"><h2>Italian small businesses are reporting margin pressure</h2><div class="research-note-copy"><p>In January 2026, <a href="https://www.confartigianato-lombardia.it/post/osservatorio-mpi-sondaggio-d-ascolto-bilancio-2025-e-aspettative-2026-delle-mpmi-lombarde" target="_blank" rel="noreferrer noopener">Confartigianato Lombardia</a> published a survey involving 1,366 associated micro and small businesses and craft enterprises.</p><p>Some 63% of respondents identified rising production costs among the difficulties they faced in 2025. Business owners also reported that accepting low-margin or below-cost work, and failing to adjust prices as costs increased, were among their poorest decisions.</p><p><a href="https://www.istat.it/comunicato-stampa/prezzi-alla-produzione-dellindustria-e-delle-costruzioni-settembre-2026/" target="_blank" rel="noreferrer noopener">ISTAT's September 2026 data</a> provides additional context. Industrial producer prices rose 13.8% year over year, largely driven by energy. Excluding energy, domestic producer prices increased by 3.5%.</p><p>These figures do not describe the economics of individual contracts. They illustrate why estimates prepared before a job begins can become less reliable as conditions change.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">02 / The margin</div><div class="detail-block-main"><h2>The quoted price is not the final margin</h2><div class="research-note-copy"><p>Consider a small installation company accepting a contract worth €12,000, excluding VAT.</p><p>Its estimate includes €9,000 in direct costs for materials, labour and subcontractors. The expected margin is €3,000, or 25% of revenue.</p><p>During delivery, the company incurs an additional €800 in materials, €600 in labour and €200 in subcontracted work.</p><p>If the agreed contract price remains unchanged, direct costs rise to €10,600. The remaining margin falls to €1,400, approximately 11.7% of revenue.</p><p>This is an illustrative calculation of margin after direct costs. Overheads and other costs must still be considered when assessing the overall financial result.</p><p>The difference may arise from customer changes, unexpected work, delays or purchasing prices that differ from the original estimate.</p><p>The operational difficulty is keeping those changes connected when the information sits across documents, emails, purchasing records and timesheets.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">03 / During delivery</div><div class="detail-block-main"><h2>Job costing should not end with the final report</h2><div class="research-note-copy"><p>Monitoring a contract requires three different financial views.</p><p>The first is the accepted estimate, which establishes the original revenue, scope, expected costs and commercial conditions. The approved baseline should remain available after later revisions.</p><p>The second is the actual cost incurred. Materials consumed, labour time, subcontracted services and other directly attributable expenses must be assigned to the correct job.</p><p>The third is the estimate at completion, which includes expected remaining expenditure and outstanding commitments without counting the same costs twice.</p><p>A job may look profitable when only received supplier invoices are considered. Yet outstanding purchase orders, unfinished work and unrecorded labour time may still change the outcome.</p><p>The useful comparison is therefore between the original expected margin, the margin implied by recorded actuals, and the projected margin at completion.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">04 / Existing systems</div><div class="detail-block-main"><h2>Connecting existing business systems</h2><div class="research-note-copy"><p>A digital solution does not necessarily require replacing the company's ERP.</p><p>The existing system can continue to manage customers, suppliers, purchasing and accounting. A job-level operational layer can connect these records to labour time, progress updates and approved changes.</p><p>When a purchasing cost changes or the project manager revises the expected hours, the projected margin can be recalculated.</p><p>If it falls below an agreed threshold, the system can flag the variance and show its cause: higher material costs, additional labour, unpriced work or pending change approvals.</p><p>Negotiating additional revenue, changing commercial terms and authorising scope modifications remain human responsibilities.</p><p>For simple operations, a maintained spreadsheet may be sufficient. Businesses managing multiple concurrent jobs, teams and data sources may benefit from more structured integration.</p><p>This builds on our earlier <a href="https://empv.it/en/research-notes/integrating-an-erp-without-replacing-it/" target="_blank" rel="noreferrer noopener">Research Note about integrating an ERP rather than replacing it</a>.</p></div></div></article><article class="detail-block research-note-block"><div class="eyebrow">05 / Testing</div><div class="detail-block-main"><h2>What needs to be tested</h2><div class="research-note-copy"><p>A margin dashboard is only as reliable as the records behind it.</p><p>Labour cost rates must be defined consistently. Expenses must be assigned to the right contracts. Purchased materials should not automatically be treated as consumed materials. Customer-requested changes need clear ownership and approval status.</p><p>An initial pilot can compare a small sample of jobs against financial results reconstructed by the company's administrative team.</p><p>Useful measures include cost-record completeness, time spent preparing job reports, variances detected before completion and differences between projected and final margins.</p><p>Software cannot eliminate price increases or unexpected work. Its value depends on making the financial impact visible early enough for the business to respond.</p></div></div></article></section><section class="detail-boundary section-pad research-note-takeaway"><div class="section-code">EMPV / TAKEAWAY</div><p>Track a job from the accepted estimate through projected cost at completion. Accurate cost attribution and approved changes make margin erosion visible earlier.</p></section><section class="research-note-share section-pad" aria-label="Share this Research Note"><div class="section-code">EMPV / SHARE</div><div class="research-note-share-inner"><p>Share this Research Note.</p><div class="research-note-share-actions"><a class="research-note-share-primary" href="https://empv.it/en/research-notes/low-margin-jobs-track-costs-changes/?share=20261117a">Share</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Flow-margin-jobs-track-costs-changes%2F%3Fshare%3D20261117a" target="_blank" rel="noreferrer noopener">LinkedIn</a><a href="https://twitter.com/intent/tweet?text=Low-margin%20jobs%3A%20how%20to%20track%20costs%20and%20changes%20during%20delivery%20%E2%80%94%20EMPV%20Research%20Notes&amp;url=https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Flow-margin-jobs-track-costs-changes%2F%3Fshare%3D20261117a" target="_blank" rel="noreferrer noopener">X</a><a href="https://wa.me/?text=Low-margin%20jobs%3A%20how%20to%20track%20costs%20and%20changes%20during%20delivery%20%E2%80%94%20EMPV%20Research%20Notes%20https%3A%2F%2Fempv.it%2Fen%2Fresearch-notes%2Flow-margin-jobs-track-costs-changes%2F%3Fshare%3D20261117a" target="_blank" rel="noreferrer noopener">WhatsApp</a><a href="https://empv.it/en/research-notes/low-margin-jobs-track-costs-changes/?share=20261117a">Copy link</a></div></div></section><section class="detail-end section-pad"><a href="/en/research-notes/"><span>Research Notes</span></a></section></main></div></div>
+  </body>
+</html>
