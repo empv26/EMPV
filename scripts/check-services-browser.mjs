@@ -149,6 +149,42 @@ try {
     console.log("PASS root redirect " + from + " -> " + expected);
   }
 
+  // Note 027 browser QA: reuse the existing CI browser fixture, without changing production UI.
+  const noteSlugs = { it: "ai-locale-isolamento-agenti-server-inferenza", en: "local-ai-agent-isolation-inference-server" };
+  for (const lang of ["it", "en"]) {
+    const notePath = "/" + lang + "/research-notes/" + noteSlugs[lang] + "/";
+    const raw = await readFile(join(dist, notePath, "index.html"), "utf8");
+    const canonical = "https://empv.it" + notePath;
+    assert.ok(raw.includes('rel="canonical" href="' + canonical + '"'), "Note 027 canonical " + lang);
+    for (const locale of ["it", "en"]) {
+      assert.ok(raw.includes('hreflang="' + locale + '" href="https://empv.it/' + locale + '/research-notes/' + noteSlugs[locale] + '/"'), "Note 027 hreflang " + locale);
+    }
+    const cardPath = "/social/research-notes/shared-inference-agent-isolation-" + lang + "-20261128a.png";
+    assert.ok(raw.includes('property="og:image" content="https://empv.it' + cardPath + '"'), "Note 027 OG image " + lang);
+    assert.ok(raw.includes('name="twitter:card" content="summary_large_image"'), "Note 027 X card");
+    const png = await readFile(join(dist, cardPath));
+    assert.equal(png.readUInt32BE(16), 1200, "Note 027 card width");
+    assert.equal(png.readUInt32BE(20), 630, "Note 027 card height");
+    for (const width of [390, 1440]) {
+      const page = await browser.newPage({ viewport: { width, height: 920 }, reducedMotion: "reduce" });
+      try {
+        const errors = [];
+        page.on("pageerror", e => errors.push(e.message));
+        const response = await page.goto(base + notePath, { waitUntil: "networkidle" });
+        assert.equal(response.status(), 200);
+        await page.evaluate(() => document.fonts.ready);
+        assert.equal(await page.locator("main h1").count(), 1);
+        assert.ok((await page.locator("main h1").innerText()).includes(lang === "it" ? "AI locale:" : "Local AI:"));
+        assert.equal(await page.locator("main .research-note-block").count(), 4);
+        assert.ok(await page.locator('main a[href*="lesswrong.com/posts/"]').count(), "Note 027 primary source link");
+        assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 3 && document.body.scrollWidth <= innerWidth + 3), "Note 027 horizontal overflow " + lang + "/" + width);
+        assert.deepEqual(errors, [], "Note 027 runtime errors");
+        await page.screenshot({path: join(folder, lang + "-" + width + "-note-027.png"), fullPage: true});
+        console.log("PASS Note 027 " + lang + " " + width + "px article, source, layout and metadata");
+      } finally { await page.close(); }
+    }
+  }
+
   console.log("PASS services browser QA: " + checks + " viewport/language and mobile checks, screenshots in " + folder);
 } finally {
   await browser.close();
