@@ -208,6 +208,16 @@
       }
     },
     "notes": {
+      "shared-inference-agent-isolation": {
+        "it": {
+          "title": "AI locale: quanto sono isolati due agenti che condividono lo stesso server? | EMPV",
+          "description": "Ricerca sull’isolamento degli agenti AI: canali laterali, server di inferenza vLLM condivisi e implicazioni per la sicurezza aziendale."
+        },
+        "en": {
+          "title": "Local AI: how isolated are two agents sharing an inference server? | EMPV",
+          "description": "Research on AI agent isolation: side channels, shared vLLM inference servers and implications for enterprise security."
+        }
+      },
       "sakana-namazu-small": {
         "it": {
           "title": "Sakana Namazu Small: quando 30 miliardi di parametri competono con 120 | EMPV",

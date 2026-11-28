@@ -80,6 +80,32 @@ function cardVisual(noteId, lang = "it") {
   const orange = "#ff5a24";
   const faint = "#d8d6cf";
 
+  if (noteId === "shared-inference-agent-isolation") {
+    // Editorial schematic of shared infrastructure; not an exploit diagram.
+    const copy = lang === "it"
+      ? { boundary: "AMBIENTI SEPARATI", agent: "AGENTE", engine: "INFERENZA CONDIVISA", caption: "RISORSA COMUNE / GPU" }
+      : { boundary: "SEPARATE ENVIRONMENTS", agent: "AGENT", engine: "SHARED INFERENCE", caption: "SHARED RESOURCE / GPU" };
+    return `
+      <g transform="translate(815 155)" font-family="Arial, Helvetica, sans-serif">
+        <text x="0" y="0" font-size="13" font-weight="700" letter-spacing="1.1" fill="#77746e">${xml(copy.boundary)}</text>
+        <path d="M0 19 H300" stroke="#d8d6cf"/>
+        <rect x="0" y="42" width="136" height="100" rx="12" fill="#f7f5ef" stroke="#a9a69d" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <rect x="164" y="42" width="136" height="100" rx="12" fill="#f7f5ef" stroke="#a9a69d" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <rect x="23" y="58" width="90" height="47" rx="6" fill="#22211e"/>
+        <rect x="187" y="58" width="90" height="47" rx="6" fill="#22211e"/>
+        <text x="68" y="88" text-anchor="middle" font-size="24" font-weight="700" fill="#f7f5ef">A</text>
+        <text x="232" y="88" text-anchor="middle" font-size="24" font-weight="700" fill="#f7f5ef">B</text>
+        <text x="68" y="127" text-anchor="middle" font-size="12" font-weight="700" fill="#696862">${xml(copy.agent)} A</text>
+        <text x="232" y="127" text-anchor="middle" font-size="12" font-weight="700" fill="#696862">${xml(copy.agent)} B</text>
+        <path d="M68 142 V188 M232 142 V188" stroke="#9e9a90" stroke-width="2"/>
+        <rect x="0" y="188" width="300" height="110" rx="13" fill="#fff3e9" stroke="#ff5a24" stroke-width="2"/>
+        <text x="150" y="216" text-anchor="middle" font-size="14" font-weight="700" fill="#22211e">${xml(copy.engine)}</text>
+        <rect x="39" y="234" width="222" height="42" rx="6" fill="#ff5a24"/>
+        <path d="M58 245 H242 M58 255 H242 M58 265 H242" stroke="#fff4e8" stroke-opacity=".65" stroke-width="2"/>
+        <text x="150" y="327" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1" fill="#77746e">${xml(copy.caption)}</text>
+      </g>`;
+  }
+
   if (noteId === "sakana-namazu-small") {
     // Editorial catfish silhouette and published BrowseComp scores; not an official logo.
     return `
@@ -658,7 +684,11 @@ function approvedDotsSocialCardSvg(note, lang) {
 function socialCardSvg(note, lang) {
   if (note.id === "openai-dots") return approvedDotsSocialCardSvg(note, lang);
   const title = note.title[lang];
-  const lines = note.id === "sakana-namazu-small"
+  const lines = note.id === "shared-inference-agent-isolation"
+    ? (lang === "it"
+      ? ["AI locale:", "quanto sono isolati", "due agenti che condividono", "lo stesso server?"]
+      : ["Local AI: how isolated", "are two agents sharing", "an inference server?"])
+    : note.id === "sakana-namazu-small"
     ? (lang === "it"
       ? ["Sakana Namazu Small:", "quando 30 miliardi", "di parametri competono", "con 120"]
       : ["Sakana Namazu Small:", "when 30 billion", "parameters compete", "with 120"])
