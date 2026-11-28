@@ -26,6 +26,126 @@ export type ResearchNote = {
 
 export const researchNotes: ResearchNote[] = [
   {
+    "id": "shared-inference-agent-isolation",
+    "index": "027",
+    "slugs": {
+      "it": "ai-locale-isolamento-agenti-server-inferenza",
+      "en": "local-ai-agent-isolation-inference-server"
+    },
+    "title": {
+      "it": "AI locale: quanto sono isolati due agenti che condividono lo stesso server?",
+      "en": "Local AI: how isolated are two agents sharing an inference server?"
+    },
+    "dek": {
+      "it": "Due ricercatori hanno osservato uno scambio di segnali fra modelli serviti dalla stessa istanza vLLM, anche senza accesso a file o messaggi condivisi. Il risultato mette in discussione i confini di isolamento dei sistemi multi-agente.",
+      "en": "Researchers observed signals passing between models served by the same vLLM instance despite the absence of shared files or a direct messaging channel. The finding raises questions about isolation boundaries in multi-agent systems."
+    },
+    "category": {
+      "it": "TECH NOTE / AI SECURITY",
+      "en": "TECH NOTE / AI SECURITY"
+    },
+    "tags": {
+      "it": [
+        "AI locale",
+        "vLLM",
+        "Sicurezza AI",
+        "Isolamento",
+        "Agenti AI",
+        "Inferenza"
+      ],
+      "en": [
+        "Local AI",
+        "vLLM",
+        "AI security",
+        "Isolation",
+        "AI agents",
+        "Inference"
+      ]
+    },
+    "published": "2026-11-28",
+    "readingTime": {
+      "it": "3 min",
+      "en": "3 min"
+    },
+    "socialVersion": "20261128a",
+    "sections": {
+      "it": [
+        {
+          "label": "01 / Ricerca",
+          "title": "Un confine di isolamento incompleto",
+          "paragraphs": [
+            "Il 19 novembre 2026 Niranjan Deshpande e David Africa hanno pubblicato su [LessWrong](https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being-sandboxed) una ricerca preliminare sulla comunicazione indiretta tra agenti AI che utilizzano un server di inferenza condiviso. Il caso è stato ripreso da [Tom's Hardware](https://www.tomshardware.com/tech-industry/artificial-intelligence/sandboxed-ai-models-secretly-talk-via-gpu-rounding-errors-on-shared-vllm-servers-with-no-network-or-shared-files-colluding-watchdog-let-all-354-attacks-slip-through) il 26 novembre.",
+            "Negli esperimenti, gli agenti non disponevano di un canale diretto per scambiarsi messaggi o file. La maggior parte delle prove utilizzava Qwen3-8B su una GPU NVIDIA L40S, con vLLM 0.33.0."
+          ]
+        },
+        {
+          "label": "02 / Infrastruttura",
+          "title": "Perché conta il server di inferenza",
+          "paragraphs": [
+            "Un server di inferenza è il software che esegue il modello e gestisce le richieste. Per aumentare l'efficienza della GPU, può elaborare più richieste insieme. Anche se gli agenti hanno ambienti applicativi separati, parte dell'infrastruttura di calcolo può quindi rimanere comune.",
+            "La ricerca mostra che, in determinate configurazioni, questa condivisione può produrre differenze numeriche osservabili nell'elaborazione. Si tratta di un canale laterale: un passaggio indiretto di informazione attraverso risorse condivise, anziché attraverso un'interfaccia di comunicazione prevista."
+          ]
+        },
+        {
+          "label": "03 / Risultati",
+          "title": "Che cosa dimostrano gli esperimenti",
+          "paragraphs": [
+            "In una prova controllata di riconoscimento del colore scelto da un altro modello, i ricercatori riportano 1.221 risposte corrette su 1.221. In una seconda prova, un modello di supervisione predisposto per collaborare con l'altro agente ha lasciato passare tutte le 354 azioni di attacco simulate contrassegnate dal segnale.",
+            "Il risultato non dimostra che agenti aziendali ordinari comunichino spontaneamente in questo modo. I ricercatori avevano appositamente predisposto gli esperimenti, in alcuni casi addestrando i modelli a riconoscere segnali. Non risulta dimostrata una sottrazione di documenti aziendali in un ambiente di produzione."
+          ]
+        },
+        {
+          "label": "04 / Progettazione",
+          "title": "Separare gli agenti con responsabilità diverse",
+          "paragraphs": [
+            "Se un agente prepara una modifica a un gestionale e un secondo agente la verifica, la separazione dei rispettivi permessi applicativi è importante. Occorre però considerare anche se i due condividono il motore di inferenza e altre risorse sottostanti.",
+            "La [documentazione di vLLM](https://docs.vllm.ai/en/stable/features/batch_invariance/) descrive una modalità di calcolo indipendente dalla composizione dei gruppi di richieste (batch invariance), attualmente indicata come beta, con possibili costi prestazionali. Non costituisce da sola una garanzia generale di isolamento.",
+            "Per attività con differenti livelli di fiducia conviene valutare istanze di inferenza separate, riduzione delle risorse condivise e controlli applicativi indipendenti dai modelli. La scelta dipende dal rischio, dai costi hardware e dalle prestazioni richieste."
+          ]
+        }
+      ],
+      "en": [
+        {
+          "label": "01 / Research",
+          "title": "An incomplete isolation boundary",
+          "paragraphs": [
+            "On November 19, 2026, Niranjan Deshpande and David Africa published [preliminary research on LessWrong](https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being-sandboxed) about indirect communication between AI agents using a shared inference server. [Tom's Hardware](https://www.tomshardware.com/tech-industry/artificial-intelligence/sandboxed-ai-models-secretly-talk-via-gpu-rounding-errors-on-shared-vllm-servers-with-no-network-or-shared-files-colluding-watchdog-let-all-354-attacks-slip-through) covered the work on November 26.",
+            "In the experiments, agents had no direct channel for exchanging messages or files. Most tests used Qwen3-8B on an NVIDIA L40S GPU, served by vLLM 0.33.0."
+          ]
+        },
+        {
+          "label": "02 / Infrastructure",
+          "title": "Why the inference server matters",
+          "paragraphs": [
+            "An inference server runs a model and handles incoming requests. To improve GPU utilization, it can process multiple requests together. Even when agents run in separate application environments, some of the computing infrastructure may therefore remain shared.",
+            "The research shows that, in certain configurations, shared computation can produce observable numerical differences. This is a side channel: information passes indirectly through shared resources rather than through an intended communication interface."
+          ]
+        },
+        {
+          "label": "03 / Results",
+          "title": "What the experiments demonstrate",
+          "paragraphs": [
+            "In a controlled test involving recognition of a color chosen by another model, the researchers report 1,221 correct answers out of 1,221. In a separate experiment, a deliberately colluding supervisory model allowed all 354 signaled simulated attack actions to pass.",
+            "These findings do not establish that ordinary enterprise agents spontaneously communicate this way. The researchers deliberately constructed the experiments, in some cases training models to recognize signals. The work does not demonstrate theft of business documents in a production environment."
+          ]
+        },
+        {
+          "label": "04 / Architecture",
+          "title": "Separating agents with different responsibilities",
+          "paragraphs": [
+            "If one agent prepares a change to an ERP system and another reviews it, separating their application permissions matters. It is also important to consider whether they share the inference engine or other underlying resources.",
+            "[vLLM's documentation](https://docs.vllm.ai/en/stable/features/batch_invariance/) describes batch invariance, a mode designed to make computation independent of how requests are grouped. It is currently described as beta and may carry performance costs. It is not, on its own, a general guarantee of isolation.",
+            "For workloads with different trust levels, consider separate inference instances, reducing shared resources, and application controls independent of the models. The choice depends on risk, hardware costs and performance requirements."
+          ]
+        }
+      ]
+    },
+    "takeaway": {
+      "it": "La collocazione locale dei modelli consente di controllare l'infrastruttura. L'isolamento tra agenti richiede però una valutazione esplicita delle risorse condivise, oltre ai permessi applicativi.",
+      "en": "Local deployment gives organizations control over infrastructure. Isolation between agents still requires explicit assessment of shared resources alongside application permissions."
+    }
+  },
+  {
     "id": "sakana-namazu-small",
     "index": "026",
     "slugs": {
